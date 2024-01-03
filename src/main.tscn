@@ -1,0 +1,617 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ui2fbv6uxmd"]
+
+[ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Audience" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.160784, 0.160784, 0.160784, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/Audience"]
+layout_mode = 0
+offset_right = 152.0
+offset_bottom = 40.0
+color = Color(0.752941, 0.752941, 0.752941, 0.901961)
+
+[node name="Label" type="Label" parent="VBoxContainer/Audience/ColorRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Comeback"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Audience"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AudienceMember" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember2" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember3" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember4" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember5" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember6" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember7" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember8" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember9" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember10" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember11" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember12" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember13" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember14" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="AudienceMember15" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
+modulate = Color(0.537255, 0.537255, 0.537255, 1)
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("1_q2t73")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Audience"]
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -52.0
+offset_right = 200.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.47451, 0.47451, 0.47451, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Audience/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "get his ass!!!!"
+
+[node name="Ring" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.14902, 0.270588, 0.376471, 1)
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Ring"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_q2t73")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ring"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Ring/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The Champion"
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0.298039, 0.745098, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
+modulate = Color(0.866667, 0.733333, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Ring/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "The Challenger"
+horizontal_alignment = 2
+
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
+modulate = Color(0.298039, 0.745098, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="ProgressBar3" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
+modulate = Color(0.866667, 0.733333, 0, 1)
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+value = 100.0
+show_percentage = false
+
+[node name="Chair" type="ColorRect" parent="VBoxContainer/Ring"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 115.0
+offset_right = 330.0
+offset_bottom = 127.0
+color = Color(0.498039, 0.235294, 0.184314, 1)
+
+[node name="Chair2" type="ColorRect" parent="VBoxContainer/Ring/Chair"]
+layout_mode = 0
+offset_top = 10.0
+offset_right = 9.0
+offset_bottom = 39.0
+color = Color(0.498039, 0.235294, 0.184314, 1)
+
+[node name="Chair3" type="ColorRect" parent="VBoxContainer/Ring/Chair"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 10.0
+offset_right = 43.0
+offset_bottom = 39.0
+color = Color(0.498039, 0.235294, 0.184314, 1)
+
+[node name="Chair4" type="ColorRect" parent="VBoxContainer/Ring/Chair"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -36.0
+offset_right = 43.0
+color = Color(0.498039, 0.235294, 0.184314, 1)
+
+[node name="Deck" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.568627, 0.568627, 0.568627, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Deck"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Card" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+color = Color(0.996078, 0.870588, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards/Card"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards/Card/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.678431, 0.678431, 0.678431, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Big Slam"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Slam"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 12
+text = "Deals high damage and stuns the opponent for 1 turn"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0.490196, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "15% stamina cost"
+horizontal_alignment = 1
+
+[node name="Card2" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+color = Color(0.996078, 0.870588, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.678431, 0.678431, 0.678431, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "The Claw"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Grapple"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 12
+text = "Deals low damage and doubles the effect of the next Direction debuff"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0.490196, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "8% stamina cost"
+horizontal_alignment = 1
+
+[node name="Card3" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+color = Color(0.666667, 0.870588, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.678431, 0.678431, 0.678431, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Play Up"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Direction"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 12
+text = "Foe will take double damage from your next attack"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card3/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0.815686, 0.603922, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "20% SP cost"
+horizontal_alignment = 1
+
+[node name="Card4" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+color = Color(0.996078, 0.870588, 0.760784, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+color = Color(0.678431, 0.678431, 0.678431, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -11.5
+offset_right = 60.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Uppercut
+"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "Punch"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -2
+theme_override_font_sizes/font_size = 12
+text = "Deals medium damage. Deals high damage if used after another Punch"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/Deck/MarginContainer/Cards/Card4/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_colors/font_color = Color(0, 0.490196, 0, 1)
+theme_override_font_sizes/font_size = 12
+text = "10% stamina cost"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Button" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Play Card"
+
+[node name="Button2" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Talk Smack"
+
+[node name="Button3" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Stance Up"
+
+[node name="Button4" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Grab Object (Chair)"
