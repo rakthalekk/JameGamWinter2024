@@ -30,7 +30,7 @@ func populate_from_data(data: CardData):
 
 
 func _on_button_pressed():
-	root.play_card(self)
+	root.play_card(card_data, self)
 
 
 func _on_button_mouse_entered():

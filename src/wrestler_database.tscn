@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxxpxfyyc2hd3"]
+[gd_scene load_steps=4 format=3 uid="uid://dxxpxfyyc2hd3"]
 
 [ext_resource type="Script" path="res://src/wrestler_data.gd" id="1_5xqm4"]
 [ext_resource type="Script" path="res://src/wrestler_database.gd" id="1_yg7rt"]
+[ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="2_i7lpa"]
 
 [node name="WrestlerDatabase" type="Node2D"]
 script = ExtResource("1_yg7rt")
 
 [node name="Player" type="Sprite2D" parent="."]
+position = Vector2(108, 74)
+texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "The Champion"
-attack_list = Array[String](["Punch", "Kick", "Grapple", "Slam"])
+attack_list = Array[String](["Punch", "Kick", "Grapple", "Slam", "Punch"])
 direction_list = Array[String](["PlayUp"])
 
 [node name="Guy" type="Sprite2D" parent="."]
+position = Vector2(465, 96)
+texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "Guy"
+attack_list = Array[String](["Punch", "Grapple"])
+direction_list = Array[String](["PlayUp"])

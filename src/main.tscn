@@ -1,8 +1,63 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=9 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
 [ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
+[ext_resource type="Script" path="res://src/opponent.gd" id="3_qpg5n"]
+
+[sub_resource type="Animation" id="Animation_trhs0"]
+resource_name = "obscure"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 178), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rmxbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 178)]
+}
+
+[sub_resource type="Animation" id="Animation_jgf2t"]
+resource_name = "unobscure"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 178)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ft1eb"]
+_data = {
+"RESET": SubResource("Animation_rmxbe"),
+"obscure": SubResource("Animation_trhs0"),
+"unobscure": SubResource("Animation_jgf2t")
+}
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -200,7 +255,7 @@ color = Color(0.14902, 0.270588, 0.376471, 1)
 unique_name_in_owner = true
 position = Vector2(473, 91)
 texture = ExtResource("1_q2t73")
-script = ExtResource("3_mefpn")
+script = ExtResource("3_qpg5n")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ring"]
 layout_mode = 1
@@ -337,11 +392,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 2
 
-[node name="PlayCard" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
+[node name="Attack" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Play Card"
+text = "Attack"
 
 [node name="Direction" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
 custom_minimum_size = Vector2(200, 0)
@@ -349,11 +404,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 text = "Direction"
 
-[node name="TalkSmack" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
+[node name="Banter" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Talk Smack"
+text = "Banter"
 
 [node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
 custom_minimum_size = Vector2(200, 0)
@@ -370,6 +425,32 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
+[node name="SmackTalk" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Hey I'm Walking over here!!!"
+
+[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Ayyy I'm Walking over here!!!"
+
+[node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "heyyyyyyyyy I'm Walking over here!!!"
+
+[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Shut the fuck up asshole!"
+
 [node name="TheBlocker" type="ColorRect" parent="VBoxContainer/Deck"]
 unique_name_in_owner = true
 visible = false
@@ -379,7 +460,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.145098, 0.145098, 0.145098, 0.458824)
+color = Color(0.145098, 0.145098, 0.145098, 0)
+
+[node name="TheObscurer" type="ColorRect" parent="VBoxContainer/Deck"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(960, 178)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 178.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.443137, 0.443137, 0.443137, 1)
 
 [node name="Player" type="Sprite2D" parent="."]
 visible = false
@@ -387,6 +481,16 @@ position = Vector2(886, 450)
 texture = ExtResource("1_q2t73")
 script = ExtResource("3_mefpn")
 
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/PlayCard" to="." method="_on_play_card_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ft1eb")
+}
+
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Direction" to="." method="_on_direction_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Banter" to="." method="_on_banter_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/StanceUp" to="." method="_on_stance_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/BanterButton" to="." method="_on_banter_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/BanterButton2" to="." method="_on_banter_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/BanterButton3" to="." method="_on_banter_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/BanterButton4" to="." method="_on_banter_button_4_pressed"]
