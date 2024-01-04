@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CardDatabase="*res://src/card_database.tscn"
 WrestlerDatabase="*res://src/wrestler_database.tscn"
+Global="*res://src/global.gd"
 
 [display]
 
