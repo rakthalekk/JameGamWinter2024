@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3km0g1aie4hy"]
+
+[ext_resource type="Script" path="res://src/card_database.gd" id="1_acd6c"]
+[ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="2_spled"]
+[ext_resource type="Script" path="res://src/card_data.gd" id="3_42tp3"]
+
+[node name="CardDatabase" type="Node2D"]
+script = ExtResource("1_acd6c")
+
+[node name="Punch" type="Sprite2D" parent="."]
+position = Vector2(112, 94)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Punch"
+description = "i punch the you"
+damage = 2
+stamina_cost = 1
+
+[node name="Kick" type="Sprite2D" parent="."]
+position = Vector2(268, 93)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Kick"
+type = 1
+description = "i kick the you"
+damage = 4
+stamina_cost = 2
+
+[node name="Grapple" type="Sprite2D" parent="."]
+position = Vector2(435, 93)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Grapple"
+type = 2
+description = "i grapple the you"
+damage = 2
+stamina_cost = 2
+
+[node name="Slam" type="Sprite2D" parent="."]
+position = Vector2(593, 95)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Slam"
+type = 3
+description = "i slam the you"
+damage = 8
+health_cost = 2
+stamina_cost = 3
+
+[node name="PlayUp" type="Sprite2D" parent="."]
+position = Vector2(759, 96)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Play Up"
+type = 4
+description = "i play up"
+sp_cost = 30

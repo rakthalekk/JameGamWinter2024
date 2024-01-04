@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=3 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
-[ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -14,6 +13,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_gyohi")
+starting_deck = Array[String](["Punch", "Kick", "Grapple", "Slam"])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -161,9 +161,7 @@ layout_mode = 2
 texture = ExtResource("1_q2t73")
 expand_mode = 1
 
-[node name="StatusPopup" type="ColorRect" parent="VBoxContainer/Audience"]
-unique_name_in_owner = true
-visible = false
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Audience"]
 custom_minimum_size = Vector2(400, 60)
 layout_mode = 1
 anchors_preset = 8
@@ -179,28 +177,40 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.47451, 0.47451, 0.47451, 1)
 
-[node name="StatusText" type="Label" parent="VBoxContainer/Audience/StatusPopup"]
-unique_name_in_owner = true
+[node name="Label" type="Label" parent="VBoxContainer/Audience/ColorRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "get his ass!!!!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Ring" type="ColorRect" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 color = Color(0.14902, 0.270588, 0.376471, 1)
 
-[node name="Opponent" type="Sprite2D" parent="VBoxContainer/Ring"]
-unique_name_in_owner = true
-position = Vector2(473, 91)
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Ring"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_q2t73")
-script = ExtResource("3_mefpn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ring"]
 layout_mode = 1
@@ -226,39 +236,31 @@ size_flags_horizontal = 0
 layout_mode = 2
 text = "The Champion"
 
-[node name="PlayerHealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 20.0
-value = 15.0
-fill_mode = 1
+value = 100.0
 show_percentage = false
 
-[node name="PlayerStaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="StaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(0.298039, 0.745098, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 5.0
-value = 3.0
-fill_mode = 1
+value = 100.0
 show_percentage = false
 
-[node name="PlayerSPBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="ProgressBar3" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
 modulate = Color(0.866667, 0.733333, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-value = 10.0
-fill_mode = 1
+value = 100.0
 show_percentage = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Ring/HBoxContainer"]
@@ -279,36 +281,31 @@ size_flags_horizontal = 8
 text = "The Challenger"
 horizontal_alignment = 2
 
-[node name="OpponentHealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
+[node name="HealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 20.0
-value = 15.0
+value = 100.0
 show_percentage = false
 
-[node name="OpponentStaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
+[node name="StaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
 modulate = Color(0.298039, 0.745098, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 5.0
-value = 3.0
+value = 100.0
 show_percentage = false
 
-[node name="OpponentSPBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
+[node name="ProgressBar3" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
 modulate = Color(0.866667, 0.733333, 0, 1)
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-value = 10.0
+value = 100.0
 show_percentage = false
 
 [node name="Deck" type="ColorRect" parent="VBoxContainer"]
@@ -328,65 +325,30 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="BottomMenu" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer"]
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ActionButtons" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/Cards"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 10
 theme_override_constants/separation = 2
 
-[node name="PlayCard" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
+[node name="Button" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Play Card"
 
-[node name="Direction" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Direction"
-
-[node name="TalkSmack" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
+[node name="Button2" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Talk Smack"
 
-[node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
+[node name="Button3" type="Button" parent="VBoxContainer/Deck/MarginContainer/Cards/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Stance Up"
-
-[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Directions" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-
-[node name="TheBlocker" type="ColorRect" parent="VBoxContainer/Deck"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.145098, 0.145098, 0.145098, 0.458824)
-
-[node name="Player" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(886, 450)
-texture = ExtResource("1_q2t73")
-script = ExtResource("3_mefpn")
-
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/PlayCard" to="." method="_on_play_card_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Direction" to="." method="_on_direction_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/StanceUp" to="." method="_on_stance_up_pressed"]

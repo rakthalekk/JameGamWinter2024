@@ -1,0 +1,13 @@
+class_name CardData
+extends Sprite2D
+
+enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION }
+
+@export var display_name : String
+@export var type : CARDTYPE
+@export var description : String
+@export var damage : int
+@export var stamina_damage : int
+@export var health_cost : int
+@export var stamina_cost : int
+@export var sp_cost : int
