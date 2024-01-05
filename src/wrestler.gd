@@ -14,7 +14,6 @@ var stamina = max_stamina
 var sp = 0
 
 var next_turn_stamina = true
-var can_gain_sp = true
 var stunned = false
 var unpopular = false
 
@@ -53,7 +52,6 @@ func setup_wrestler(wrestler_data: WrestlerData):
 
 func reset_penalties():
 	next_turn_stamina = true
-	can_gain_sp = true
 	stunned = false
 	unpopular = false
 

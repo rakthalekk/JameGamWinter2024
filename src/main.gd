@@ -53,7 +53,7 @@ func update_bars():
 
 func play_card(card_data: CardData, card: Card = null):
 	# Does nothing if the card cannot be afforded
-	if card_data.health_cost > active_wrestler.hp || card_data.stamina_cost > active_wrestler.stamina || card_data.sp_cost > active_wrestler.sp:
+	if card_data.health_cost >= active_wrestler.hp || card_data.stamina_cost > active_wrestler.stamina || card_data.sp_cost > active_wrestler.sp:
 		return
 	
 	var is_direction = card_data.type == CardData.CARDTYPE.DIRECTION
@@ -62,10 +62,15 @@ func play_card(card_data: CardData, card: Card = null):
 	if is_direction && active_wrestler.unpopular || !is_direction && active_wrestler.stunned:
 		return
 	
+	var flurry_punch = CardDatabase.get_card_by_name("Flurry of Blows")
+	
 	# Remove the card from the wrestler's hand and add it back to their deck if it isn't a direction
 	if !is_direction:
 		active_wrestler.hand.erase(card_data)
-		active_wrestler.deck.append(card_data)
+		
+		# Flurry of Blows cannot exist in the deck
+		if card_data != flurry_punch:
+			active_wrestler.deck.append(card_data)
 		
 		# If a player plays an action card, destroy the card
 		if card:
@@ -79,16 +84,30 @@ func play_card(card_data: CardData, card: Card = null):
 	active_wrestler.sp -= card_data.sp_cost
 	
 	# Grapples give 10% SP
-	if card_data.type == CardData.CARDTYPE.GRAPPLE:
+	if card_data.type == CardData.CARDTYPE.GRAPPLE && !active_wrestler.unpopular:
 		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
+	
+	var damage = calculate_damage(card_data)
+	
+	# Low Blow has a 50% chance to deal double damage and inflict unpopular
+	var low_blow_flag = false
+	if card_data.name == "Low Blow" && randf() < 0.5:
+		damage *= 2
+		low_blow_flag = true
+	
+	active_wrestler.opponent.hp = max(0, active_wrestler.opponent.hp - damage)
+	
+	if damage > 0 && active_wrestler.oversold:
+		active_wrestler.oversold = false
+	
+	update_bars()
 	
 	# Additional effects for cards that can't be generalized to data
 	await check_special_effects(card_data)
 	
-	var damage = calculate_damage(card_data)
-	active_wrestler.opponent.hp = max(0, active_wrestler.opponent.hp - damage)
-	
-	update_bars()
+	if low_blow_flag:
+		active_wrestler.opponent.unpopular = true
+		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 	
 	await check_debuff_rolls(card_data)
 	
@@ -96,7 +115,6 @@ func play_card(card_data: CardData, card: Card = null):
 	
 	update_bars()
 	
-	var flurry_punch = CardDatabase.get_card_by_name("FlurryOfBlows")
 	if card_data.type == CardData.CARDTYPE.PUNCH && card_data != flurry_punch:
 		consecutive_punches += 1
 		
@@ -111,12 +129,13 @@ func play_card(card_data: CardData, card: Card = null):
 	else:
 		clear_flurry_punch()
 	
+	recalculate_card_damage()
 	check_game_end()
 
 
 func clear_flurry_punch():
 	consecutive_punches = 0
-	var flurry_punch = CardDatabase.get_card_by_name("FlurryOfBlows")
+	var flurry_punch = CardDatabase.get_card_by_name("Flurry of Blows")
 	if active_wrestler.hand.has(flurry_punch):
 		active_wrestler.hand.erase(flurry_punch)
 		
@@ -126,37 +145,41 @@ func clear_flurry_punch():
 				return
 
 
-func calculate_damage(card_data: CardData) -> int:
+func recalculate_card_damage():
+	for card in %Cards.get_children():
+		card.update_damage(calculate_damage(card.card_data, player))
+
+
+func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler) -> int:
 	var damage = card_data.damage
 	
 	# Special conditions for punch moves
-	if card_data.display_name == "Cross" && consecutive_punches > 0:
+	if card_data.name == "Cross" && consecutive_punches > 0:
 		damage += 2
-	elif card_data.display_name == "Flurry of Blows":
+	elif card_data.name == "Flurry of Blows":
 		damage = 3 * (consecutive_punches - 1)
 	
 	# Oversold buff doubles damage dealt
-	if damage > 0 && active_wrestler.oversold:
+	if damage > 0 && wrestler.oversold:
 		damage *= 2
-		active_wrestler.oversold = false
 	
 	# Reduces damage based on the opponent's resistance
 	if card_data.type == CardData.CARDTYPE.PUNCH:
-		damage *= (1 - active_wrestler.opponent.punch_damage_reduction)
+		damage *= (1 - wrestler.opponent.punch_damage_reduction)
 	elif card_data.type == CardData.CARDTYPE.KICK:
-		damage *= (1 - active_wrestler.opponent.kick_damage_reduction)
+		damage *= (1 - wrestler.opponent.kick_damage_reduction)
 	elif card_data.type == CardData.CARDTYPE.FINISHER:
-		damage *= (1 - active_wrestler.opponent.finisher_damage_reduction)
+		damage *= (1 - wrestler.opponent.finisher_damage_reduction)
 	
 	# Applies damage multiplier of grapples when opponent is at low HP
-	if card_data.low_health_damage_multiplier > 0 && active_wrestler.opponent.hp <= 50:
+	if card_data.low_health_damage_multiplier > 0 && wrestler.opponent.hp <= 50:
 		damage *= card_data.low_health_damage_multiplier
 	
 	return damage
 
 
 func check_special_effects(card_data: CardData):
-	match card_data.display_name:
+	match card_data.name:
 		"Oversell":
 			active_wrestler.oversold = true
 		"Second Wind":
@@ -185,19 +208,19 @@ func check_debuff_rolls(card_data: CardData):
 		await debuff_text(active_wrestler.opponent.display_name, "Stunned")
 	
 	if randi_range(0, 99) < card_data.unpopular_chance:
-		active_wrestler.unpopular = true
+		active_wrestler.opponent.unpopular = true
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 
 
 func check_damage_reduction(card_data: CardData):
-	match card_data.display_name:
-		"Grapple":
+	match card_data.name:
+		"Arm Bar":
 			active_wrestler.punch_damage_reduction = 0.5
 			await damage_reduction_text(active_wrestler.display_name, "Punches")
-		"Grapple 2":
+		"Leg Lock":
 			active_wrestler.kick_damage_reduction = 0.5
 			await damage_reduction_text(active_wrestler.display_name, "Kicks")
-		"Grapple 3":
+		"Chokehold":
 			active_wrestler.finisher_damage_reduction = 0.5
 			await damage_reduction_text(active_wrestler.display_name, "Finishers")
 
@@ -252,8 +275,8 @@ func change_turn():
 		_on_play_card_pressed()
 		$AnimationPlayer.play("unobscure")
 	
-	#clear_flurry_punch()
 	draw_new_hand()
+	recalculate_card_damage()
 	
 	%StatusText.text = active_wrestler.display_name + " is ready to wrestle!"
 	await display_status_text(false, 2)
@@ -263,7 +286,7 @@ func change_turn():
 		active_wrestler.stamina = min(MAX_STAMINA, active_wrestler.stamina + 1)
 	
 	# Wrestler gains 10 SP upon starting their turn
-	if !active_wrestler.unpopular && active_wrestler.can_gain_sp:
+	if !active_wrestler.unpopular:
 		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
 	
 	update_bars()
@@ -290,15 +313,6 @@ func draw_new_hand():
 			card.populate_from_data(card_data)
 			card.root = self
 			%Cards.add_child(card)
-
-
-func banter(text):
-	%StatusText.text = active_wrestler.display_name + ": " + text
-	await display_status_text(false)
-	
-	active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 20)
-	update_bars()
-	change_turn()
 
 
 func stance_up():
@@ -330,7 +344,12 @@ func _on_banter_button_pressed():
 	%StatusText.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
 	await display_status_text(false)
 	
-	active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 30)
+	if !active_wrestler.unpopular:
+		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 30)
+	else:
+		%StatusText.text = "But the crowd did not respond..."
+		await display_status_text(false)
+	
 	update_bars()
 	change_turn()
 
@@ -339,21 +358,19 @@ func _on_banter_button_2_pressed():
 	%StatusText.text = active_wrestler.display_name + ": your a crowd loser!!!!"
 	await display_status_text(false)
 	
-	active_wrestler.opponent.can_gain_sp = false
-	if randf() > 0.5:
-		active_wrestler.opponent.unpopular = true
-		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
+	active_wrestler.opponent.unpopular = true
+	await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 	
 	update_bars()
 	change_turn()
 
 
 func _on_banter_button_3_pressed():
-	banter(%BanterButton3.text)
+	pass
 
 
 func _on_banter_button_4_pressed():
-	banter(%BanterButton4.text)
+	pass
 
 
 func _on_banter_pressed():

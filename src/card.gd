@@ -4,19 +4,23 @@ extends Control
 var root
 
 var card_data: CardData
+var effective_damage: int
 
 func populate_from_data(data: CardData):
 	card_data = data
 	
+	name = card_data.name
 	%Name.text = data.display_name
 	%Type.text = CardData.CARDTYPE.keys()[data.type]
 	%Description.text = data.description
-	%Damage.text = str(data.damage) + " DMG"
+	
+	effective_damage = data.damage
+	%Damage.text = str(effective_damage) + " DMG"
 	%HealthCost.text = str(data.health_cost) + " HP"
 	%StaminaCost.text = str(data.stamina_cost) + " ST"
 	%SPCost.text = str(data.sp_cost) + "% SP"
 	
-	if data.damage == 0:
+	if data.type == CardData.CARDTYPE.DIRECTION:
 		%Damage.hide()
 	if data.health_cost == 0:
 		%HealthCost.hide()
@@ -24,6 +28,18 @@ func populate_from_data(data: CardData):
 		%StaminaCost.hide()
 	if data.sp_cost == 0:
 		%SPCost.hide()
+
+
+func update_damage(new_damage: int):
+	effective_damage = new_damage
+	if effective_damage > card_data.damage:
+		%Damage.set("theme_override_colors/font_color", Color.FOREST_GREEN)
+	elif effective_damage < card_data.damage:
+		%Damage.set("theme_override_colors/font_color", Color.RED)
+	else:
+		%Damage.set("theme_override_colors/font_color", Color.BLACK)
+	
+	%Damage.text = str(effective_damage) + " DMG"
 
 
 func _on_button_pressed():

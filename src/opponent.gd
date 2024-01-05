@@ -11,7 +11,7 @@ func choose_action():
 	var action: CardData = null
 	
 	# If the opponent has full SP, attempt to use a direction
-	if sp == 100 && !unpopular:
+	if (sp == 100 || sp >= 70 && randf() > 0.7) && !unpopular:
 		action = try_pick_direction()
 	
 	# If the opponent has at least 4 stamina or a coin flip succeeds, and a direction has not been selected, attempt to attack
@@ -24,7 +24,10 @@ func choose_action():
 	elif stamina == 0 || stamina <= 2 && randf() > 0.5:
 		root.stance_up()
 	else:
-		root.banter("Hey I'm Walking over here!!!")
+		if randf() > 0.5:
+			root._on_banter_button_pressed()
+		else:
+			root._on_banter_button_2_pressed()
 
 
 # Attempts to select an attack if one is available. May be overridden by specific enemies
