@@ -1,6 +1,10 @@
 extends Node2D
 
 
+func _ready():
+	hide()
+
+
 func get_player() -> WrestlerData:
 	return $Player
 

@@ -7,7 +7,9 @@ enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION }
 @export var type : CARDTYPE
 @export var description : String
 @export var damage : int
-@export var stamina_damage : int
 @export var health_cost : int
 @export var stamina_cost : int
 @export var sp_cost : int
+@export var stamina_debuff_chance : int
+@export var stunned_chance : int
+@export var unpopular_chance : int

@@ -17,22 +17,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 10)]
 }
 
-[sub_resource type="Animation" id="Animation_mfvcc"]
-resource_name = "go_up"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 10), Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_ujwon"]
 resource_name = "go_down"
 length = 0.1
@@ -47,6 +31,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_mfvcc"]
+resource_name = "go_up"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_noncq"]
@@ -142,11 +142,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="DamageLabels" type="HBoxContainer" parent="ColorRect/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 10
-
-[node name="Damage" type="Label" parent="ColorRect/VBoxContainer2/DamageLabels"]
+[node name="Damage" type="Label" parent="ColorRect/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
@@ -154,17 +150,6 @@ size_flags_vertical = 8
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
 text = "0 DMG"
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="StaminaDamage" type="Label" parent="ColorRect/VBoxContainer2/DamageLabels"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 12
-text = "1 ST"
 horizontal_alignment = 1
 vertical_alignment = 2
 

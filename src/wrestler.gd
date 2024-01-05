@@ -13,6 +13,13 @@ var hp = max_hp
 var stamina = max_stamina
 var sp = 0
 
+var next_turn_stamina = true
+var can_gain_sp = true
+var stunned = false
+var unpopular = false
+
+var oversold = false
+
 var attack_list : Array[CardData]
 var direction_list : Array[CardData]
 
@@ -39,6 +46,13 @@ func setup_wrestler(wrestler_data: WrestlerData):
 		direction_list.append(CardDatabase.get_card_by_name(direction))
 	
 	get_random_hand()
+
+
+func reset_penalties():
+	next_turn_stamina = true
+	can_gain_sp = true
+	stunned = false
+	unpopular = false
 
 
 func get_random_hand():

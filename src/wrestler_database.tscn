@@ -12,13 +12,15 @@ position = Vector2(108, 74)
 texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "The Champion"
-attack_list = Array[String](["Punch", "Kick", "Grapple", "Slam", "Punch"])
-direction_list = Array[String](["PlayUp"])
+max_hp = 200
+attack_list = Array[String](["Jab", "HighKick", "Grapple", "Finisher", "GutPunch"])
+direction_list = Array[String](["Oversell"])
 
 [node name="Guy" type="Sprite2D" parent="."]
-position = Vector2(465, 96)
+position = Vector2(313, 76)
 texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "Guy"
-attack_list = Array[String](["Punch", "Grapple"])
-direction_list = Array[String](["PlayUp"])
+max_hp = 200
+attack_list = Array[String](["Jab", "Grapple"])
+direction_list = Array[String](["Oversell"])

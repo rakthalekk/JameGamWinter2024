@@ -10,8 +10,8 @@ func choose_action():
 	
 	var action: CardData = null
 	
-	# If the opponent has at least 50% SP or the chance succeeds, attempt to use a direction
-	if sp >= 50 || randf() < 0.3:
+	# If the opponent has full SP, attempt to use a direction
+	if sp == 100:
 		action = try_pick_direction()
 	
 	# If the opponent has at least 4 stamina or a coin flip succeeds, and a direction has not been selected, attempt to attack

@@ -1,9 +1,29 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=14 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
+[ext_resource type="Texture2D" uid="uid://ddhrceerolgmc" path="res://assets/Card Panel.png" id="2_tcr12"]
+[ext_resource type="Texture2D" uid="uid://ci6x1t3ibc653" path="res://assets/ResourceBarsUI.png" id="3_gif07"]
 [ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
 [ext_resource type="Script" path="res://src/opponent.gd" id="3_qpg5n"]
+[ext_resource type="Texture2D" uid="uid://wuqcr2vt3rcr" path="res://assets/Health-Meter.png" id="6_fcntt"]
+[ext_resource type="Texture2D" uid="uid://csjmmrwlb3gex" path="res://assets/StagePresence-Meter.png" id="7_v26it"]
+[ext_resource type="Texture2D" uid="uid://dgjm6q1mj37gd" path="res://assets/Stamina-Meter.png" id="8_0fhrg"]
+
+[sub_resource type="Animation" id="Animation_rmxbe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 178)]
+}
 
 [sub_resource type="Animation" id="Animation_trhs0"]
 resource_name = "obscure"
@@ -19,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 178), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_rmxbe"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 178)]
 }
 
 [sub_resource type="Animation" id="Animation_jgf2t"]
@@ -70,6 +75,24 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_gyohi")
 
+[node name="Darkness" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("2_tcr12")
+
+[node name="CardPanel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_tcr12")
+
+[node name="TopUI" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_gif07")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -78,145 +101,88 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Audience" type="ColorRect" parent="VBoxContainer"]
+[node name="Ring" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(960, 360)
 layout_mode = 2
 size_flags_vertical = 3
-color = Color(0.160784, 0.160784, 0.160784, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/Audience"]
-layout_mode = 0
-offset_right = 152.0
-offset_bottom = 40.0
-color = Color(0.752941, 0.752941, 0.752941, 0.901961)
-
-[node name="Label" type="Label" parent="VBoxContainer/Audience/ColorRect2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
-text = "Comeback"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Audience"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="AudienceMember" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
+[node name="Opponent" type="Sprite2D" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+position = Vector2(480, 240)
 texture = ExtResource("1_q2t73")
-expand_mode = 1
+script = ExtResource("3_qpg5n")
 
-[node name="AudienceMember2" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
+offset_left = 154.0
+offset_top = 4.0
+offset_right = 356.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+max_value = 20.0
+value = 15.0
+fill_mode = 1
+texture_progress = ExtResource("6_fcntt")
 
-[node name="AudienceMember3" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
+[node name="PlayerStamina" type="Sprite2D" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+position = Vector2(273, 39)
+texture = ExtResource("8_0fhrg")
+hframes = 6
+
+[node name="PlayerSPBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(191.915, 20)
 layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
+offset_left = 202.0
+offset_top = 54.0
+offset_right = 402.0
+offset_bottom = 74.0
+size_flags_horizontal = 8
+value = 30.0
+fill_mode = 1
+texture_progress = ExtResource("7_v26it")
 
-[node name="AudienceMember4" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
+[node name="OpponentHealthBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
+offset_left = 806.0
+offset_top = 4.0
+offset_right = 1008.0
+offset_bottom = 24.0
+scale = Vector2(-1, 1)
+size_flags_horizontal = 8
+max_value = 20.0
+value = 15.0
+fill_mode = 1
+texture_progress = ExtResource("6_fcntt")
 
-[node name="AudienceMember5" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
+[node name="OpponentStamina" type="Sprite2D" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+position = Vector2(687, 39)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("8_0fhrg")
+hframes = 6
+
+[node name="OpponentSPBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
+offset_left = 758.0
+offset_top = 54.0
+offset_right = 958.0
+offset_bottom = 74.0
+scale = Vector2(-1, 1)
+size_flags_horizontal = 8
+value = 30.0
+fill_mode = 1
+texture_progress = ExtResource("7_v26it")
 
-[node name="AudienceMember6" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember7" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember8" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember9" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember10" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember11" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember12" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember13" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember14" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="AudienceMember15" type="TextureRect" parent="VBoxContainer/Audience/HBoxContainer"]
-modulate = Color(0.537255, 0.537255, 0.537255, 1)
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-texture = ExtResource("1_q2t73")
-expand_mode = 1
-
-[node name="StatusPopup" type="ColorRect" parent="VBoxContainer/Audience"]
+[node name="StatusPopup" type="ColorRect" parent="VBoxContainer/Ring"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(400, 60)
@@ -226,15 +192,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -52.0
-offset_right = 200.0
-offset_bottom = 8.0
+offset_left = -205.0
+offset_top = 50.0
+offset_right = 195.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.47451, 0.47451, 0.47451, 1)
 
-[node name="StatusText" type="Label" parent="VBoxContainer/Audience/StatusPopup"]
+[node name="StatusText" type="Label" parent="VBoxContainer/Ring/StatusPopup"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -246,130 +212,9 @@ text = "get his ass!!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Ring" type="ColorRect" parent="VBoxContainer"]
+[node name="Deck" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-color = Color(0.14902, 0.270588, 0.376471, 1)
-
-[node name="Opponent" type="Sprite2D" parent="VBoxContainer/Ring"]
-unique_name_in_owner = true
-position = Vector2(473, 91)
-texture = ExtResource("1_q2t73")
-script = ExtResource("3_qpg5n")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Ring"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Ring/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-
-[node name="Label" type="Label" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "The Champion"
-
-[node name="PlayerHealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 20.0
-value = 15.0
-fill_mode = 1
-show_percentage = false
-
-[node name="PlayerStaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(0.298039, 0.745098, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 5.0
-value = 3.0
-fill_mode = 1
-show_percentage = false
-
-[node name="PlayerSPBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(0.866667, 0.733333, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-value = 10.0
-fill_mode = 1
-show_percentage = false
-
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/Ring/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "The Challenger"
-horizontal_alignment = 2
-
-[node name="OpponentHealthBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(1, 0, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 20.0
-value = 15.0
-show_percentage = false
-
-[node name="OpponentStaminaBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(0.298039, 0.745098, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-max_value = 5.0
-value = 3.0
-show_percentage = false
-
-[node name="OpponentSPBar" type="ProgressBar" parent="VBoxContainer/Ring/HBoxContainer/MarginContainer2/VBoxContainer"]
-unique_name_in_owner = true
-modulate = Color(0.866667, 0.733333, 0, 1)
-custom_minimum_size = Vector2(200, 20)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-value = 10.0
-show_percentage = false
-
-[node name="Deck" type="ColorRect" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-color = Color(0.568627, 0.568627, 0.568627, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Deck"]
 layout_mode = 1
@@ -378,10 +223,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
 
 [node name="BottomMenu" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer"]
 layout_mode = 2
@@ -434,22 +279,22 @@ size_flags_horizontal = 3
 [node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Hey I'm Walking over here!!!"
+text = "Crowd Pleaser"
 
 [node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Ayyy I'm Walking over here!!!"
+text = "Crowd Loser"
 
 [node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "heyyyyyyyyy I'm Walking over here!!!"
+text = "The Punchisher!!!"
 
 [node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Shut the fuck up asshole!"
+text = "The Kickicher!!!"
 
 [node name="TheBlocker" type="ColorRect" parent="VBoxContainer/Deck"]
 unique_name_in_owner = true
@@ -470,7 +315,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 178.0
-offset_bottom = 178.0
+offset_right = 960.0
+offset_bottom = 356.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.443137, 0.443137, 0.443137, 1)
