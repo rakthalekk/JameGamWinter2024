@@ -16,8 +16,26 @@ description = "Low damage punch"
 damage = 5
 stamina_cost = 1
 
+[node name="Cross" type="Sprite2D" parent="."]
+position = Vector2(249, 58)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Cross"
+description = "Low damage punch, extra damage after another punch"
+damage = 5
+stamina_cost = 1
+
+[node name="Hook" type="Sprite2D" parent="."]
+position = Vector2(415, 58)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Hook"
+description = "Hidh damage punch"
+damage = 12
+stamina_cost = 2
+
 [node name="GutPunch" type="Sprite2D" parent="."]
-position = Vector2(247, 56)
+position = Vector2(585, 57)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
 display_name = "Gut Punch"
@@ -27,7 +45,7 @@ stamina_cost = 2
 stamina_debuff_chance = 66
 
 [node name="Uppercut" type="Sprite2D" parent="."]
-position = Vector2(418, 52)
+position = Vector2(756, 53)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
 display_name = "Uppercut"
@@ -37,7 +55,7 @@ stamina_cost = 2
 stunned_chance = 33
 
 [node name="Feint" type="Sprite2D" parent="."]
-position = Vector2(573, 55)
+position = Vector2(911, 56)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
 display_name = "Feint"
@@ -47,17 +65,17 @@ stamina_cost = 2
 unpopular_chance = 50
 
 [node name="FlurryOfBlows" type="Sprite2D" parent="."]
-position = Vector2(719, 57)
+position = Vector2(1057, 58)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
 display_name = "Flurry of Blows"
 description = "Deals damage based on how many punches have been used"
 
-[node name="HighKick" type="Sprite2D" parent="."]
+[node name="SideKick" type="Sprite2D" parent="."]
 position = Vector2(81, 216)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "High Kick"
+display_name = "Side Kick"
 type = 1
 description = "High damage kick"
 damage = 15
@@ -85,68 +103,129 @@ damage = 15
 stamina_cost = 4
 stamina_debuff_chance = 33
 
-[node name="Grapple" type="Sprite2D" parent="."]
+[node name="FlyingKick" type="Sprite2D" parent="."]
+position = Vector2(582, 222)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Flying Kick"
+type = 1
+description = "High damage kick"
+damage = 17
+stamina_cost = 5
+
+[node name="CraneKick" type="Sprite2D" parent="."]
+position = Vector2(731, 222)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Crane Kick"
+type = 1
+description = "Small chance to inflict stamina debuff or stunned"
+damage = 10
+stamina_cost = 5
+stamina_debuff_chance = 33
+stunned_chance = 33
+
+[node name="ArmBar" type="Sprite2D" parent="."]
 position = Vector2(88, 368)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Grapple"
+display_name = "Arm Bar"
 type = 2
 description = "Reduces opponent’s punch damage during next turn by 50%"
 damage = 5
 stamina_cost = 3
 
-[node name="Grapple2" type="Sprite2D" parent="."]
+[node name="LegLock" type="Sprite2D" parent="."]
 position = Vector2(256, 370)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Grapple 2"
+display_name = "Leg Lock"
 type = 2
 description = "Reduces opponent’s kick damage during next turn by 50%"
 damage = 5
 stamina_cost = 3
 
-[node name="Grapple3" type="Sprite2D" parent="."]
+[node name="Chokehold" type="Sprite2D" parent="."]
 position = Vector2(415, 371)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Grapple 3"
+display_name = "Chokehold"
 type = 2
 description = "Reduces opponent’s finisher damage during next turn by 50%"
 damage = 10
 stamina_cost = 5
 
-[node name="Finisher" type="Sprite2D" parent="."]
+[node name="FullNelson" type="Sprite2D" parent="."]
+position = Vector2(582, 368)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Full Nelson"
+type = 2
+description = "Inflicts stamina debuff on opponent"
+damage = 5
+stamina_cost = 5
+stamina_debuff_chance = 100
+
+[node name="Suplex" type="Sprite2D" parent="."]
 position = Vector2(93, 518)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Finisher"
+display_name = "Suplex"
 type = 3
 description = "Double damage below 50% HP"
 damage = 15
-health_cost = 8
+health_cost = 7
 stamina_cost = 5
+low_health_damage_multiplier = 2
 
-[node name="Finisher2" type="Sprite2D" parent="."]
+[node name="Gutbuster" type="Sprite2D" parent="."]
 position = Vector2(256, 518)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Finisher 2"
+display_name = "Gutbuster"
 type = 3
 description = "Double damage and stamina debuff inflicted below 50% HP"
 damage = 10
 health_cost = 5
 stamina_cost = 5
+low_health_damage_multiplier = 2
 
-[node name="Finisher3" type="Sprite2D" parent="."]
+[node name="BodySlam" type="Sprite2D" parent="."]
 position = Vector2(415, 517)
 texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
-display_name = "Finisher 3"
+display_name = "Body Slam"
 type = 3
-description = "D4x damage if enemy is below 50% HP, inflicts stunned if above 50% HP"
+description = "4x damage if opponent is below 50% HP, inflicts stunned if above 50% HP"
 damage = 5
 health_cost = 10
 stamina_cost = 3
+low_health_damage_multiplier = 4
+
+[node name="Piledriver" type="Sprite2D" parent="."]
+position = Vector2(586, 519)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Piledriver"
+type = 3
+description = "4x damage if opponent is below 50% HP, inflicts stunned if above 50% HP"
+damage = 12
+health_cost = 5
+stamina_cost = 4
+low_health_damage_multiplier = 2
+
+[node name="Headscissor" type="Sprite2D" parent="."]
+position = Vector2(755, 518)
+texture = ExtResource("2_spled")
+script = ExtResource("3_42tp3")
+display_name = "Headscissor"
+type = 3
+description = "4x damage if opponent is below 50% HP, inflicts stunned if above 50% HP"
+damage = 5
+health_cost = 10
+stamina_cost = 4
+stunned_chance = 66
+low_health_damage_multiplier = 3
 
 [node name="Oversell" type="Sprite2D" parent="."]
 position = Vector2(93, 663)
@@ -172,5 +251,7 @@ texture = ExtResource("2_spled")
 script = ExtResource("3_42tp3")
 display_name = "Throw the Match"
 type = 4
-description = "Inflicts Stamina debuff and unpopular"
+description = "Inflicts Stamina debuff, unpopular, and -30% SP penalty on opponent"
 sp_cost = 100
+stamina_debuff_chance = 100
+unpopular_chance = 100

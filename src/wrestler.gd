@@ -19,6 +19,9 @@ var stunned = false
 var unpopular = false
 
 var oversold = false
+var punch_damage_reduction = 0
+var kick_damage_reduction = 0
+var finisher_damage_reduction = 0
 
 var attack_list : Array[CardData]
 var direction_list : Array[CardData]
@@ -53,6 +56,12 @@ func reset_penalties():
 	can_gain_sp = true
 	stunned = false
 	unpopular = false
+
+
+func reset_buffs():
+	punch_damage_reduction = 0
+	kick_damage_reduction = 0
+	finisher_damage_reduction = 0
 
 
 func get_random_hand():

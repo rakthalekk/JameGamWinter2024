@@ -11,11 +11,11 @@ func choose_action():
 	var action: CardData = null
 	
 	# If the opponent has full SP, attempt to use a direction
-	if sp == 100:
+	if sp == 100 && !unpopular:
 		action = try_pick_direction()
 	
 	# If the opponent has at least 4 stamina or a coin flip succeeds, and a direction has not been selected, attempt to attack
-	if action == null && (stamina >= 4 || randf() < 0.5):
+	if action == null && (stamina >= 4 || randf() < 0.5) && !stunned:
 		action = try_pick_attack()
 	
 	if action != null:
