@@ -83,9 +83,22 @@ func play_card(card_data: CardData, card: Card = null):
 	active_wrestler.stamina -= card_data.stamina_cost
 	active_wrestler.sp -= card_data.sp_cost
 	
-	# Grapples give 10% SP
-	if card_data.type == CardData.CARDTYPE.GRAPPLE && !active_wrestler.unpopular:
-		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
+	if !active_wrestler.unpopular:
+		# Grapples give 10% SP
+		if card_data.type == CardData.CARDTYPE.GRAPPLE:
+			active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
+		elif card_data.type == CardData.CARDTYPE.PUNCH:
+			if active_wrestler.punshisher:
+				active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 5)
+			elif active_wrestler.kickicher:
+				active_wrestler.sp = max(0, active_wrestler.sp - 5)
+		elif card_data.type == CardData.CARDTYPE.KICK && active_wrestler.kickicher:
+			if active_wrestler.kickicher:
+				active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 5)
+			elif active_wrestler.punshisher:
+				active_wrestler.sp = max(0, active_wrestler.sp - 5)
+		elif card_data.type == CardData.CARDTYPE.FINISHER && active_wrestler.finisherer:
+			active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 20)
 	
 	var damage = calculate_damage(card_data)
 	
@@ -166,8 +179,16 @@ func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler)
 	# Reduces damage based on the opponent's resistance
 	if card_data.type == CardData.CARDTYPE.PUNCH:
 		damage *= (1 - wrestler.opponent.punch_damage_reduction)
+		if wrestler.punshisher:
+			damage *= 1.25
+		elif wrestler.kickicher:
+			damage *= 0.75
 	elif card_data.type == CardData.CARDTYPE.KICK:
 		damage *= (1 - wrestler.opponent.kick_damage_reduction)
+		if wrestler.kickicher:
+			damage *= 1.25
+		elif wrestler.punshisher:
+			damage *= 0.75
 	elif card_data.type == CardData.CARDTYPE.FINISHER:
 		damage *= (1 - wrestler.opponent.finisher_damage_reduction)
 	
@@ -263,17 +284,17 @@ func change_turn():
 	check_game_end()
 	clear_flurry_punch()
 	
+	active_wrestler.reset_penalties()
+	
 	if active_wrestler == player:
 		active_wrestler = opponent
-		player.reset_penalties()
-		opponent.reset_buffs()
 		$AnimationPlayer.play("obscure")
 	else:
 		active_wrestler = player
-		opponent.reset_penalties()
-		player.reset_buffs()
 		_on_play_card_pressed()
 		$AnimationPlayer.play("unobscure")
+	
+	active_wrestler.reset_defense_buffs()
 	
 	draw_new_hand()
 	recalculate_card_damage()
@@ -316,6 +337,7 @@ func draw_new_hand():
 
 
 func stance_up():
+	active_wrestler.reset_attack_buffs()
 	%StatusText.text = active_wrestler.display_name + " regains their stance."
 	await display_status_text(false)
 	
@@ -341,6 +363,7 @@ func _on_stance_up_pressed():
 
 
 func _on_banter_button_pressed():
+	active_wrestler.reset_attack_buffs()
 	%StatusText.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
 	await display_status_text(false)
 	
@@ -355,6 +378,7 @@ func _on_banter_button_pressed():
 
 
 func _on_banter_button_2_pressed():
+	active_wrestler.reset_attack_buffs()
 	%StatusText.text = active_wrestler.display_name + ": your a crowd loser!!!!"
 	await display_status_text(false)
 	
@@ -366,14 +390,39 @@ func _on_banter_button_2_pressed():
 
 
 func _on_banter_button_3_pressed():
-	pass
+	active_wrestler.reset_attack_buffs()
+	%StatusText.text = active_wrestler.display_name + ": its punshishering time!!!!"
+	await display_status_text(false)
+	
+	active_wrestler.punshisher = true
+	
+	update_bars()
+	change_turn()
 
 
 func _on_banter_button_4_pressed():
-	pass
+	active_wrestler.reset_attack_buffs()
+	%StatusText.text = active_wrestler.display_name + ": its kickishering time!!!!"
+	await display_status_text(false)
+	
+	active_wrestler.kickicher = true
+	
+	update_bars()
+	change_turn()
 
 
 func _on_banter_pressed():
 	%Cards.hide()
 	%Directions.hide()
 	%SmackTalk.show()
+
+
+func _on_banter_button_5_pressed():
+	active_wrestler.reset_attack_buffs()
+	%StatusText.text = active_wrestler.display_name + ": its finishering time!!!!"
+	await display_status_text(false)
+	
+	active_wrestler.finisherer = true
+	
+	update_bars()
+	change_turn()

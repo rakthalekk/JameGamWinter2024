@@ -13,7 +13,7 @@ texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "The Champion"
 max_hp = 100
-attack_list = Array[String](["Jab", "Cross", "Hook", "Gut Punch", "Uppercut", "Low Blow", "Side Kick", "Leg Sweep", "Roundhouse Kick", "Flying Kick", "Crane Kick", "Arm Bar", "Leg Lock", "Chokehold", "Full Nelson", "Suplex", "Gutbuster", "Body Slam", "Piledriver", "Headscissor"])
+attack_list = Array[String](["Jab", "Jab", "Uppercut", "Side Kick", "Side Kick", "Crane Kick", "Arm Bar", "Arm Bar", "Leg Lock", "Piledriver"])
 direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match"])
 
 [node name="Guy" type="Sprite2D" parent="."]
@@ -22,5 +22,5 @@ texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "Guy"
 max_hp = 100
-attack_list = Array[String](["Jab", "Cross", "Hook", "Gut Punch", "Uppercut", "Low Blow", "Side Kick", "Leg Sweep", "Roundhouse Kick", "Flying Kick", "Crane Kick", "Arm Bar", "Leg Lock", "Chokehold", "Full Nelson", "Suplex", "Gutbuster", "Body Slam", "Piledriver", "Headscissor"])
+attack_list = Array[String](["Jab", "Cross", "Hook", "Gut Punch", "Uppercut", "Low Blow", "Side Kick", "Leg Sweep", "Roundhouse Kick", "Flying Kick", "Crane Kick", "Arm Bar", "Leg Lock", "Chokehold", "Full Nelson", "Suplex", "Gutbuster", "Body Slam", "Piledriver"])
 direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match"])

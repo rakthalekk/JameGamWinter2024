@@ -32,7 +32,7 @@ script = ExtResource("3_42tp3")
 display_name = "Hook"
 description = "High damage punch"
 damage = 12
-stamina_cost = 2
+stamina_cost = 3
 
 [node name="Gut Punch" type="Sprite2D" parent="."]
 position = Vector2(585, 57)
@@ -77,8 +77,8 @@ script = ExtResource("3_42tp3")
 display_name = "Side Kick"
 type = 1
 description = "High damage kick"
-damage = 12
-stamina_cost = 3
+damage = 10
+stamina_cost = 2
 
 [node name="Leg Sweep" type="Sprite2D" parent="."]
 position = Vector2(252, 215)
@@ -212,19 +212,6 @@ damage = 12
 health_cost = 5
 stamina_cost = 4
 low_health_damage_multiplier = 2
-
-[node name="Headscissor" type="Sprite2D" parent="."]
-position = Vector2(755, 518)
-texture = ExtResource("2_spled")
-script = ExtResource("3_42tp3")
-display_name = "Headscissor"
-type = 3
-description = "Deals triple damage if foe is below 50% HP, high chance to inflict stunned"
-damage = 5
-health_cost = 10
-stamina_cost = 4
-stunned_chance = 66
-low_health_damage_multiplier = 3
 
 [node name="Oversell" type="Sprite2D" parent="."]
 position = Vector2(93, 663)

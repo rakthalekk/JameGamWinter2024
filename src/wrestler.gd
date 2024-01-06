@@ -22,6 +22,10 @@ var punch_damage_reduction = 0
 var kick_damage_reduction = 0
 var finisher_damage_reduction = 0
 
+var punshisher = false
+var kickicher = false
+var finisherer = false
+
 var attack_list : Array[CardData]
 var direction_list : Array[CardData]
 
@@ -44,6 +48,13 @@ func setup_wrestler(wrestler_data: WrestlerData):
 		attack_list.append(card)
 		deck.append(card)
 	
+	# temp way to add unlocked cards
+	if name == "Player":
+		for attack in Global.player_card_list:
+			var card = CardDatabase.get_card_by_name(attack.name)
+			attack_list.append(card)
+			deck.append(card)
+	
 	for direction in data.direction_list:
 		direction_list.append(CardDatabase.get_card_by_name(direction))
 	
@@ -56,7 +67,13 @@ func reset_penalties():
 	unpopular = false
 
 
-func reset_buffs():
+func reset_attack_buffs():
+	punshisher = false
+	kickicher = false
+	finisherer = false
+
+
+func reset_defense_buffs():
 	punch_damage_reduction = 0
 	kick_damage_reduction = 0
 	finisher_damage_reduction = 0

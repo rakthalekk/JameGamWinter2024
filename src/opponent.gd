@@ -24,10 +24,17 @@ func choose_action():
 	elif stamina == 0 || stamina <= 2 && randf() > 0.5:
 		root.stance_up()
 	else:
-		if randf() > 0.5:
+		var random = randf()
+		if random < 0.2:
 			root._on_banter_button_pressed()
-		else:
+		elif random < 0.4:
 			root._on_banter_button_2_pressed()
+		elif random < 0.6:
+			root._on_banter_button_3_pressed()
+		elif random < 0.8:
+			root._on_banter_button_4_pressed()
+		else:
+			root._on_banter_button_5_pressed()
 
 
 # Attempts to select an attack if one is available. May be overridden by specific enemies

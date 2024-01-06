@@ -1,0 +1,125 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0e06a6t5vpb2"]
+
+[ext_resource type="Script" path="res://src/card_shop.gd" id="1_gu8pu"]
+[ext_resource type="Script" path="res://src/item.gd" id="2_bxq17"]
+
+[sub_resource type="Resource" id="Resource_wj6d6"]
+script = ExtResource("2_bxq17")
+item_name = "Cross"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_ard7s"]
+script = ExtResource("2_bxq17")
+item_name = "Hook"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_syhht"]
+script = ExtResource("2_bxq17")
+item_name = "Gut Punch"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_b2v8p"]
+script = ExtResource("2_bxq17")
+item_name = "Low Blow"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_2dhnl"]
+script = ExtResource("2_bxq17")
+item_name = "Leg Sweep"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_627es"]
+script = ExtResource("2_bxq17")
+item_name = "Roundhouse Kick"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_lwhcg"]
+script = ExtResource("2_bxq17")
+item_name = "Flying Kick"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_pdo1r"]
+script = ExtResource("2_bxq17")
+item_name = "Chokehold"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_tpmfv"]
+script = ExtResource("2_bxq17")
+item_name = "Full Nelson"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_uirqv"]
+script = ExtResource("2_bxq17")
+item_name = "Suplex"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_t620x"]
+script = ExtResource("2_bxq17")
+item_name = "Gutbuster"
+cost = 100
+
+[sub_resource type="Resource" id="Resource_opwlb"]
+script = ExtResource("2_bxq17")
+item_name = "Body Slam"
+cost = 100
+
+[node name="CardShop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gu8pu")
+shop_items = Array[ExtResource("2_bxq17")]([SubResource("Resource_wj6d6"), SubResource("Resource_ard7s"), SubResource("Resource_syhht"), SubResource("Resource_b2v8p"), SubResource("Resource_2dhnl"), SubResource("Resource_627es"), SubResource("Resource_lwhcg"), SubResource("Resource_pdo1r"), SubResource("Resource_tpmfv"), SubResource("Resource_uirqv"), SubResource("Resource_t620x"), SubResource("Resource_opwlb")])
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Fame" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "100000 Fame"
+
+[node name="CardInfo" type="Label" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+text = "No Card Selected"
+autowrap_mode = 2
+
+[node name="Buy" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Buy Card"
+
+[node name="Leave" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+text = "Leave"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Buy" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Leave" to="." method="_on_leave_pressed"]
