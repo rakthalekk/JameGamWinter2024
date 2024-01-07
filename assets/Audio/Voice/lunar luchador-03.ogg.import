@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dyojfvxonnrtb"
+path="res://.godot/imported/lunar luchador-03.ogg-34bda830ef55c2aed725afe044b2d2b2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Voice/lunar luchador-03.ogg"
+dest_files=["res://.godot/imported/lunar luchador-03.ogg-34bda830ef55c2aed725afe044b2d2b2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

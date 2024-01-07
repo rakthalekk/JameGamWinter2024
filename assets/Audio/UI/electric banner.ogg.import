@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d2dsqciocitnh"
+path="res://.godot/imported/electric banner.ogg-89ccfd5f5e90de818696b26d9b565152.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/UI/electric banner.ogg"
+dest_files=["res://.godot/imported/electric banner.ogg-89ccfd5f5e90de818696b26d9b565152.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
