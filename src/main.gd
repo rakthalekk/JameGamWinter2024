@@ -78,6 +78,7 @@ func play_card(card_data: CardData, card: Card = null):
 	
 	%StatusText.text = active_wrestler.display_name + " uses " + card_data.display_name + "!"
 	await display_status_text()
+	# put the attack card sound effect here
 	
 	active_wrestler.hp -= card_data.health_cost
 	active_wrestler.stamina -= card_data.stamina_cost
