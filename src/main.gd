@@ -24,7 +24,7 @@ func _ready():
 	opponent.root = self
 	
 	player.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player"))
-	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Guy"))
+	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("The Big Cheese"))
 	
 	%PlayerHealthBar.max_value = player.max_hp
 	%OpponentHealthBar.max_value = opponent.max_hp
@@ -270,10 +270,27 @@ func check_special_effects(card_data: CardData):
 			active_wrestler.hp = min(active_wrestler.max_hp, active_wrestler.hp + 25)
 		"Throw the Match":
 			active_wrestler.opponent.sp = max(0, active_wrestler.opponent.sp - 30)
-		"Gutbuster":
+		"Revved Up":
+			active_wrestler.stamina = 5
+		"Game Plan":
+			for card in active_wrestler.hand:
+				active_wrestler.deck.append(card)
+			active_wrestler.hand.clear()
+			if active_wrestler == player:
+				for card in %Cards.get_children():
+					%Cards.remove_child(card)
+					card.queue_free()
+			draw_new_hand()
+			if active_wrestler == player:
+				flip_over_cards()
+		"Back Breaker":
 			if active_wrestler.opponent.hp <= 50:
 				active_wrestler.opponent.next_turn_stamina = false
 				active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
+				if active_wrestler.opponent == player:
+					%PlayerStaminaDebuff.show()
+				else:
+					%OpponentStaminaDebuff.show()
 				await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
 		"Body Slam":
 			if active_wrestler.opponent.hp >= 50:
@@ -283,6 +300,50 @@ func check_special_effects(card_data: CardData):
 				else:
 					%OpponentStunnedDebuff.show()
 				await debuff_text(active_wrestler.opponent.display_name, "Stunned")
+		"Heart Stopper":
+			if active_wrestler.opponent.hp <= 50:
+				if randf() <= 0.66:
+					active_wrestler.opponent.stunned = true
+					if active_wrestler.opponent == player:
+						%PlayerStunnedDebuff.show()
+					else:
+						%OpponentStunnedDebuff.show()
+					await debuff_text(active_wrestler.opponent.display_name, "Stunned")
+		"Cheddar Crush":
+			if active_wrestler.opponent.hp >= 50:
+				active_wrestler.opponent.stunned = true
+				if active_wrestler.opponent == player:
+					%PlayerStunnedDebuff.show()
+				else:
+					%OpponentStunnedDebuff.show()
+				await debuff_text(active_wrestler.opponent.display_name, "Stunned")
+		"Neck Breaker":
+			if active_wrestler.opponent.hp <= 50:
+				active_wrestler.opponent.next_turn_stamina = false
+				active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
+				if active_wrestler.opponent == player:
+					%PlayerStaminaDebuff.show()
+				else:
+					%OpponentStaminaDebuff.show()
+				await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
+		"Dive Bomb":
+			if active_wrestler.opponent.hp <= 50:
+				active_wrestler.opponent.next_turn_stamina = false
+				active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
+				if active_wrestler.opponent == player:
+					%PlayerStaminaDebuff.show()
+				else:
+					%OpponentStaminaDebuff.show()
+				await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
+				await play_card(CardDatabase.get_card_by_name("Free Arm Bar"))
+				
+				active_wrestler.unpopular = true
+				if active_wrestler == player:
+					%PlayerUnpopularDebuff.show()
+				else:
+					%OpponentUnpopularDebuff.show()
+				$CrowdBoo.play()
+				await debuff_text(active_wrestler.display_name, "Unpopular")
 
 
 func check_debuff_rolls(card_data: CardData):
@@ -523,32 +584,58 @@ func _on_direction_pressed():
 	%BanterContainer.hide()
 
 
+func play_opponent_banter_sound():
+	var num = randi_range(1, 4)
+	if opponent.name == "Doc Chop":
+		%OpponentAudio.stream = load("res://assets/Audio/Voice/doc chop-0" + str(num) + ".ogg")
+	elif opponent.name == "The Big Cheese":
+		%OpponentAudio.stream = load("res://assets/Audio/Voice/cheese-man-0" + str(num) + ".ogg")
+	elif opponent.name == "Swan Divin Tyson":
+		%OpponentAudio.stream = load("res://assets/Audio/Voice/tyson-0" + str(num) + ".ogg")
+	elif opponent.name == "Lunar Luchador":
+		%OpponentAudio.stream = load("res://assets/Audio/Voice/lunar luchador-0" + str(num) + ".ogg")
+	else:
+		%OpponentAudio.stream = load("res://assets/Audio/Voice/terry-good-0" + str(num) + ".ogg")
+	
+	%OpponentAudio.play()
+
+
 func _on_stance_up_pressed():
 	active_wrestler.reset_attack_buffs()
+	if active_wrestler == opponent:
+		play_opponent_banter_sound()
 	await stance_up()
 	change_turn()
 
 
 func _on_banter_button_pressed():
 	active_wrestler.reset_attack_buffs()
+	if active_wrestler == opponent:
+		play_opponent_banter_sound()
 	await crowd_pleaser()
 	change_turn()
 
 
 func _on_banter_button_2_pressed():
 	active_wrestler.reset_attack_buffs()
+	if active_wrestler == opponent:
+		play_opponent_banter_sound()
 	await crowd_loser()
 	change_turn()
 
 
 func _on_banter_button_3_pressed():
 	active_wrestler.reset_attack_buffs()
+	if active_wrestler == opponent:
+		play_opponent_banter_sound()
 	await the_punshisher()
 	change_turn()
 
 
 func _on_banter_button_4_pressed():
 	active_wrestler.reset_attack_buffs()
+	if active_wrestler == opponent:
+		play_opponent_banter_sound()
 	await the_kickisher()
 	change_turn()
 

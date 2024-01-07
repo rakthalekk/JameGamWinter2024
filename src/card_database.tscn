@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3km0g1aie4hy"]
+[gd_scene load_steps=33 format=3 uid="uid://b3km0g1aie4hy"]
 
 [ext_resource type="Script" path="res://src/card_database.gd" id="1_acd6c"]
 [ext_resource type="Texture2D" uid="uid://b3pp05epn2xd0" path="res://assets/Cards/JabCard.png" id="2_uupta"]
@@ -26,6 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://jgndplfk8d62" path="res://assets/Cards/SecondWindCard.png" id="24_jnpvt"]
 [ext_resource type="Texture2D" uid="uid://bbunwu0tyrrou" path="res://assets/Cards/ThrowTheMatchCard.png" id="25_fpig1"]
 [ext_resource type="Texture2D" uid="uid://c7vs003rs2pq8" path="res://assets/Cards/StanceUpCard.png" id="26_f4xy8"]
+[ext_resource type="Texture2D" uid="uid://gsjaau5n2s3l" path="res://assets/Cards/RevvedUpCard.png" id="26_smbg5"]
+[ext_resource type="Texture2D" uid="uid://cqgmdghfu4kac" path="res://assets/Cards/GamplanCard.png" id="27_41d6f"]
 [ext_resource type="Texture2D" uid="uid://di2cx7i7gjun7" path="res://assets/Cards/CrowdPleaserCard.png" id="27_yejir"]
 [ext_resource type="Texture2D" uid="uid://d4h8rsvdqixl7" path="res://assets/Cards/CrowdLoserCard.png" id="28_ew3nb"]
 [ext_resource type="Texture2D" uid="uid://c4ajsd88nlw4r" path="res://assets/Cards/PunchStanceCard.png" id="29_sv0ls"]
@@ -208,6 +210,16 @@ damage = 5
 stamina_cost = 3
 stamina_debuff_chance = 100
 
+[node name="Free Arm Bar" type="Sprite2D" parent="."]
+position = Vector2(1240, 329)
+texture = ExtResource("15_gqdq6")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Arm Bar"
+type = 2
+description = "Reduces opponent’s punch damage during next turn by 50%"
+damage = 3
+
 [node name="Suplex" type="Sprite2D" parent="."]
 position = Vector2(84, 538)
 texture = ExtResource("19_21xwu")
@@ -219,7 +231,7 @@ description = "Double damage below 50% HP"
 damage = 15
 health_cost = 7
 stamina_cost = 5
-low_health_damage_multiplier = 2
+low_health_damage_multiplier = 2.0
 
 [node name="Back Breaker" type="Sprite2D" parent="."]
 position = Vector2(254, 556)
@@ -232,7 +244,7 @@ description = "Double damage and stamina debuff inflicted below 50% HP"
 damage = 10
 health_cost = 5
 stamina_cost = 5
-low_health_damage_multiplier = 2
+low_health_damage_multiplier = 2.0
 
 [node name="Body Slam" type="Sprite2D" parent="."]
 position = Vector2(423, 541)
@@ -245,7 +257,7 @@ description = "4x damage if opponent is below 50% HP, inflicts stunned if above 
 damage = 5
 health_cost = 10
 stamina_cost = 3
-low_health_damage_multiplier = 4
+low_health_damage_multiplier = 4.0
 
 [node name="Piledriver" type="Sprite2D" parent="."]
 position = Vector2(585, 546)
@@ -258,7 +270,84 @@ description = "Double damage below 50% HP"
 damage = 12
 health_cost = 5
 stamina_cost = 4
-low_health_damage_multiplier = 2
+low_health_damage_multiplier = 2.0
+
+[node name="Surgical Suplex" type="Sprite2D" parent="."]
+position = Vector2(1218, 518)
+texture = ExtResource("19_21xwu")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Surgical Suplex"
+type = 3
+description = "Double damage below 50% HP"
+damage = 10
+health_cost = 7
+stamina_cost = 5
+low_health_damage_multiplier = 2.0
+
+[node name="Heart Stopper" type="Sprite2D" parent="."]
+position = Vector2(1380, 514)
+texture = ExtResource("19_21xwu")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Heart Stopper"
+type = 3
+description = "Double damage below 50% HP"
+damage = 10
+health_cost = 10
+stamina_cost = 5
+low_health_damage_multiplier = 1.5
+
+[node name="Cheddar Crush" type="Sprite2D" parent="."]
+position = Vector2(1223, 705)
+texture = ExtResource("19_21xwu")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Cheddar Crush"
+type = 3
+description = "Double damage below 50% HP"
+damage = 10
+health_cost = 10
+stamina_cost = 3
+low_health_damage_multiplier = 1.5
+
+[node name="Mouse Trap" type="Sprite2D" parent="."]
+position = Vector2(1382, 700)
+texture = ExtResource("19_21xwu")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Mouse Trap"
+type = 3
+description = "Double damage below 50% HP"
+damage = 20
+health_cost = 15
+stamina_cost = 5
+low_health_damage_multiplier = 1.5
+
+[node name="Neck Breaker" type="Sprite2D" parent="."]
+position = Vector2(1228, 893)
+texture = ExtResource("20_3tc6l")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Neck Break"
+type = 3
+description = "Double damage and stamina debuff inflicted below 50% HP"
+damage = 10
+health_cost = 5
+stamina_cost = 5
+low_health_damage_multiplier = 2.0
+
+[node name="Dive Bomb" type="Sprite2D" parent="."]
+position = Vector2(1386, 890)
+texture = ExtResource("20_3tc6l")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Dive Bomb"
+type = 3
+description = "Double damage and stamina debuff inflicted below 50% HP"
+damage = 15
+health_cost = 15
+stamina_cost = 5
 
 [node name="Oversell" type="Sprite2D" parent="."]
 position = Vector2(91, 703)
@@ -291,6 +380,26 @@ description = "Inflicts Stamina debuff, unpopular, and -30% SP penalty on oppone
 sp_cost = 70
 stamina_debuff_chance = 100
 unpopular_chance = 100
+
+[node name="Revved Up" type="Sprite2D" parent="."]
+position = Vector2(587, 706)
+texture = ExtResource("26_smbg5")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Revved Up"
+type = 4
+description = "Inflicts Stamina debuff, unpopular, and -30% SP penalty on opponent"
+sp_cost = 50
+
+[node name="Game Plan" type="Sprite2D" parent="."]
+position = Vector2(744, 705)
+texture = ExtResource("27_41d6f")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Game Plan"
+type = 4
+description = "Inflicts Stamina debuff, unpopular, and -30% SP penalty on opponent"
+sp_cost = 30
 
 [node name="Stance Up" type="Sprite2D" parent="."]
 position = Vector2(91, 883)

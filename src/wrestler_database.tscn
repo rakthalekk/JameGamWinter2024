@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxxpxfyyc2hd3"]
+[gd_scene load_steps=8 format=3 uid="uid://dxxpxfyyc2hd3"]
 
 [ext_resource type="Script" path="res://src/wrestler_data.gd" id="1_5xqm4"]
 [ext_resource type="Script" path="res://src/wrestler_database.gd" id="1_yg7rt"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="2_i7lpa"]
 [ext_resource type="AudioStream" uid="uid://bvpmf08n8dksr" path="res://assets/Audio/I_Am_The_Champion.ogg" id="4_rk0ml"]
+[ext_resource type="Texture2D" uid="uid://b1uwjdo141ve0" path="res://assets/Wrestlers/DocChopDSuplexSurgeon.png" id="4_yewfa"]
+[ext_resource type="Texture2D" uid="uid://bv7q76rebr704" path="res://assets/Wrestlers/TheBigCheese.png" id="5_v1lnk"]
+[ext_resource type="Texture2D" uid="uid://b16fx6hkajxcu" path="res://assets/Wrestlers/SwanDivinTyson.png" id="6_fljmc"]
 
 [node name="WrestlerDatabase" type="Node2D"]
 script = ExtResource("1_yg7rt")
@@ -14,8 +17,8 @@ texture = ExtResource("2_i7lpa")
 script = ExtResource("1_5xqm4")
 display_name = "The Champion"
 max_hp = 100
-attack_list = Array[String](["Jab", "Jab", "Uppercut", "Side Kick", "Side Kick", "Crane Kick", "Arm Bar", "Arm Bar", "Leg Lock", "Piledriver", "Stance Up", "Stance Up", "Crowd Pleaser", "Crowd Loser", "The Punshisher", "The Kickisher"])
-direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match"])
+attack_list = Array[String](["Jab", "Jab", "Jab", "Jab", "Hook", "Hook", "Uppercut", "Side Kick", "Side Kick", "Side Kick", "Leg Sweep", "Leg Sweep", "Arm Bar", "Arm Bar", "Leg Lock", "Leg Lock", "Body Slam", "Body Slam", "Stance Up", "Stance Up"])
+direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "Revved Up", "Game Plan"])
 
 [node name="Guy" type="Sprite2D" parent="."]
 position = Vector2(301, 69)
@@ -24,7 +27,34 @@ script = ExtResource("1_5xqm4")
 display_name = "Guy"
 max_hp = 100
 attack_list = Array[String](["Jab", "Cross", "Hook", "Gut Punch", "Uppercut", "Low Blow", "Side Kick", "Leg Sweep", "Roundhouse Kick", "Flying Kick", "Crane Kick", "Arm Bar", "Leg Lock", "Chokehold", "Full Nelson", "Suplex", "Back Breaker", "Body Slam", "Piledriver", "Stance Up", "Crowd Pleaser", "Crowd Loser", "The Punshisher", "The Kickisher"])
-direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match"])
+direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "Revved Up", "Game Plan"])
+
+[node name="Doc Chop" type="Sprite2D" parent="."]
+position = Vector2(117, 239)
+texture = ExtResource("4_yewfa")
+script = ExtResource("1_5xqm4")
+display_name = "Doc Chop"
+max_hp = 100
+attack_list = Array[String](["Jab", "Jab", "Jab", "Jab", "Jab", "Jab", "Jab", "Cross", "Cross", "Cross", "Uppercut", "Uppercut", "Uppercut", "Gut Punch", "Gut Punch", "Arm Bar", "Arm Bar", "Arm Bar", "Surgical Suplex", "Heart Stopper"])
+direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "Revved Up", "Game Plan"])
+
+[node name="The Big Cheese" type="Sprite2D" parent="."]
+position = Vector2(301, 234)
+texture = ExtResource("5_v1lnk")
+script = ExtResource("1_5xqm4")
+display_name = "The Big Cheese"
+max_hp = 100
+attack_list = Array[String](["Jab", "Jab", "Jab", "Hook", "Hook", "Hook", "Low Blow", "Low Blow", "Arm Bar", "Arm Bar", "Leg Lock", "Leg Lock", "Chokehold", "Chokehold", "Chokehold", "Full Nelson", "Leg Sweep", "Crane Kick", "Cheddar Crush", "Mouse Trap"])
+direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "Revved Up", "Game Plan"])
+
+[node name="Swan Divin Tyson" type="Sprite2D" parent="."]
+position = Vector2(476, 235)
+texture = ExtResource("6_fljmc")
+script = ExtResource("1_5xqm4")
+display_name = "Swan Divin' Tyson"
+max_hp = 100
+attack_list = Array[String](["Leg Sweep", "Arm Bar", "Arm Bar", "Arm Bar", "Arm Bar", "Flying Kick", "Flying Kick", "Flying Kick", "Crane Kick", "Crane Kick", "Crane Kick", "Gut Punch", "Uppercut", "Uppercut", "Full Nelson", "Chokehold", "Chokehold", "Low Blow", "Neck Breaker", "Dive Bomb"])
+direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "Revved Up", "Game Plan"])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rk0ml")

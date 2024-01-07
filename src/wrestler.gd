@@ -38,6 +38,7 @@ var opponent: Wrestler
 func setup_wrestler(wrestler_data: WrestlerData):
 	data = wrestler_data
 	texture = data.texture
+	name = data.name
 	
 	display_name = data.display_name
 	max_hp = wrestler_data.max_hp

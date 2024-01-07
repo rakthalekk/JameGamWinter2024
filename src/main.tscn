@@ -490,6 +490,10 @@ position = Vector2(480, 240)
 texture = ExtResource("1_q2t73")
 script = ExtResource("3_qpg5n")
 
+[node name="OpponentAudio" type="AudioStreamPlayer" parent="VBoxContainer/Ring/Opponent"]
+unique_name_in_owner = true
+volume_db = -8.0
+
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 20)
