@@ -6,19 +6,21 @@ var root
 var card_data: CardData
 var effective_damage: int
 
+var been_flipped = false
+
 func populate_from_data(data: CardData):
 	card_data = data
 	
 	name = card_data.name
-	%Name.text = data.display_name
+	%Name.text = data.display_name.to_lower()
 	
 	$Sprite.texture = data.texture
 	
 	effective_damage = data.damage
-	%Damage.text = str(effective_damage) + " DMG"
+	%Damage.text = "%02d" % effective_damage
 	
 	if data.type == CardData.CARDTYPE.DIRECTION:
-		%Damage.hide()
+		%Damage.text = str(data.sp_cost) + "% sp"
 
 
 func update_damage(new_damage: int):
@@ -28,9 +30,19 @@ func update_damage(new_damage: int):
 	elif effective_damage < card_data.damage:
 		%Damage.set("theme_override_colors/font_color", Color.RED)
 	else:
-		%Damage.set("theme_override_colors/font_color", Color.BLACK)
+		%Damage.set("theme_override_colors/font_color", Color.WHITE)
 	
-	%Damage.text = str(effective_damage) + " DMG"
+	%Damage.text = "%02d" % effective_damage
+
+
+func flip_over():
+	if !been_flipped:
+		$AnimationPlayer.play("flip_over")
+		been_flipped = true
+
+
+func flip_back():
+	$AnimationPlayer.play("flip_back")
 
 
 func _on_button_pressed():

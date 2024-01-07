@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=40 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -11,9 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://wuqcr2vt3rcr" path="res://assets/Health-Meter.png" id="6_fcntt"]
 [ext_resource type="Texture2D" uid="uid://csjmmrwlb3gex" path="res://assets/StagePresence-Meter.png" id="7_v26it"]
 [ext_resource type="Texture2D" uid="uid://dgjm6q1mj37gd" path="res://assets/Stamina-Meter.png" id="8_0fhrg"]
+[ext_resource type="Script" path="res://src/action_button.gd" id="11_272a8"]
 [ext_resource type="Texture2D" uid="uid://j1otl2rmxfkm" path="res://assets/Buttons/AttackButton.png" id="11_lb1ol"]
 [ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
 [ext_resource type="Texture2D" uid="uid://bhpg2l3wkl76v" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
+[ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
+[ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
 atlas = ExtResource("2_8571m")
@@ -36,6 +39,216 @@ animations = [{
 "name": &"default",
 "speed": 3.0
 }]
+
+[sub_resource type="Animation" id="Animation_guvtd"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_dlunx"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_egbbk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4g3es"]
+resource_name = "hover"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sl8h3"]
+_data = {
+"RESET": SubResource("Animation_egbbk"),
+"hover": SubResource("Animation_4g3es"),
+"idle": SubResource("Animation_dlunx"),
+"pressed": SubResource("Animation_guvtd")
+}
+
+[sub_resource type="Animation" id="Animation_duqvl"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vp30s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_35yva"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_6plxh"]
+resource_name = "hover"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ynfc"]
+_data = {
+"RESET": SubResource("Animation_vp30s"),
+"hover": SubResource("Animation_6plxh"),
+"idle": SubResource("Animation_duqvl"),
+"pressed": SubResource("Animation_35yva")
+}
+
+[sub_resource type="Animation" id="Animation_cdinj"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hpkm4"]
+resource_name = "hover"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_46a1w"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_p4mva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fksr3"]
+_data = {
+"RESET": SubResource("Animation_p4mva"),
+"hover": SubResource("Animation_hpkm4"),
+"idle": SubResource("Animation_cdinj"),
+"pressed": SubResource("Animation_46a1w")
+}
 
 [sub_resource type="Animation" id="Animation_rmxbe"]
 length = 0.001
@@ -65,7 +278,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 178), Vector2(0, 0)]
+"values": [Vector2(0, 178), Vector2(0, -12)]
 }
 
 [sub_resource type="Animation" id="Animation_jgf2t"]
@@ -82,6 +295,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 178)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flip_over_cards"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ft1eb"]
@@ -106,7 +333,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.970058
+frame_progress = 0.409133
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -281,35 +508,55 @@ theme_override_constants/separation = 16
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
+script = ExtResource("11_272a8")
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
 position = Vector2(80, 14)
 texture = ExtResource("11_lb1ol")
 hframes = 8
 
+[node name="ButtonAnimator" type="AnimationPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_sl8h3")
+}
+
 [node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
+script = ExtResource("11_272a8")
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
 position = Vector2(80, 14)
 texture = ExtResource("12_4sc38")
 hframes = 8
 
+[node name="ButtonAnimator" type="AnimationPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
+libraries = {
+"": SubResource("AnimationLibrary_6ynfc")
+}
+
 [node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("11_272a8")
 
 [node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
 position = Vector2(80, 14)
 texture = ExtResource("13_vbbqh")
 hframes = 8
 
+[node name="ButtonAnimator" type="AnimationPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
+libraries = {
+"": SubResource("AnimationLibrary_fksr3")
+}
+
 [node name="CardContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 26
@@ -343,10 +590,16 @@ size_flags_horizontal = 3
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "Take a final action and pass the mic to your opponent."
+theme_override_fonts/font = ExtResource("15_txdsi")
+theme_override_font_sizes/font_size = 8
+text = "take a final action and pass the mic to your opponent."
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
 layout_mode = 2
@@ -354,40 +607,50 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Crowd Pleaser"
-
-[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Crowd Loser"
+theme_override_constants/separation = 20
 
 [node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Stance Up"
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "stance up"
+
+[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("15_txdsi")
+theme_override_font_sizes/font_size = 16
+text = "crowd pleaser"
+
+[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "crowd loser"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "The Kickicher!!!"
-
-[node name="BanterButton5" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "The Finisherer!!!"
+theme_override_constants/separation = 20
 
 [node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "The Punchisher!!!"
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "the punchisher!!!"
+
+[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "the kickicher!!!"
+
+[node name="BanterButton5" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "the finisherer!!!"
 
 [node name="TheBlocker" type="ColorRect" parent="VBoxContainer/Deck"]
 unique_name_in_owner = true
@@ -400,18 +663,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.145098, 0.145098, 0.145098, 0)
 
-[node name="TheObscurer" type="ColorRect" parent="VBoxContainer/Deck"]
+[node name="TheObscurer" type="TextureRect" parent="VBoxContainer/Deck"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(960, 178)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_top = 178.0
-offset_bottom = 180.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.443137, 0.443137, 0.443137, 1)
+offset_right = 960.0
+offset_bottom = 366.0
+texture = ExtResource("15_yrpcy")
+stretch_mode = 2
 
 [node name="Player" type="Sprite2D" parent="."]
 visible = false
@@ -424,12 +683,21 @@ libraries = {
 "": SubResource("AnimationLibrary_ft1eb")
 }
 
+[connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
+[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
+[connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_button_down"]
+[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
+[connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_down"]
+[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_up"]
+[connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton" to="." method="_on_banter_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton2" to="." method="_on_banter_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton3" to="." method="_on_banter_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton4" to="." method="_on_banter_button_4_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton5" to="." method="_on_banter_button_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton3" to="." method="_on_banter_button_3_pressed"]

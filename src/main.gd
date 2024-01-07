@@ -38,8 +38,12 @@ func _ready():
 		card.populate_from_data(direction_data)
 		card.root = self
 		%Directions.add_child(card)
+		card.flip_over()
 	
 	update_bars()
+	
+	$AnimationPlayer.play("unobscure")
+	%CardContainer.show()
 
 
 func update_bars():
@@ -139,6 +143,7 @@ func play_card(card_data: CardData, card: Card = null):
 				flurry_card.populate_from_data(flurry_punch)
 				flurry_card.root = self
 				%Cards.add_child(flurry_card)
+				flurry_card.flip_over()
 	else:
 		clear_flurry_punch()
 	
@@ -313,9 +318,6 @@ func change_turn():
 	update_bars()
 	
 	if active_wrestler == opponent:
-		for card in %Cards.get_children():
-			card.queue_free()
-		
 		opponent_turn()
 	else:
 		%TheBlocker.hide()
@@ -329,7 +331,8 @@ func draw_new_hand():
 	active_wrestler.get_random_hand()
 	
 	if active_wrestler == player:
-		for card_data in player.hand:
+		for i in range(%Cards.get_child_count(), 5):
+			var card_data = player.hand[i]
 			var card = CARD.instantiate() as Card
 			card.populate_from_data(card_data)
 			card.root = self
@@ -426,3 +429,9 @@ func _on_banter_button_5_pressed():
 	
 	update_bars()
 	change_turn()
+
+
+func flip_over_cards():
+	for card in %Cards.get_children():
+		card.flip_over()
+		await get_tree().create_timer(.2).timeout
