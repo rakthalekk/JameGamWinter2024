@@ -24,7 +24,7 @@
 [ext_resource type="AudioStream" uid="uid://drsq1nfapyh78" path="res://assets/Audio/UI/action_hover_shine.ogg" id="17_begmi"]
 [ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
 [ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="19_wst15"]
-[ext_resource type="PackedScene" uid="uid://c0blc82w7o8ba" path="res://src/banter_card.tscn" id="20_u0dpp"]
+[ext_resource type="PackedScene" uid="uid://c88ygrf2jotfm" path="res://src/banter_card.tscn" id="20_u0dpp"]
 [ext_resource type="Texture2D" uid="uid://dv62487g3e5lm" path="res://assets/SpeechBubbleOpponent.png" id="20_xn8jx"]
 [ext_resource type="AudioStream" uid="uid://02cfvhv4l8cp" path="res://assets/Audio/Attack/punch fx.ogg" id="22_71yvh"]
 [ext_resource type="AudioStream" uid="uid://bdrk7gen4rw6a" path="res://assets/Audio/Attack/kick fx.ogg" id="23_41aky"]
@@ -493,7 +493,7 @@ script = ExtResource("3_qpg5n")
 
 [node name="OpponentAudio" type="AudioStreamPlayer" parent="VBoxContainer/Ring/Opponent"]
 unique_name_in_owner = true
-volume_db = -8.0
+volume_db = -5.0
 
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="VBoxContainer/Ring"]
 unique_name_in_owner = true
@@ -616,11 +616,11 @@ libraries = {
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
 stream = ExtResource("13_xggmj")
-volume_db = 10.0
+volume_db = 15.0
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
 stream = ExtResource("17_begmi")
-volume_db = 5.0
+volume_db = -10.0
 
 [node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
@@ -640,11 +640,11 @@ libraries = {
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
 stream = ExtResource("13_xggmj")
-volume_db = 10.0
+volume_db = 15.0
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
 stream = ExtResource("17_begmi")
-volume_db = 5.0
+volume_db = -10.0
 
 [node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
@@ -665,11 +665,11 @@ libraries = {
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
 stream = ExtResource("13_xggmj")
-volume_db = 10.0
+volume_db = 15.0
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
 stream = ExtResource("17_begmi")
-volume_db = 5.0
+volume_db = -10.0
 
 [node name="CardContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
