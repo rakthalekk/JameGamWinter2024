@@ -347,15 +347,15 @@ func stance_up():
 
 
 func _on_play_card_pressed():
-	%Cards.show()
-	%Directions.hide()
-	%SmackTalk.hide()
+	%CardContainer.show()
+	%DirectionContainer.hide()
+	%BanterContainer.hide()
 
 
 func _on_direction_pressed():
-	%Cards.hide()
-	%Directions.show()
-	%SmackTalk.hide()
+	%CardContainer.hide()
+	%DirectionContainer.show()
+	%BanterContainer.hide()
 
 
 func _on_stance_up_pressed():
@@ -412,9 +412,9 @@ func _on_banter_button_4_pressed():
 
 
 func _on_banter_pressed():
-	%Cards.hide()
-	%Directions.hide()
-	%SmackTalk.show()
+	%CardContainer.hide()
+	%DirectionContainer.hide()
+	%BanterContainer.show()
 
 
 func _on_banter_button_5_pressed():

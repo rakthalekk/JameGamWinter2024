@@ -106,7 +106,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.287899
+frame_progress = 0.970058
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -265,105 +265,126 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="ActionContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_right = 13
 
-[node name="ActionButtons" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer"]
+[node name="ActionButtons" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="Attack" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+[node name="Attack" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Attack"]
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
 position = Vector2(80, 14)
 texture = ExtResource("11_lb1ol")
 hframes = 8
 
-[node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+[node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Direction"]
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
 position = Vector2(80, 14)
 texture = ExtResource("12_4sc38")
 hframes = 8
 
-[node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+[node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Banter"]
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
 position = Vector2(80, 14)
 texture = ExtResource("13_vbbqh")
 hframes = 8
 
-[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="CardContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = -10
 
-[node name="Directions" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/CardContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="DirectionContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = -10
 
-[node name="SmackTalk" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="Directions" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/DirectionContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="BanterContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+[node name="SmackTalk" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
 layout_mode = 2
 text = "Take a final action and pass the mic to your opponent."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer"]
+[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Crowd Pleaser"
 
-[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer"]
+[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Crowd Loser"
 
-[node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer"]
+[node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Stance Up"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2"]
+[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "The Kickicher!!!"
 
-[node name="BanterButton5" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2"]
+[node name="BanterButton5" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "The Finisherer!!!"
 
-[node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2"]
+[node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "The Punchisher!!!"
@@ -403,12 +424,12 @@ libraries = {
 "": SubResource("AnimationLibrary_ft1eb")
 }
 
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/BanterButton" to="." method="_on_banter_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/BanterButton2" to="." method="_on_banter_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton4" to="." method="_on_banter_button_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton5" to="." method="_on_banter_button_5_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton3" to="." method="_on_banter_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton" to="." method="_on_banter_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton2" to="." method="_on_banter_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton4" to="." method="_on_banter_button_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton5" to="." method="_on_banter_button_5_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton3" to="." method="_on_banter_button_3_pressed"]
