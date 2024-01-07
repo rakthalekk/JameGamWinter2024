@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=43 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://bhpg2l3wkl76v" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
 [ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
+[ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
+[ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="19_wst15"]
+[ext_resource type="Texture2D" uid="uid://dv62487g3e5lm" path="res://assets/SpeechBubbleOpponent.png" id="20_xn8jx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
 atlas = ExtResource("2_8571m")
@@ -333,7 +336,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.409133
+frame_progress = 0.14767
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -682,6 +685,100 @@ script = ExtResource("3_mefpn")
 libraries = {
 "": SubResource("AnimationLibrary_ft1eb")
 }
+
+[node name="PlayerSpeechBubble" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 67.0
+offset_top = 147.0
+offset_right = 295.0
+offset_bottom = 353.0
+texture = ExtResource("18_cvlnb")
+stretch_mode = 2
+
+[node name="PlayerDialogue" type="Label" parent="PlayerSpeechBubble"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 14.0
+offset_right = -27.0
+offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_fonts/font = ExtResource("19_wst15")
+theme_override_font_sizes/font_size = 16
+text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="OpponentSpeechBubble" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 630.0
+offset_top = 113.0
+offset_right = 944.0
+offset_bottom = 275.0
+texture = ExtResource("20_xn8jx")
+stretch_mode = 2
+
+[node name="OpponentDialogue" type="Label" parent="OpponentSpeechBubble"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 107.0
+offset_top = 4.0
+offset_right = -23.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_fonts/font = ExtResource("19_wst15")
+theme_override_font_sizes/font_size = 16
+text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="AnnouncerSpeechBubble" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 630.0
+offset_top = 113.0
+offset_right = 944.0
+offset_bottom = 275.0
+texture = ExtResource("20_xn8jx")
+stretch_mode = 2
+flip_h = true
+
+[node name="AnnouncerDialogue" type="Label" parent="AnnouncerSpeechBubble"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = 4.0
+offset_right = -107.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -12
+theme_override_fonts/font = ExtResource("19_wst15")
+theme_override_font_sizes/font_size = 16
+text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]
