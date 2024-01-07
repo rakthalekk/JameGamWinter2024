@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=62 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ci6x1t3ibc653" path="res://assets/ResourceBarsUI.png" id="3_gif07"]
 [ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
 [ext_resource type="Script" path="res://src/opponent.gd" id="3_qpg5n"]
+[ext_resource type="Texture2D" uid="uid://ctu0l6mfmle4s" path="res://assets/Shadow.png" id="4_u1wlv"]
 [ext_resource type="Texture2D" uid="uid://cxcw30ymq8ayk" path="res://assets/StaminaDebuffIcon.png" id="6_2m35g"]
 [ext_resource type="Texture2D" uid="uid://wuqcr2vt3rcr" path="res://assets/Health-Meter.png" id="6_fcntt"]
 [ext_resource type="Texture2D" uid="uid://csjmmrwlb3gex" path="res://assets/StagePresence-Meter.png" id="7_v26it"]
@@ -20,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
 [ext_resource type="Texture2D" uid="uid://dsbs24mokqppv" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
 [ext_resource type="AudioStream" uid="uid://8hwlfkhuse6d" path="res://assets/Audio/UI/click.ogg" id="13_xggmj"]
+[ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
 [ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
 [ext_resource type="AudioStream" uid="uid://drsq1nfapyh78" path="res://assets/Audio/UI/action_hover_shine.ogg" id="17_begmi"]
 [ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
@@ -34,6 +36,8 @@
 [ext_resource type="AudioStream" uid="uid://do30ac0qq3o4l" path="res://assets/Audio/Attack/debuff.ogg" id="27_yer7f"]
 [ext_resource type="AudioStream" uid="uid://24tajsa0bpuv" path="res://assets/Audio/Crowd/Crowd Applaud.ogg" id="28_m35ab"]
 [ext_resource type="AudioStream" uid="uid://d0tm72thj6g01" path="res://assets/Audio/Crowd/Crowd Boo.ogg" id="29_eawqi"]
+[ext_resource type="Texture2D" uid="uid://b7loo34xm8rvi" path="res://assets/ResultsScreen.png" id="36_fik1g"]
+[ext_resource type="Texture2D" uid="uid://d2scv6joiunjk" path="res://assets/FameIcon.png" id="37_qh5h1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
 atlas = ExtResource("2_8571m")
@@ -281,6 +285,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 178)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ResultsScreen:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 500)]
+}
 
 [sub_resource type="Animation" id="Animation_trhs0"]
 resource_name = "obscure"
@@ -328,10 +344,27 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_1rdkq"]
+resource_name = "results"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ResultsScreen:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 500), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ft1eb"]
 _data = {
 "RESET": SubResource("Animation_rmxbe"),
 "obscure": SubResource("Animation_trhs0"),
+"results": SubResource("Animation_1rdkq"),
 "unobscure": SubResource("Animation_jgf2t")
 }
 
@@ -357,6 +390,36 @@ layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
 texture = ExtResource("3_by2lh")
+
+[node name="DocShadow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 312.0
+offset_top = 320.0
+offset_right = 670.0
+offset_bottom = 378.0
+texture = ExtResource("4_u1wlv")
+stretch_mode = 2
+
+[node name="CheeseShadow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 312.0
+offset_top = 325.0
+offset_right = 670.0
+offset_bottom = 383.0
+texture = ExtResource("4_u1wlv")
+stretch_mode = 2
+
+[node name="TysonShadow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 317.0
+offset_top = 325.0
+offset_right = 675.0
+offset_bottom = 383.0
+texture = ExtResource("4_u1wlv")
+stretch_mode = 2
 
 [node name="CardPanel" type="TextureRect" parent="."]
 layout_mode = 0
@@ -877,6 +940,97 @@ volume_db = -10.0
 stream = ExtResource("29_eawqi")
 volume_db = -10.0
 
+[node name="ResultsScreen" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 500.0
+offset_right = 960.0
+offset_bottom = 1040.0
+texture = ExtResource("36_fik1g")
+
+[node name="Additive" type="Label" parent="ResultsScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -30.0
+offset_right = 146.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_wst15")
+text = "200 + 3 * HP = 500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Multiplicative" type="Label" parent="ResultsScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = 28.0
+offset_right = 146.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_wst15")
+text = "500 * 1.5 (Low Turns) = 750"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TotalFame" type="Label" parent="ResultsScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = 84.0
+offset_right = 129.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("19_wst15")
+text = "Total Fame Gained: 750"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ResultsScreen/TotalFame"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_right = -6.0
+offset_bottom = 24.0
+grow_horizontal = 0
+texture = ExtResource("37_qh5h1")
+stretch_mode = 2
+
+[node name="Continue" type="Button" parent="ResultsScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 162.0
+offset_right = 84.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_txdsi")
+text = "continue"
+
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_mouse_entered"]
@@ -889,3 +1043,4 @@ volume_db = -10.0
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_up"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
+[connection signal="pressed" from="ResultsScreen/Continue" to="." method="_on_continue_pressed"]

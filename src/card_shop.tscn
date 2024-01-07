@@ -159,12 +159,13 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 4.0
-offset_top = -27.0
-offset_right = 44.0
-offset_bottom = 13.0
+offset_top = -18.0
+offset_right = 38.0
+offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("6_dygsv")
+stretch_mode = 2
 
 [node name="FameCost" type="Label" parent="."]
 unique_name_in_owner = true
@@ -193,13 +194,14 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -39.5
-offset_top = -24.0
-offset_right = 0.5
-offset_bottom = 16.0
+offset_left = -39.0
+offset_top = -18.0
+offset_right = -5.0
+offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("6_dygsv")
+stretch_mode = 2
 
 [node name="Left" type="TextureButton" parent="."]
 layout_mode = 0

@@ -6,6 +6,7 @@ const MAX_SP = 100
 var consecutive_punches = 0
 
 var game_over = false
+var turns = 0
 
 var player_max_sp = false
 var opponent_max_sp = false
@@ -24,7 +25,15 @@ func _ready():
 	opponent.root = self
 	
 	player.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player"))
-	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Lunar Luchador"))
+	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Swan Divin Tyson"))
+	
+	match opponent.name:
+		"Doc Chop":
+			$DocShadow.show()
+		"The Big Cheese":
+			$CheeseShadow.show()
+		"Swan Divin Tyson":
+			$TysonShadow.show()
 	
 	%PlayerHealthBar.max_value = player.max_hp
 	%OpponentHealthBar.max_value = opponent.max_hp
@@ -419,6 +428,28 @@ func check_game_end():
 	if text != "":
 		game_over = true
 		%TheBlocker.show()
+		%AnnouncerDialogue.text = text
+		await display_announcer_dialog(false, 2)
+		
+		if player.hp > 0:
+			$AnimationPlayer.play("results")
+			var fame1 = 200 + 2 * player.hp
+			var factor = 0.75
+			var term = "(Long Battle)"
+			if turns <= 5:
+				factor = 1.5
+				term = "(Domination)"
+			elif turns <= 10:
+				factor = 1.25
+				term = "(Quick Battle)"
+			elif turns <= 15:
+				factor = 1
+				term = "(Average Battle)"
+			var fame = floor(fame1 * factor)
+			Global.fame += fame
+			%Additive.text = "200 + 3 * %d HP = %d" % [player.hp, fame1]
+			%Multiplicative.text = "%d * %.2f %s = %d" % [fame1, factor, term, fame]
+			%TotalFame.text = "Total Fame Gained: %d" % fame
 
 
 func change_turn():
@@ -438,6 +469,7 @@ func change_turn():
 		$AnimationPlayer.play("obscure")
 	else:
 		active_wrestler = player
+		turns += 1
 		_on_play_card_pressed()
 		$AnimationPlayer.play("unobscure")
 	
@@ -633,3 +665,7 @@ func flip_over_cards():
 	for card in %Cards.get_children():
 		card.flip_over()
 		await get_tree().create_timer(.2).timeout
+
+
+func _on_continue_pressed():
+	get_tree().change_scene_to_file("res://src/card_shop.tscn")
