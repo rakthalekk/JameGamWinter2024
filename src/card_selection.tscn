@@ -227,7 +227,6 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("7_hab1s")
-text = "information about a card"
 autowrap_mode = 2
 
 [node name="Finish" type="Button" parent="."]
