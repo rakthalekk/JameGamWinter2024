@@ -19,13 +19,17 @@ const CARD = preload("res://src/card.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.game_opened = true
 	player.opponent = opponent
 	opponent.opponent = player
 	player.root = self
 	opponent.root = self
 	
 	player.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player"))
-	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Swan Divin Tyson"))
+	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name(Global.current_opponent))
+	
+	opponent.max_hp *= Global.health_multiplier
+	opponent.hp = opponent.max_hp
 	
 	match opponent.name:
 		"Doc Chop":
@@ -35,8 +39,24 @@ func _ready():
 		"Swan Divin Tyson":
 			$TysonShadow.show()
 	
+	%OpponentName.text = opponent.display_name.to_lower()
+	
 	%PlayerHealthBar.max_value = player.max_hp
 	%OpponentHealthBar.max_value = opponent.max_hp
+	
+	update_bars()
+	
+	await $AnimationPlayer.animation_finished
+	
+	%AnnouncerDialogue.text = "Announcer: Today's challenger against the champion is...!"
+	await display_announcer_dialog(true, 2)
+	
+	%AnnouncerDialogue.text = "Announcer: " + opponent.display_name + "!"
+	await display_announcer_dialog(true, 1)
+	
+	$AnimationPlayer.play("intro")
+	
+	await $AnimationPlayer.animation_finished
 	
 	for card_data in player.hand:
 		var card = CARD.instantiate() as Card
@@ -53,8 +73,6 @@ func _ready():
 	
 	for card in %SmackTalk.get_children():
 		card.root = self
-	
-	update_bars()
 	
 	active_wrestler = opponent
 	change_turn()
@@ -155,6 +173,9 @@ func play_card(card_data: CardData, card: Card = null):
 	if card_data.name == "Low Blow" && randf() < 0.5:
 		damage *= 2
 		low_blow_flag = true
+	
+	if active_wrestler == opponent:
+		damage *= Global.damage_multiplier
 	
 	active_wrestler.opponent.hp = max(0, active_wrestler.opponent.hp - damage)
 	
@@ -431,8 +452,9 @@ func check_game_end():
 		%AnnouncerDialogue.text = text
 		await display_announcer_dialog(false, 2)
 		
+		$AnimationPlayer.play("results")
+		
 		if player.hp > 0:
-			$AnimationPlayer.play("results")
 			var fame1 = 200 + 2 * player.hp
 			var factor = 0.75
 			var term = "(Long Battle)"
@@ -447,9 +469,16 @@ func check_game_end():
 				term = "(Average Battle)"
 			var fame = floor(fame1 * factor)
 			Global.fame += fame
+			Global.total_fame += fame
 			%Additive.text = "200 + 3 * %d HP = %d" % [player.hp, fame1]
 			%Multiplicative.text = "%d * %.2f %s = %d" % [fame1, factor, term, fame]
 			%TotalFame.text = "Total Fame Gained: %d" % fame
+			%Continue.show()
+		else:
+			%Additive.text = "You Lose!"
+			%Multiplicative.text = "Matches Won: %d" % Global.battles_won
+			%TotalFame.text = "Total Fame Gained: %d" % Global.total_fame
+			%Continue2.show()
 
 
 func change_turn():
@@ -668,4 +697,15 @@ func flip_over_cards():
 
 
 func _on_continue_pressed():
+	Global.get_next_opponent()
+	Global.battles_won += 1
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file("res://src/card_shop.tscn")
+
+
+func _on_continue_2_pressed():
+	Global.reset_variables()
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
+	get_tree().change_scene_to_file("res://src/title_screen.tscn")

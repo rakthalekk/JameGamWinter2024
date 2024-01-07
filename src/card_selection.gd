@@ -66,4 +66,6 @@ func update_tooltip(card: CardSelectionButton):
 
 
 func _on_finish_pressed():
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file("res://src/main.tscn")

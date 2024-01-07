@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0e06a6t5vpb2"]
+[gd_scene load_steps=20 format=3 uid="uid://c0e06a6t5vpb2"]
 
 [ext_resource type="Script" path="res://src/card_shop.gd" id="1_gu8pu"]
 [ext_resource type="Texture2D" uid="uid://bws83yiu1q4to" path="res://assets/ShopBG.png" id="2_pqyto"]
@@ -98,6 +98,67 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_2vejw"),
 "flip_card": SubResource("Animation_a1lyx")
+}
+
+[sub_resource type="Animation" id="Animation_h3tk2"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4or45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6qcb"]
+_data = {
+"RESET": SubResource("Animation_4or45"),
+"fade_in": SubResource("Animation_h3tk2")
 }
 
 [node name="CardShop" type="Control"]
@@ -351,6 +412,22 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("12_57dna")
 theme_override_font_sizes/font_size = 24
 text = "finish"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_l6qcb")
+}
+autoplay = "fade_in"
 
 [connection signal="pressed" from="Left" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="Right" to="." method="_on_right_pressed"]

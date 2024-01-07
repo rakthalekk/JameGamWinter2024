@@ -3,7 +3,10 @@ extends Node2D
 
 func _ready():
 	hide()
-	
+	initialize_data()
+
+
+func initialize_data():
 	# Initializes global variables from player list of moves
 	var player_data = get_player() as WrestlerData
 	

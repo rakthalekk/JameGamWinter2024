@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcru8tkpmo5bh"
-path="res://.godot/imported/VS Banner.png-507de6e69224f3213fc0f347aead4538.ctex"
+uid="uid://b1qusgeh4v5ah"
+path="res://.godot/imported/ScrollingBG.png-327993784396f1f4a837f24f137cc00f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/VS Banner.png"
-dest_files=["res://.godot/imported/VS Banner.png-507de6e69224f3213fc0f347aead4538.ctex"]
+source_file="res://assets/ScrollingBG.png"
+dest_files=["res://.godot/imported/ScrollingBG.png-327993784396f1f4a837f24f137cc00f.ctex"]
 
 [params]
 
