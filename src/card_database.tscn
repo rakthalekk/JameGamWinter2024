@@ -555,7 +555,7 @@ script = ExtResource("3_42tp3")
 display_name = "Crowd Loser"
 type = 5
 description = "Inflicts Unpopular on foe"
-cost = 300
+cost = 100
 quantity = 3
 
 [node name="The Punshisher" type="Sprite2D" parent="."]

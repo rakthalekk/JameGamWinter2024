@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cakiyl5x8uhki"]
+[gd_scene load_steps=18 format=3 uid="uid://cakiyl5x8uhki"]
 
 [ext_resource type="Script" path="res://src/card.gd" id="1_rr0rl"]
 [ext_resource type="Texture2D" uid="uid://bwc6a0nltsok6" path="res://assets/Cards/ArmBarCardSprite.png" id="2_5cqmn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bcl5grdqunrii" path="res://assets/Downvotelike-from-reddit.png" id="5_she5e"]
 [ext_resource type="Texture2D" uid="uid://cinnamvtdeugp" path="res://assets/x2Icon.png" id="6_udfun"]
 [ext_resource type="Texture2D" uid="uid://c8lrcvvww6kcg" path="res://assets/Tooltip.png" id="7_18te4"]
+[ext_resource type="Texture2D" uid="uid://dktionf3lhg8l" path="res://assets/CantUseIcon.png" id="7_qgovi"]
 [ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="8_8bmw5"]
 
 [sub_resource type="Animation" id="Animation_5r1b0"]
@@ -420,6 +421,16 @@ offset_top = -92.0
 offset_right = 59.0
 offset_bottom = -68.0
 texture = ExtResource("6_udfun")
+stretch_mode = 2
+
+[node name="Banned" type="TextureRect" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+offset_left = 33.0
+offset_top = -92.0
+offset_right = 59.0
+offset_bottom = -68.0
+texture = ExtResource("7_qgovi")
 stretch_mode = 2
 
 [node name="Button" type="Button" parent="."]

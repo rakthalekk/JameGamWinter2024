@@ -30,12 +30,20 @@ func populate_from_data(data: CardData):
 
 
 func update_damage(new_damage: int):
-	if card_data.type == CardData.CARDTYPE.UTILITY || card_data.type == CardData.CARDTYPE.DIRECTION:
+	if card_data.type == CardData.CARDTYPE.DIRECTION:
+		if root.player.unpopular:
+			%Banned.show()
+		else:
+			%Banned.hide()
+		return
+	
+	if card_data.type == CardData.CARDTYPE.UTILITY:
 		return
 	
 	%Upvote.hide()
 	%Downvote.hide()
 	%x2.hide()
+	%Banned.hide()
 	
 	effective_damage = new_damage
 	if effective_damage > card_data.damage:
@@ -43,7 +51,9 @@ func update_damage(new_damage: int):
 	elif effective_damage < card_data.damage:
 		%Downvote.show()
 	
-	if root.player.oversold:
+	if root.player.stunned:
+		%Banned.show()
+	elif root.player.oversold:
 		%x2.show()
 	
 	%Damage.text = "%02d" % effective_damage

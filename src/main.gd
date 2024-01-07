@@ -27,6 +27,7 @@ func _ready():
 	
 	player.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player"))
 	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name(Global.current_opponent))
+	#opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player2"))
 	
 	opponent.max_hp *= Global.health_multiplier
 	opponent.hp = opponent.max_hp
@@ -36,10 +37,15 @@ func _ready():
 			$DocShadow.show()
 		"The Big Cheese":
 			$CheeseShadow.show()
+			%OpponentName.texture = load("res://assets/TBG-Nameplate.png")
 		"Swan Divin Tyson":
 			$TysonShadow.show()
-	
-	%OpponentName.text = opponent.display_name.to_lower()
+			%OpponentName.texture = load("res://assets/SwanDivinTysonTitleCard.png")
+		"Terry Thunder Thighs":
+			%TerryName.show()
+			%OpponentName.texture = load("res://assets/TTT-Nameplate.png")
+		"Lunar Luchador":
+			%OpponentName.texture = load("res://assets/LunarLuchadorTitleCard.png")
 	
 	%PlayerHealthBar.max_value = player.max_hp
 	%OpponentHealthBar.max_value = opponent.max_hp
@@ -241,6 +247,9 @@ func clear_flurry_punch():
 func recalculate_card_damage():
 	for card in %Cards.get_children():
 		card.update_damage(calculate_damage(card.card_data, player))
+	
+	for card in %Directions.get_children():
+		card.update_damage(0)
 
 
 func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler) -> int:
