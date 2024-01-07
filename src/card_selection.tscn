@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://mlv585n4vvlj"]
+[gd_scene load_steps=8 format=3 uid="uid://mlv585n4vvlj"]
 
 [ext_resource type="Texture2D" uid="uid://bws83yiu1q4to" path="res://assets/ShopBG.png" id="1_6yfvf"]
+[ext_resource type="Script" path="res://src/card_selection.gd" id="1_sd2vt"]
 [ext_resource type="Texture2D" uid="uid://cpowkc1qf6bj8" path="res://assets/Cards/CardSlot.png" id="2_g7c4c"]
-[ext_resource type="PackedScene" uid="uid://cakiyl5x8uhki" path="res://src/card.tscn" id="3_k204m"]
+[ext_resource type="PackedScene" uid="uid://coqv3txlbln04" path="res://src/card_selection_button.tscn" id="3_fjr24"]
+[ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="4_gb043"]
+[ext_resource type="Texture2D" uid="uid://c8lrcvvww6kcg" path="res://assets/Tooltip.png" id="6_bt10k"]
+[ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="7_hab1s"]
 
 [node name="CardSelection" type="Control"]
 layout_mode = 3
@@ -11,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sd2vt")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -21,166 +26,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_6yfvf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 2
-offset_right = 960.0
-offset_bottom = 540.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/separation = 40
-
-[node name="CardSlot" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-size_flags_vertical = 0
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot2" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot3" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot4" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot5" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot6" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot7" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot8" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot9" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot10" type="TextureButton" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/ScrollContainer2"]
-layout_mode = 2
-theme_override_constants/separation = 40
-
-[node name="CardSlot" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot2" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot3" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot4" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot5" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot6" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot7" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot8" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot9" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="CardSlot10" type="TextureButton" parent="VBoxContainer/ScrollContainer2/HBoxContainer2"]
-custom_minimum_size = Vector2(110, 166)
-layout_mode = 2
-texture_normal = ExtResource("2_g7c4c")
-
-[node name="ScrollContainer3" type="ScrollContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer3"]
-layout_mode = 2
-
-[node name="Card" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card2" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card3" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card4" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card5" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card6" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card7" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card8" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card9" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
-[node name="Card10" parent="VBoxContainer/ScrollContainer3/HBoxContainer" instance=ExtResource("3_k204m")]
-layout_mode = 2
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -188,7 +33,218 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 0
-theme_override_constants/margin_bottom = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Deck" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="CardSlot1" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot5" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot6" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot7" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot8" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot9" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot10" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot11" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot12" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot13" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot14" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot15" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot16" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot17" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot18" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot19" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="CardSlot20" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+custom_minimum_size = Vector2(110, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_g7c4c")
+
+[node name="ScrollContainer3" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+
+[node name="Cards" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CardSelectionButton" parent="MarginContainer/VBoxContainer/ScrollContainer3/Cards" instance=ExtResource("3_fjr24")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 740.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("4_gb043")
+theme_override_font_sizes/font_size = 16
+text = "deck - click to remove cards from deck"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -16.0
+offset_right = 740.0
+offset_bottom = 16.0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_gb043")
+theme_override_font_sizes/font_size = 16
+text = "reserve - click to add cards to deck"
+
+[node name="DeckNum" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -126.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 52.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("4_gb043")
+theme_override_font_sizes/font_size = 16
+text = "0/20"
+horizontal_alignment = 2
+
+[node name="Tooltip" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+offset_right = 729.0
+grow_vertical = 0
+texture = ExtResource("6_bt10k")
+
+[node name="TooltipText" type="Label" parent="Tooltip"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = 14.0
+offset_right = -46.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_hab1s")
+text = "information about a card"
+autowrap_mode = 2
+
+[node name="Finish" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -214.0
+offset_top = -56.0
+offset_right = -8.0
+offset_bottom = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_gb043")
+theme_override_font_sizes/font_size = 24
+text = "finish"
+
+[connection signal="pressed" from="Finish" to="." method="_on_finish_pressed"]

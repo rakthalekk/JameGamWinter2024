@@ -44,15 +44,15 @@ func setup_wrestler(wrestler_data: WrestlerData):
 	max_hp = wrestler_data.max_hp
 	hp = max_hp
 	
-	for attack in data.attack_list:
-		var card = CardDatabase.get_card_by_name(attack)
-		attack_list.append(card)
-		deck.append(card)
-	
 	# temp way to add unlocked cards
 	if name == "Player":
-		for attack in Global.player_card_list:
-			var card = CardDatabase.get_card_by_name(attack.name)
+		for attack in Global.player_deck:
+			var card = CardDatabase.get_card_by_name(attack)
+			attack_list.append(card)
+			deck.append(card)
+	else:
+		for attack in data.attack_list:
+			var card = CardDatabase.get_card_by_name(attack)
 			attack_list.append(card)
 			deck.append(card)
 	

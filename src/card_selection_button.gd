@@ -1,7 +1,9 @@
-class_name CardShopButton
+class_name CardSelectionButton
 extends Control
 
 var root
+
+var in_deck = false
 
 var card_data: CardData
 
@@ -22,4 +24,11 @@ func populate_from_data(data: CardData):
 
 
 func _on_button_pressed():
-	root.card_click(self)
+	if in_deck:
+		root.remove_from_deck(self)
+	else:
+		root.add_to_deck(self)
+
+
+func _on_button_mouse_entered():
+	root.update_tooltip(self)
