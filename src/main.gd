@@ -24,7 +24,7 @@ func _ready():
 	opponent.root = self
 	
 	player.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Player"))
-	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("The Big Cheese"))
+	opponent.setup_wrestler(WrestlerDatabase.get_wrestler_by_name("Lunar Luchador"))
 	
 	%PlayerHealthBar.max_value = player.max_hp
 	%OpponentHealthBar.max_value = opponent.max_hp

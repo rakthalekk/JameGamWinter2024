@@ -1,67 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0e06a6t5vpb2"]
+[gd_scene load_steps=5 format=3 uid="uid://c0e06a6t5vpb2"]
 
 [ext_resource type="Script" path="res://src/card_shop.gd" id="1_gu8pu"]
-[ext_resource type="Script" path="res://src/item.gd" id="2_bxq17"]
-
-[sub_resource type="Resource" id="Resource_wj6d6"]
-script = ExtResource("2_bxq17")
-item_name = "Cross"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_ard7s"]
-script = ExtResource("2_bxq17")
-item_name = "Hook"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_syhht"]
-script = ExtResource("2_bxq17")
-item_name = "Gut Punch"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_b2v8p"]
-script = ExtResource("2_bxq17")
-item_name = "Low Blow"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_2dhnl"]
-script = ExtResource("2_bxq17")
-item_name = "Leg Sweep"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_627es"]
-script = ExtResource("2_bxq17")
-item_name = "Roundhouse Kick"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_lwhcg"]
-script = ExtResource("2_bxq17")
-item_name = "Flying Kick"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_pdo1r"]
-script = ExtResource("2_bxq17")
-item_name = "Chokehold"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_tpmfv"]
-script = ExtResource("2_bxq17")
-item_name = "Full Nelson"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_uirqv"]
-script = ExtResource("2_bxq17")
-item_name = "Suplex"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_t620x"]
-script = ExtResource("2_bxq17")
-item_name = "Gutbuster"
-cost = 100
-
-[sub_resource type="Resource" id="Resource_opwlb"]
-script = ExtResource("2_bxq17")
-item_name = "Body Slam"
-cost = 100
+[ext_resource type="Texture2D" uid="uid://bws83yiu1q4to" path="res://assets/ShopBG.png" id="2_pqyto"]
+[ext_resource type="Texture2D" uid="uid://mqrg467qe531" path="res://assets/ShopCardPanel.png" id="3_50v21"]
+[ext_resource type="Texture2D" uid="uid://e3wt0om7lkrn" path="res://assets/ShopUIThingy.png" id="4_66d8m"]
 
 [node name="CardShop" type="Control"]
 layout_mode = 3
@@ -71,7 +13,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gu8pu")
-shop_items = Array[ExtResource("2_bxq17")]([SubResource("Resource_wj6d6"), SubResource("Resource_ard7s"), SubResource("Resource_syhht"), SubResource("Resource_b2v8p"), SubResource("Resource_2dhnl"), SubResource("Resource_627es"), SubResource("Resource_lwhcg"), SubResource("Resource_pdo1r"), SubResource("Resource_tpmfv"), SubResource("Resource_uirqv"), SubResource("Resource_t620x"), SubResource("Resource_opwlb")])
+
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_pqyto")
+
+[node name="ScrollPanel" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_50v21")
+
+[node name="UIPanel" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(960, 540)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_66d8m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -109,17 +71,10 @@ size_flags_vertical = 1
 text = "No Card Selected"
 autowrap_mode = 2
 
-[node name="Buy" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Buy Card"
-
 [node name="Leave" type="Button" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "Leave"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Buy" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Leave" to="." method="_on_leave_pressed"]

@@ -1,17 +1,15 @@
 extends Control
 
-@export var shop_items : Array[Item]
-
 var CARDBUTTON = preload("res://src/card_shop_button.tscn")
 
 var selected_card: CardShopButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for item in shop_items:
-		var data = CardDatabase.get_card_by_name(item.item_name)
+	for item in Global.shop_items:
+		var data = CardDatabase.get_card_by_name(item)
 		var card = CARDBUTTON.instantiate() as CardShopButton
-		card.populate_from_data(data, item.cost)
+		card.populate_from_data(data)
 		card.root = self
 		%Cards.add_child(card)
 	

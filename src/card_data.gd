@@ -14,3 +14,5 @@ enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION, UTILITY }
 @export var stunned_chance : int
 @export var unpopular_chance : int
 @export var low_health_damage_multiplier : float
+@export var cost : int
+@export var quantity : int

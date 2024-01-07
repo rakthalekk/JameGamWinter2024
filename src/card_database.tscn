@@ -45,6 +45,7 @@ display_name = "Jab"
 description = "Deals 5 damage"
 damage = 5
 stamina_cost = 1
+quantity = 5
 
 [node name="Cross" type="Sprite2D" parent="."]
 position = Vector2(249, 58)
@@ -55,6 +56,8 @@ display_name = "Cross"
 description = "Deals 5 damage, 7 if used after another punch"
 damage = 5
 stamina_cost = 1
+cost = 200
+quantity = 3
 
 [node name="Hook" type="Sprite2D" parent="."]
 position = Vector2(415, 58)
@@ -65,6 +68,7 @@ display_name = "Hook"
 description = "Deals 12 damage"
 damage = 12
 stamina_cost = 3
+quantity = 2
 
 [node name="Gut Punch" type="Sprite2D" parent="."]
 position = Vector2(585, 57)
@@ -77,6 +81,8 @@ description = "Deals 5 damage
 damage = 5
 stamina_cost = 2
 stamina_debuff_chance = 66
+cost = 100
+quantity = 3
 
 [node name="Uppercut" type="Sprite2D" parent="."]
 position = Vector2(730, 53)
@@ -89,6 +95,7 @@ description = "Deals 10 damage
 damage = 10
 stamina_cost = 2
 stunned_chance = 33
+quantity = 3
 
 [node name="Low Blow" type="Sprite2D" parent="."]
 position = Vector2(911, 56)
@@ -100,6 +107,8 @@ description = "Deals 5 damage
 50% chance to deal double damage and inflict Unpopular"
 damage = 5
 stamina_cost = 2
+cost = 200
+quantity = 2
 
 [node name="Flurry of Blows" type="Sprite2D" parent="."]
 position = Vector2(1057, 58)
@@ -109,6 +118,8 @@ script = ExtResource("3_42tp3")
 display_name = "Frenzy"
 description = "Deals 3 damage for every consecutive punch used
 Disappears after using another move"
+cost = 300
+quantity = 1
 
 [node name="Side Kick" type="Sprite2D" parent="."]
 position = Vector2(81, 216)
@@ -120,6 +131,7 @@ type = 1
 description = "Deals 10 damage"
 damage = 10
 stamina_cost = 2
+quantity = 5
 
 [node name="Leg Sweep" type="Sprite2D" parent="."]
 position = Vector2(252, 215)
@@ -133,6 +145,7 @@ description = "Deals 10 damage
 damage = 10
 stamina_cost = 3
 stunned_chance = 66
+quantity = 3
 
 [node name="Roundhouse Kick" type="Sprite2D" parent="."]
 position = Vector2(417, 218)
@@ -146,6 +159,8 @@ description = "Deals 15 damage
 damage = 15
 stamina_cost = 4
 stamina_debuff_chance = 33
+cost = 100
+quantity = 3
 
 [node name="Flying Kick" type="Sprite2D" parent="."]
 position = Vector2(582, 222)
@@ -157,6 +172,8 @@ type = 1
 description = "Deals 17 damage"
 damage = 17
 stamina_cost = 5
+cost = 100
+quantity = 2
 
 [node name="Crane Kick" type="Sprite2D" parent="."]
 position = Vector2(731, 222)
@@ -172,6 +189,8 @@ damage = 10
 stamina_cost = 4
 stamina_debuff_chance = 33
 stunned_chance = 33
+cost = 200
+quantity = 2
 
 [node name="Arm Bar" type="Sprite2D" parent="."]
 position = Vector2(84, 378)
@@ -185,6 +204,7 @@ Reduces foe’s Punch damage during next turn by 50%
 Grants 10% SP"
 damage = 3
 stamina_cost = 2
+quantity = 3
 
 [node name="Leg Lock" type="Sprite2D" parent="."]
 position = Vector2(257, 387)
@@ -198,6 +218,7 @@ Reduces foe’s Kick damage during next turn by 50%
 Grants 10% SP"
 damage = 5
 stamina_cost = 3
+quantity = 3
 
 [node name="Chokehold" type="Sprite2D" parent="."]
 position = Vector2(423, 380)
@@ -211,6 +232,8 @@ Reduces foe’s Finisher damage during next turn by 50%
 Grants 10% SP"
 damage = 10
 stamina_cost = 5
+cost = 300
+quantity = 2
 
 [node name="Full Nelson" type="Sprite2D" parent="."]
 position = Vector2(589, 379)
@@ -225,6 +248,8 @@ Grants 10% SP"
 damage = 5
 stamina_cost = 3
 stamina_debuff_chance = 100
+cost = 300
+quantity = 2
 
 [node name="Free Arm Bar" type="Sprite2D" parent="."]
 position = Vector2(1240, 329)
@@ -251,6 +276,8 @@ damage = 15
 health_cost = 7
 stamina_cost = 5
 low_health_damage_multiplier = 2.0
+cost = 400
+quantity = 1
 
 [node name="Back Breaker" type="Sprite2D" parent="."]
 position = Vector2(254, 556)
@@ -266,6 +293,8 @@ damage = 10
 health_cost = 5
 stamina_cost = 5
 low_health_damage_multiplier = 2.0
+cost = 400
+quantity = 1
 
 [node name="Body Slam" type="Sprite2D" parent="."]
 position = Vector2(423, 541)
@@ -282,6 +311,7 @@ damage = 5
 health_cost = 10
 stamina_cost = 3
 low_health_damage_multiplier = 4.0
+quantity = 2
 
 [node name="Piledriver" type="Sprite2D" parent="."]
 position = Vector2(585, 546)
@@ -296,6 +326,8 @@ damage = 12
 health_cost = 5
 stamina_cost = 4
 low_health_damage_multiplier = 2.0
+cost = 300
+quantity = 1
 
 [node name="Surgical Suplex" type="Sprite2D" parent="."]
 position = Vector2(1218, 518)
@@ -374,6 +406,74 @@ damage = 15
 health_cost = 15
 stamina_cost = 5
 
+[node name="Thunderbolt Slam" type="Sprite2D" parent="."]
+position = Vector2(1228, 1081)
+texture = ExtResource("21_v1sq6")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Thunderbolt Slam"
+type = 3
+description = "Deals 5 damage and inflicts Stunned if foe is above 50% HP
+Deals 20 damage otherwise
+Costs 10 HP
+"
+damage = 10
+health_cost = 20
+stamina_cost = 5
+stunned_chance = 100
+low_health_damage_multiplier = 2.0
+quantity = 2
+
+[node name="Hurricane Kick" type="Sprite2D" parent="."]
+position = Vector2(1387, 1077)
+texture = ExtResource("21_v1sq6")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Thunderbolt Slam"
+type = 3
+description = "Deals 5 damage and inflicts Stunned if foe is above 50% HP
+Deals 20 damage otherwise
+Costs 10 HP
+"
+damage = 10
+health_cost = 5
+stamina_cost = 4
+stunned_chance = 66
+low_health_damage_multiplier = 2.0
+quantity = 2
+
+[node name="Meteor Slam" type="Sprite2D" parent="."]
+position = Vector2(1234, 1285)
+texture = ExtResource("21_v1sq6")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Meteor Slam"
+type = 3
+description = "Deal 20 damage
+Cost 20 HP"
+damage = 20
+health_cost = 20
+stamina_cost = 4
+stunned_chance = 66
+low_health_damage_multiplier = 2.0
+quantity = 2
+
+[node name="Rocket Impact" type="Sprite2D" parent="."]
+position = Vector2(1383, 1277)
+texture = ExtResource("19_21xwu")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Rocket Impact"
+type = 3
+description = "Deals 15 damage, 30 if foe is below 50% health
+Costs 7 HP"
+damage = 15
+health_cost = 10
+stamina_cost = 5
+low_health_damage_multiplier = 2.0
+cost = 400
+quantity = 1
+
 [node name="Oversell" type="Sprite2D" parent="."]
 position = Vector2(91, 703)
 texture = ExtResource("23_logq7")
@@ -434,6 +534,7 @@ script = ExtResource("3_42tp3")
 display_name = "Stance Up"
 type = 5
 description = "Regenerates 2 stamina"
+quantity = 3
 
 [node name="Crowd Pleaser" type="Sprite2D" parent="."]
 position = Vector2(248, 884)
@@ -443,6 +544,8 @@ script = ExtResource("3_42tp3")
 display_name = "Crowd Pleaser"
 type = 5
 description = "Grants 30% SP"
+cost = 300
+quantity = 3
 
 [node name="Crowd Loser" type="Sprite2D" parent="."]
 position = Vector2(422, 884)
@@ -452,6 +555,8 @@ script = ExtResource("3_42tp3")
 display_name = "Crowd Loser"
 type = 5
 description = "Inflicts Unpopular on foe"
+cost = 300
+quantity = 3
 
 [node name="The Punshisher" type="Sprite2D" parent="."]
 position = Vector2(589, 880)
@@ -461,6 +566,8 @@ script = ExtResource("3_42tp3")
 display_name = "Punch Stance"
 type = 5
 description = "Punch moves deal +50% damage during your next turn"
+cost = 300
+quantity = 3
 
 [node name="The Kickisher" type="Sprite2D" parent="."]
 position = Vector2(747, 879)
@@ -470,3 +577,5 @@ script = ExtResource("3_42tp3")
 display_name = "Kick Stance"
 type = 5
 description = "Kick moves deal +50% damage during your next turn"
+cost = 300
+quantity = 3

@@ -1,24 +1,24 @@
 class_name CardShopButton
-extends ColorRect
+extends Control
 
 var root
 
 var card_data: CardData
-var card_cost: int
 
-func populate_from_data(data: CardData, cost: int):
+func populate_from_data(data: CardData):
 	card_data = data
-	card_cost = cost
 	
 	name = card_data.name
 	%Name.text = data.display_name
-	%Type.text = CardData.CARDTYPE.keys()[data.type]
-	%Description.text = data.description
+	
 	%Damage.text = str(card_data.damage) + " DMG"
-	%Cost.text = str(cost)
+	
+	$Sprite.texture = data.texture
 	
 	if data.type == CardData.CARDTYPE.DIRECTION:
-		%Damage.hide()
+		%Damage.text = str(data.sp_cost) + "% sp"
+	elif data.type == CardData.CARDTYPE.UTILITY:
+		%Damage.text = ""
 
 
 func _on_button_pressed():

@@ -9,7 +9,7 @@ func _ready():
 	%Name.text = card_data.display_name.to_lower()
 	
 	$Tooltip.hide()
-	%TooltipText.text = card_data.description
+	%TooltipText.text = card_data.description + "\nEnds your turn"
 
 
 func _on_button_pressed():
