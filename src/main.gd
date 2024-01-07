@@ -42,6 +42,9 @@ func _ready():
 		%Directions.add_child(card)
 		card.flip_over()
 	
+	for card in %SmackTalk.get_children():
+		card.root = self
+	
 	update_bars()
 	
 	active_wrestler = opponent
@@ -95,6 +98,21 @@ func play_card(card_data: CardData, card: Card = null):
 		# If a player plays an action card, destroy the card
 		if card:
 			card.queue_free()
+	
+	# Utility cards are considered first, rest of function is ignored
+	if card_data.type == CardData.CARDTYPE.UTILITY:
+		if card_data.name == "Stance Up":
+			await stance_up(true)
+		elif card_data.name == "Crowd Pleaser":
+			await crowd_pleaser(true)
+		elif card_data.name == "Crowd Loser":
+			await crowd_loser(true)
+		elif card_data.name == "The Punshisher":
+			await the_punshisher(true)
+		elif card_data.name == "The Kickisher":
+			await the_kickisher(true)
+		
+		return
 	
 	match card_data.type:
 		CardData.CARDTYPE.PUNCH:
@@ -304,12 +322,14 @@ func check_damage_reduction(card_data: CardData):
 			await damage_reduction_text(active_wrestler.display_name, "Finishers")
 
 
-func display_player_dialog():
+func display_player_dialog(disable_blocker: bool = false):
 	$PlayerSpeechBubble.show()
 	%TheBlocker.show()
 	
 	await get_tree().create_timer(2).timeout
 	$PlayerSpeechBubble.hide()
+	if disable_blocker:
+		%TheBlocker.hide()
 
 
 func display_opponent_dialog():
@@ -413,19 +433,78 @@ func draw_new_hand():
 			%Cards.add_child(card)
 
 
-func stance_up():
-	active_wrestler.reset_attack_buffs()
-	
+func stance_up(disable_blocker: bool = false):
 	if active_wrestler == player:
 		%PlayerDialogue.text = active_wrestler.display_name + ": I'm regaining my stance!"
-		await display_player_dialog()
+		await display_player_dialog(disable_blocker)
 	else:
 		%OpponentDialogue.text = active_wrestler.display_name + ": I'm regaining my stance!"
 		await display_opponent_dialog()
 	
 	active_wrestler.stamina = min(MAX_STAMINA, active_wrestler.stamina + 2)
 	update_bars()
-	change_turn()
+
+
+func crowd_pleaser(disable_blocker: bool = false):
+	if active_wrestler == player:
+		%PlayerDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
+		await display_player_dialog(disable_blocker)
+	else:
+		%OpponentDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
+		await display_opponent_dialog()
+	
+	if !active_wrestler.unpopular:
+		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 30)
+	else:
+		%AnnouncerDialogue.text = "But the crowd did not respond..."
+		await display_announcer_dialog(false)
+	
+	update_bars()
+
+
+func crowd_loser(disable_blocker: bool = false):
+	if active_wrestler == player:
+		%PlayerDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
+		await display_player_dialog(disable_blocker)
+	else:
+		%OpponentDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
+		await display_opponent_dialog()
+	
+	active_wrestler.opponent.unpopular = true
+	if active_wrestler.opponent == player:
+		%PlayerUnpopularDebuff.show()
+	else:
+		%OpponentUnpopularDebuff.show()
+	$CrowdBoo.play()
+	await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
+	
+	update_bars()
+
+
+func the_punshisher(disable_blocker: bool = false):
+	if active_wrestler == player:
+		%PlayerDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
+		await display_player_dialog(disable_blocker)
+	else:
+		%OpponentDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
+		await display_opponent_dialog()
+	
+	active_wrestler.punshisher = true
+	
+	update_bars()
+
+
+func the_kickisher(disable_blocker: bool = false):
+	if active_wrestler == player:
+		%PlayerDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
+		await display_player_dialog(disable_blocker)
+	else:
+		%OpponentDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
+		await display_opponent_dialog()
+	
+	active_wrestler.kickicher = true
+	
+	update_bars()
 
 
 func _on_play_card_pressed():
@@ -441,80 +520,32 @@ func _on_direction_pressed():
 
 
 func _on_stance_up_pressed():
-	stance_up()
+	active_wrestler.reset_attack_buffs()
+	await stance_up()
+	change_turn()
 
 
 func _on_banter_button_pressed():
 	active_wrestler.reset_attack_buffs()
-	
-	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
-		await display_player_dialog()
-	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
-		await display_opponent_dialog()
-	
-	if !active_wrestler.unpopular:
-		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 30)
-	else:
-		%AnnouncerDialogue.text = "But the crowd did not respond..."
-		await display_announcer_dialog(false)
-	
-	update_bars()
+	await crowd_pleaser()
 	change_turn()
 
 
 func _on_banter_button_2_pressed():
 	active_wrestler.reset_attack_buffs()
-	
-	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
-		await display_player_dialog()
-	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
-		await display_opponent_dialog()
-	
-	active_wrestler.opponent.unpopular = true
-	if active_wrestler.opponent == player:
-		%PlayerUnpopularDebuff.show()
-	else:
-		%OpponentUnpopularDebuff.show()
-	$CrowdBoo.play()
-	await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
-	
-	update_bars()
+	await crowd_loser()
 	change_turn()
 
 
 func _on_banter_button_3_pressed():
 	active_wrestler.reset_attack_buffs()
-	
-	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
-		await display_player_dialog()
-	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
-		await display_opponent_dialog()
-	
-	active_wrestler.punshisher = true
-	
-	update_bars()
+	await the_punshisher()
 	change_turn()
 
 
 func _on_banter_button_4_pressed():
 	active_wrestler.reset_attack_buffs()
-	
-	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
-		await display_player_dialog()
-	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
-		await display_opponent_dialog()
-	
-	active_wrestler.kickicher = true
-	
-	update_bars()
+	await the_kickisher()
 	change_turn()
 
 
@@ -522,23 +553,6 @@ func _on_banter_pressed():
 	%CardContainer.hide()
 	%DirectionContainer.hide()
 	%BanterContainer.show()
-
-
-func _on_banter_button_5_pressed():
-	active_wrestler.reset_attack_buffs()
-	%PlayerDialogue.text = active_wrestler.display_name + ": its finishering time!!!!"
-	
-	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": its finishering time!!!!"
-		await display_player_dialog()
-	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": its finishering time!!!!"
-		await display_opponent_dialog()
-	
-	active_wrestler.finisherer = true
-	
-	update_bars()
-	change_turn()
 
 
 func flip_over_cards():

@@ -21,9 +21,14 @@ func populate_from_data(data: CardData):
 	
 	if data.type == CardData.CARDTYPE.DIRECTION:
 		%Damage.text = str(data.sp_cost) + "% sp"
+	elif data.type == CardData.CARDTYPE.UTILITY:
+		%Damage.hide()
 
 
 func update_damage(new_damage: int):
+	if card_data.type == CardData.CARDTYPE.UTILITY || card_data.type == CardData.CARDTYPE.DIRECTION:
+		return
+	
 	%Upvote.hide()
 	%Downvote.hide()
 	%x2.hide()

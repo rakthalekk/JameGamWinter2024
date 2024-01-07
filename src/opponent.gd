@@ -22,7 +22,7 @@ func choose_action():
 		await root.play_card(action)
 		choose_action()
 	elif stamina == 0 || stamina <= 2 && randf() > 0.5:
-		root.stance_up()
+		root._on_stance_up_pressed()
 	else:
 		var random = randf()
 		if random < 0.2:
@@ -34,7 +34,7 @@ func choose_action():
 		elif random < 0.8:
 			root._on_banter_button_4_pressed()
 		else:
-			root._on_banter_button_5_pressed()
+			root._on_stance_up_pressed()
 
 
 # Attempts to select an attack if one is available. May be overridden by specific enemies

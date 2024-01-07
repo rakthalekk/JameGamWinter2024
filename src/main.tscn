@@ -19,11 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
 [ext_resource type="Texture2D" uid="uid://bhpg2l3wkl76v" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
 [ext_resource type="AudioStream" uid="uid://8hwlfkhuse6d" path="res://assets/Audio/UI/click.ogg" id="13_xggmj"]
-[ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
 [ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
 [ext_resource type="AudioStream" uid="uid://drsq1nfapyh78" path="res://assets/Audio/UI/action_hover_shine.ogg" id="17_begmi"]
 [ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
 [ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="19_wst15"]
+[ext_resource type="PackedScene" uid="uid://c0blc82w7o8ba" path="res://src/banter_card.tscn" id="20_u0dpp"]
 [ext_resource type="Texture2D" uid="uid://dv62487g3e5lm" path="res://assets/SpeechBubbleOpponent.png" id="20_xn8jx"]
 [ext_resource type="AudioStream" uid="uid://02cfvhv4l8cp" path="res://assets/Audio/Attack/punch fx.ogg" id="22_71yvh"]
 [ext_resource type="AudioStream" uid="uid://bdrk7gen4rw6a" path="res://assets/Audio/Attack/kick fx.ogg" id="23_41aky"]
@@ -55,36 +55,6 @@ animations = [{
 "name": &"default",
 "speed": 3.0
 }]
-
-[sub_resource type="Animation" id="Animation_guvtd"]
-resource_name = "pressed"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_dlunx"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_egbbk"]
 length = 0.001
@@ -118,6 +88,36 @@ tracks/0/keys = {
 "values": [2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_dlunx"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_guvtd"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sl8h3"]
 _data = {
 "RESET": SubResource("Animation_egbbk"),
@@ -126,8 +126,8 @@ _data = {
 "pressed": SubResource("Animation_guvtd")
 }
 
-[sub_resource type="Animation" id="Animation_duqvl"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_vp30s"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -141,8 +141,25 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_vp30s"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_6plxh"]
+resource_name = "hover"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_duqvl"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -171,23 +188,6 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="Animation" id="Animation_6plxh"]
-resource_name = "hover"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [2, 3, 4, 5, 6, 7]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ynfc"]
 _data = {
 "RESET": SubResource("Animation_vp30s"),
@@ -196,8 +196,8 @@ _data = {
 "pressed": SubResource("Animation_35yva")
 }
 
-[sub_resource type="Animation" id="Animation_cdinj"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_p4mva"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -228,6 +228,21 @@ tracks/0/keys = {
 "values": [2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_cdinj"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_46a1w"]
 resource_name = "pressed"
 tracks/0/type = "value"
@@ -241,21 +256,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
-}
-
-[sub_resource type="Animation" id="Animation_p4mva"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fksr3"]
@@ -349,7 +349,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.246741
+frame_progress = 0.686261
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -727,72 +727,29 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = -10
 
-[node name="SmackTalk" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer"]
+[node name="SmackTalk" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-theme_override_font_sizes/font_size = 8
-text = "take a final action and pass the mic to your opponent."
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk"]
+[node name="Stance Up" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk" instance=ExtResource("20_u0dpp")]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
+[node name="Crowd Pleaser" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk" instance=ExtResource("20_u0dpp")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
 
-[node name="StanceUp" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Crowd Loser" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk" instance=ExtResource("20_u0dpp")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-text = "stance up"
 
-[node name="BanterButton" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="The Punshisher" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk" instance=ExtResource("20_u0dpp")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("15_txdsi")
-theme_override_font_sizes/font_size = 16
-text = "crowd pleaser"
 
-[node name="BanterButton2" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
+[node name="The Kickisher" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk" instance=ExtResource("20_u0dpp")]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-text = "crowd loser"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 20
-
-[node name="BanterButton3" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-text = "the punchisher!!!"
-
-[node name="BanterButton4" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-text = "the kickicher!!!"
-
-[node name="BanterButton5" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_fonts/font = ExtResource("15_txdsi")
-text = "the finisherer!!!"
 
 [node name="TheBlocker" type="ColorRect" parent="VBoxContainer/Deck"]
 unique_name_in_owner = true
@@ -957,9 +914,3 @@ volume_db = -10.0
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_up"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton" to="." method="_on_banter_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer/BanterButton2" to="." method="_on_banter_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton3" to="." method="_on_banter_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton4" to="." method="_on_banter_button_4_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/BanterContainer/SmackTalk/HBoxContainer/VBoxContainer2/BanterButton5" to="." method="_on_banter_button_5_pressed"]

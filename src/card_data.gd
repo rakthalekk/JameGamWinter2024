@@ -1,7 +1,7 @@
 class_name CardData
 extends Sprite2D
 
-enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION }
+enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION, UTILITY }
 
 @export var display_name : String
 @export var type : CARDTYPE

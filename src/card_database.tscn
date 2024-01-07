@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b3km0g1aie4hy"]
+[gd_scene load_steps=31 format=3 uid="uid://b3km0g1aie4hy"]
 
 [ext_resource type="Script" path="res://src/card_database.gd" id="1_acd6c"]
 [ext_resource type="Texture2D" uid="uid://b3pp05epn2xd0" path="res://assets/Cards/JabCard.png" id="2_uupta"]
@@ -25,6 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://bnu2404il1pi8" path="res://assets/Cards/OversellCard.png" id="23_logq7"]
 [ext_resource type="Texture2D" uid="uid://jgndplfk8d62" path="res://assets/Cards/SecondWindCard.png" id="24_jnpvt"]
 [ext_resource type="Texture2D" uid="uid://bbunwu0tyrrou" path="res://assets/Cards/ThrowTheMatchCard.png" id="25_fpig1"]
+[ext_resource type="Texture2D" uid="uid://c7vs003rs2pq8" path="res://assets/Cards/StanceUpCard.png" id="26_f4xy8"]
+[ext_resource type="Texture2D" uid="uid://di2cx7i7gjun7" path="res://assets/Cards/CrowdPleaserCard.png" id="27_yejir"]
+[ext_resource type="Texture2D" uid="uid://d4h8rsvdqixl7" path="res://assets/Cards/CrowdLoserCard.png" id="28_ew3nb"]
+[ext_resource type="Texture2D" uid="uid://c4ajsd88nlw4r" path="res://assets/Cards/PunchStanceCard.png" id="29_sv0ls"]
+[ext_resource type="Texture2D" uid="uid://bnf68cpf6wlnd" path="res://assets/Cards/KickStanceCard.png" id="30_wsb0m"]
 
 [node name="CardDatabase" type="Node2D"]
 script = ExtResource("1_acd6c")
@@ -286,3 +291,48 @@ description = "Inflicts Stamina debuff, unpopular, and -30% SP penalty on oppone
 sp_cost = 70
 stamina_debuff_chance = 100
 unpopular_chance = 100
+
+[node name="Stance Up" type="Sprite2D" parent="."]
+position = Vector2(91, 883)
+texture = ExtResource("26_f4xy8")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Stance Up"
+type = 5
+description = "Regenerates 2 stamina"
+
+[node name="Crowd Pleaser" type="Sprite2D" parent="."]
+position = Vector2(248, 884)
+texture = ExtResource("27_yejir")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Crowd Pleaser"
+type = 5
+description = "Grants 30% Stage Presence"
+
+[node name="Crowd Loser" type="Sprite2D" parent="."]
+position = Vector2(422, 884)
+texture = ExtResource("28_ew3nb")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Crowd Loser"
+type = 5
+description = "Inflicts Unpopular on opponent"
+
+[node name="The Punshisher" type="Sprite2D" parent="."]
+position = Vector2(589, 880)
+texture = ExtResource("29_sv0ls")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Punch Stance"
+type = 5
+description = "Grants an SP and damage boost when using punches, and a debuff when using kicks"
+
+[node name="The Kickisher" type="Sprite2D" parent="."]
+position = Vector2(747, 879)
+texture = ExtResource("30_wsb0m")
+hframes = 8
+script = ExtResource("3_42tp3")
+display_name = "Kick Stance"
+type = 5
+description = "Grants an SP and damage boost when using kicks, and a debuff when using punches"
