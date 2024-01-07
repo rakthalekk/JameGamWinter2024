@@ -48,6 +48,9 @@ func _on_button_pressed():
 
 func _on_button_mouse_entered():
 	$AnimationPlayer.play("go_up")
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.9, 1.06)
+	$AudioStreamPlayer2D.stream = load("res://assets/Audio/Card/card hover.ogg")
+	$AudioStreamPlayer2D.play()
 
 
 func _on_button_mouse_exited():

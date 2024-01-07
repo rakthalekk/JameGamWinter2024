@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://barbi0d532nq5"
+path="res://.godot/imported/card flip.ogg-ede4fcefdd52781a1a3fc03de8ebb6f5.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Card/card flip.ogg"
+dest_files=["res://.godot/imported/card flip.ogg-ede4fcefdd52781a1a3fc03de8ebb6f5.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
