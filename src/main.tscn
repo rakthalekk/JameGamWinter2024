@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=52 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -27,6 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://bjr4ls4uuywp5" path="res://assets/Audio/Attack/finisher fx.ogg" id="25_6s8lw"]
 [ext_resource type="AudioStream" uid="uid://chnlk7oyll46o" path="res://assets/Audio/Attack/take damage.ogg" id="26_xf3q4"]
 [ext_resource type="AudioStream" uid="uid://do30ac0qq3o4l" path="res://assets/Audio/Attack/debuff.ogg" id="27_yer7f"]
+[ext_resource type="AudioStream" uid="uid://24tajsa0bpuv" path="res://assets/Audio/Crowd/Crowd Applaud.ogg" id="28_m35ab"]
+[ext_resource type="AudioStream" uid="uid://d0tm72thj6g01" path="res://assets/Audio/Crowd/Crowd Boo.ogg" id="29_eawqi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
 atlas = ExtResource("2_8571m")
@@ -343,7 +345,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.543874
+frame_progress = 0.174276
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -816,6 +818,14 @@ stream = ExtResource("26_xf3q4")
 
 [node name="DebuffSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_yer7f")
+
+[node name="CrowdCheer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_m35ab")
+volume_db = -10.0
+
+[node name="CrowdBoo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_eawqi")
+volume_db = -10.0
 
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]

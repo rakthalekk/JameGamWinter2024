@@ -7,6 +7,9 @@ var consecutive_punches = 0
 
 var game_over = false
 
+var player_max_sp = false
+var opponent_max_sp = false
+
 @onready var player = $Player as Wrestler
 @onready var opponent = %Opponent as Opponent
 @onready var active_wrestler: Wrestler
@@ -52,6 +55,20 @@ func update_bars():
 	%OpponentHealthBar.value = opponent.hp
 	%OpponentStamina.frame = 5 - opponent.stamina
 	%OpponentSPBar.value = opponent.sp
+	
+	if player.sp == 100:
+		if !player_max_sp:
+			$CrowdCheer.play()
+			player_max_sp = true
+	else:
+		player_max_sp = false
+	
+	if opponent.sp == 100:
+		if !opponent_max_sp:
+			$CrowdCheer.play()
+			opponent_max_sp = true
+	else:
+		opponent_max_sp = false
 
 
 func play_card(card_data: CardData, card: Card = null):
@@ -137,6 +154,8 @@ func play_card(card_data: CardData, card: Card = null):
 	
 	if low_blow_flag:
 		active_wrestler.opponent.unpopular = true
+		$DebuffSound.play()
+		$CrowdBoo.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 	
 	await check_debuff_rolls(card_data)
@@ -240,17 +259,15 @@ func check_debuff_rolls(card_data: CardData):
 	if randi_range(0, 99) < card_data.stamina_debuff_chance:
 		active_wrestler.opponent.next_turn_stamina = false
 		active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
-		$DebuffSound.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
 	
 	if randi_range(0, 99) < card_data.stunned_chance:
 		active_wrestler.opponent.stunned = true
-		$DebuffSound.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Stunned")
 	
 	if randi_range(0, 99) < card_data.unpopular_chance:
 		active_wrestler.opponent.unpopular = true
-		$DebuffSound.play()
+		$CrowdBoo.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 
 
@@ -295,6 +312,7 @@ func display_announcer_dialog(disable_blocker: bool = true, time: int = 1):
 
 func debuff_text(wrestler: String, debuff: String):
 	%AnnouncerDialogue.text = "Announcer: " + wrestler + " is inflicted with " + debuff + "!"
+	$DebuffSound.play()
 	await display_announcer_dialog()
 
 
@@ -431,6 +449,7 @@ func _on_banter_button_2_pressed():
 		await display_opponent_dialog()
 	
 	active_wrestler.opponent.unpopular = true
+	$CrowdBoo.play()
 	await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 	
 	update_bars()
