@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://c0e06a6t5vpb2"]
+[gd_scene load_steps=9 format=3 uid="uid://c0e06a6t5vpb2"]
 
 [ext_resource type="Script" path="res://src/card_shop.gd" id="1_gu8pu"]
 [ext_resource type="Texture2D" uid="uid://bws83yiu1q4to" path="res://assets/ShopBG.png" id="2_pqyto"]
 [ext_resource type="Texture2D" uid="uid://mqrg467qe531" path="res://assets/ShopCardPanel.png" id="3_50v21"]
 [ext_resource type="Texture2D" uid="uid://e3wt0om7lkrn" path="res://assets/ShopUIThingy.png" id="4_66d8m"]
+[ext_resource type="Texture2D" uid="uid://dnqe5fc67j0pu" path="res://assets/Buttons/ArrowUnpressed.png" id="5_1xjev"]
+[ext_resource type="Texture2D" uid="uid://dtsuprhbvavj5" path="res://assets/Buttons/ArrowButton.png" id="6_q278w"]
+[ext_resource type="Texture2D" uid="uid://wlyx633s6gyr" path="res://assets/Buttons/BuyButtonUnpressed.png" id="7_ticrc"]
+[ext_resource type="Texture2D" uid="uid://co13m1dbixvpb" path="res://assets/Buttons/BuyButton.png" id="8_otdtm"]
 
 [node name="CardShop" type="Control"]
 layout_mode = 3
@@ -76,5 +80,40 @@ layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "Leave"
+
+[node name="Left" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 374.0
+offset_right = 320.0
+offset_bottom = 414.0
+texture_normal = ExtResource("5_1xjev")
+texture_pressed = ExtResource("6_q278w")
+
+[node name="Right" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 640.0
+offset_top = 374.0
+offset_right = 686.0
+offset_bottom = 414.0
+texture_normal = ExtResource("5_1xjev")
+texture_pressed = ExtResource("6_q278w")
+flip_h = true
+
+[node name="Buy" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = 185.0
+offset_right = 98.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_ticrc")
+texture_pressed = ExtResource("8_otdtm")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Leave" to="." method="_on_leave_pressed"]
