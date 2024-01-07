@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://kqghwwumegtu"
+path="res://.godot/imported/bass hit.ogg-0bfd5a4b43bf118937cd45c2a6821c27.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/Audio/Attack/bass hit.ogg"
+dest_files=["res://.godot/imported/bass hit.ogg-0bfd5a4b43bf118937cd45c2a6821c27.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
