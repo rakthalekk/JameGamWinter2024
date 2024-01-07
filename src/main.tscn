@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=56 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://ci6x1t3ibc653" path="res://assets/ResourceBarsUI.png" id="3_gif07"]
 [ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
 [ext_resource type="Script" path="res://src/opponent.gd" id="3_qpg5n"]
+[ext_resource type="Texture2D" uid="uid://cxcw30ymq8ayk" path="res://assets/StaminaDebuffIcon.png" id="6_2m35g"]
 [ext_resource type="Texture2D" uid="uid://wuqcr2vt3rcr" path="res://assets/Health-Meter.png" id="6_fcntt"]
 [ext_resource type="Texture2D" uid="uid://csjmmrwlb3gex" path="res://assets/StagePresence-Meter.png" id="7_v26it"]
+[ext_resource type="Texture2D" uid="uid://h0u3r2875g8i" path="res://assets/UnpopularIcon.png" id="7_vchbu"]
 [ext_resource type="Texture2D" uid="uid://dgjm6q1mj37gd" path="res://assets/Stamina-Meter.png" id="8_0fhrg"]
+[ext_resource type="Texture2D" uid="uid://bifi3ysilx8gm" path="res://assets/StunnedIcon.png" id="8_qjxln"]
 [ext_resource type="Script" path="res://src/action_button.gd" id="11_272a8"]
 [ext_resource type="Texture2D" uid="uid://j1otl2rmxfkm" path="res://assets/Buttons/AttackButton.png" id="11_lb1ol"]
 [ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
@@ -18,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://8hwlfkhuse6d" path="res://assets/Audio/UI/click.ogg" id="13_xggmj"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
 [ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
+[ext_resource type="AudioStream" uid="uid://drsq1nfapyh78" path="res://assets/Audio/UI/action_hover_shine.ogg" id="17_begmi"]
 [ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
 [ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="19_wst15"]
 [ext_resource type="Texture2D" uid="uid://dv62487g3e5lm" path="res://assets/SpeechBubbleOpponent.png" id="20_xn8jx"]
@@ -345,7 +349,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.174276
+frame_progress = 0.246741
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -359,12 +363,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_tcr12")
 
-[node name="TopUI" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_gif07")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -377,6 +375,114 @@ grow_vertical = 2
 custom_minimum_size = Vector2(960, 360)
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="TopUI" type="TextureRect" parent="VBoxContainer/Ring"]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 540.0
+texture = ExtResource("3_gif07")
+
+[node name="PlayerDebuffIcons" type="Control" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 92.0
+offset_top = 7.0
+offset_right = 157.0
+offset_bottom = 59.0
+
+[node name="PlayerStaminaDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_right = 13.0
+offset_bottom = 24.0
+grow_horizontal = 2
+texture = ExtResource("6_2m35g")
+stretch_mode = 2
+
+[node name="PlayerUnpopularDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 28.0
+grow_vertical = 0
+texture = ExtResource("7_vchbu")
+stretch_mode = 2
+
+[node name="PlayerStunnedDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("8_qjxln")
+stretch_mode = 2
+
+[node name="OpponentDebuffIcons" type="Control" parent="VBoxContainer/Ring"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 803.0
+offset_top = 7.0
+offset_right = 868.0
+offset_bottom = 59.0
+
+[node name="OpponentStaminaDebuff" type="TextureRect" parent="VBoxContainer/Ring/OpponentDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -13.0
+offset_right = 13.0
+offset_bottom = 24.0
+grow_horizontal = 2
+texture = ExtResource("6_2m35g")
+stretch_mode = 2
+
+[node name="OpponentUnpopularDebuff" type="TextureRect" parent="VBoxContainer/Ring/OpponentDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -24.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_vchbu")
+stretch_mode = 2
+
+[node name="OpponentStunnedDebuff" type="TextureRect" parent="VBoxContainer/Ring/OpponentDebuffIcons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 34.0
+grow_vertical = 0
+texture = ExtResource("8_qjxln")
+stretch_mode = 2
 
 [node name="Opponent" type="Sprite2D" parent="VBoxContainer/Ring"]
 unique_name_in_owner = true
@@ -537,6 +643,10 @@ libraries = {
 stream = ExtResource("13_xggmj")
 volume_db = 10.0
 
+[node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
+stream = ExtResource("17_begmi")
+volume_db = 5.0
+
 [node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
@@ -556,6 +666,10 @@ libraries = {
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
 stream = ExtResource("13_xggmj")
 volume_db = 10.0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
+stream = ExtResource("17_begmi")
+volume_db = 5.0
 
 [node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
@@ -577,6 +691,10 @@ libraries = {
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
 stream = ExtResource("13_xggmj")
 volume_db = 10.0
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
+stream = ExtResource("17_begmi")
+volume_db = 5.0
 
 [node name="CardContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true

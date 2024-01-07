@@ -154,6 +154,10 @@ func play_card(card_data: CardData, card: Card = null):
 	
 	if low_blow_flag:
 		active_wrestler.opponent.unpopular = true
+		if active_wrestler.opponent == player:
+			%PlayerUnpopularDebuff.show()
+		else:
+			%OpponentUnpopularDebuff.show()
 		$DebuffSound.play()
 		$CrowdBoo.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
@@ -252,6 +256,10 @@ func check_special_effects(card_data: CardData):
 		"Body Slam":
 			if active_wrestler.opponent.hp >= 50:
 				active_wrestler.opponent.stunned = true
+				if active_wrestler.opponent == player:
+					%PlayerStunnedDebuff.show()
+				else:
+					%OpponentStunnedDebuff.show()
 				await debuff_text(active_wrestler.opponent.display_name, "Stunned")
 
 
@@ -259,14 +267,26 @@ func check_debuff_rolls(card_data: CardData):
 	if randi_range(0, 99) < card_data.stamina_debuff_chance:
 		active_wrestler.opponent.next_turn_stamina = false
 		active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
+		if active_wrestler.opponent == player:
+			%PlayerStaminaDebuff.show()
+		else:
+			%OpponentStaminaDebuff.show()
 		await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
 	
 	if randi_range(0, 99) < card_data.stunned_chance:
 		active_wrestler.opponent.stunned = true
+		if active_wrestler.opponent == player:
+			%PlayerStunnedDebuff.show()
+		else:
+			%OpponentStunnedDebuff.show()
 		await debuff_text(active_wrestler.opponent.display_name, "Stunned")
 	
 	if randi_range(0, 99) < card_data.unpopular_chance:
 		active_wrestler.opponent.unpopular = true
+		if active_wrestler.opponent == player:
+			%PlayerUnpopularDebuff.show()
+		else:
+			%OpponentUnpopularDebuff.show()
 		$CrowdBoo.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 
@@ -338,6 +358,12 @@ func change_turn():
 	clear_flurry_punch()
 	
 	active_wrestler.reset_penalties()
+	if active_wrestler == player:
+		for icon in %PlayerDebuffIcons.get_children():
+			icon.hide()
+	else:
+		for icon in %OpponentDebuffIcons.get_children():
+			icon.hide()
 	
 	if active_wrestler == player:
 		active_wrestler = opponent
@@ -449,6 +475,10 @@ func _on_banter_button_2_pressed():
 		await display_opponent_dialog()
 	
 	active_wrestler.opponent.unpopular = true
+	if active_wrestler.opponent == player:
+		%PlayerUnpopularDebuff.show()
+	else:
+		%OpponentUnpopularDebuff.show()
 	$CrowdBoo.play()
 	await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p7v53bngm50x"
-path="res://.godot/imported/HookCard.png-be4acae4f18f4a2172a0ba33e9395682.ctex"
+uid="uid://bcl5grdqunrii"
+path="res://.godot/imported/Downvotelike-from-reddit.png-d22cb7a973f85384c85a72244d551e25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/Cards/HookCard.png"
-dest_files=["res://.godot/imported/HookCard.png-be4acae4f18f4a2172a0ba33e9395682.ctex"]
+source_file="res://assets/Downvotelike-from-reddit.png"
+dest_files=["res://.godot/imported/Downvotelike-from-reddit.png-d22cb7a973f85384c85a72244d551e25.ctex"]
 
 [params]
 

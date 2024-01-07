@@ -24,13 +24,18 @@ func populate_from_data(data: CardData):
 
 
 func update_damage(new_damage: int):
+	%Upvote.hide()
+	%Downvote.hide()
+	%x2.hide()
+	
 	effective_damage = new_damage
 	if effective_damage > card_data.damage:
-		%Damage.set("theme_override_colors/font_color", Color.FOREST_GREEN)
+		%Upvote.show()
 	elif effective_damage < card_data.damage:
-		%Damage.set("theme_override_colors/font_color", Color.RED)
-	else:
-		%Damage.set("theme_override_colors/font_color", Color.WHITE)
+		%Downvote.show()
+	
+	if root.player.oversold:
+		%x2.show()
 	
 	%Damage.text = "%02d" % effective_damage
 

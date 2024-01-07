@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://boxxh7vc07vid"
-path="res://.godot/imported/SuplexCard.png-eff9d34df43ebf505dc24eddf243e6a3.ctex"
+uid="uid://c8lrcvvww6kcg"
+path="res://.godot/imported/Tooltip.png-04e10a2c2dc3fb1bd99786263c0cd65f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/Cards/SuplexCard.png"
-dest_files=["res://.godot/imported/SuplexCard.png-eff9d34df43ebf505dc24eddf243e6a3.ctex"]
+source_file="res://assets/Tooltip.png"
+dest_files=["res://.godot/imported/Tooltip.png-04e10a2c2dc3fb1bd99786263c0cd65f.ctex"]
 
 [params]
 

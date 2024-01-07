@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddbnlpiowihta"
-path="res://.godot/imported/UpperCutCard.png-eda3652824fdfb0f9bcc9a5ab9f3800a.ctex"
+uid="uid://cinnamvtdeugp"
+path="res://.godot/imported/x2Icon.png-c6f9b84ce42d84e545de16d810c9bae4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/Cards/UpperCutCard.png"
-dest_files=["res://.godot/imported/UpperCutCard.png-eda3652824fdfb0f9bcc9a5ab9f3800a.ctex"]
+source_file="res://assets/x2Icon.png"
+dest_files=["res://.godot/imported/x2Icon.png-c6f9b84ce42d84e545de16d810c9bae4.ctex"]
 
 [params]
 

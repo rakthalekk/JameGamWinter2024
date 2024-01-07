@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1v77g6y72pgy"
-path="res://.godot/imported/BackBreakCard.png-5e0e57fa9df19053825b5ef270c4c000.ctex"
+uid="uid://cscs0o51niqw3"
+path="res://.godot/imported/Upvotelike-from-reddit.png-5f5a346a5ee4ca79b7cea0606f94d2a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cards/Cards/BackBreakCard.png"
-dest_files=["res://.godot/imported/BackBreakCard.png-5e0e57fa9df19053825b5ef270c4c000.ctex"]
+source_file="res://assets/Upvotelike-from-reddit.png"
+dest_files=["res://.godot/imported/Upvotelike-from-reddit.png-5f5a346a5ee4ca79b7cea0606f94d2a6.ctex"]
 
 [params]
 

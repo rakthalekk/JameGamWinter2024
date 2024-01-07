@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cakiyl5x8uhki"]
+[gd_scene load_steps=15 format=3 uid="uid://cakiyl5x8uhki"]
 
 [ext_resource type="Script" path="res://src/card.gd" id="1_rr0rl"]
 [ext_resource type="Texture2D" uid="uid://bwc6a0nltsok6" path="res://assets/Cards/ArmBarCardSprite.png" id="2_5cqmn"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="3_vl710"]
+[ext_resource type="Texture2D" uid="uid://cscs0o51niqw3" path="res://assets/Upvotelike-from-reddit.png" id="4_qgd3l"]
+[ext_resource type="Texture2D" uid="uid://bcl5grdqunrii" path="res://assets/Downvotelike-from-reddit.png" id="5_she5e"]
+[ext_resource type="Texture2D" uid="uid://cinnamvtdeugp" path="res://assets/x2Icon.png" id="6_udfun"]
 
 [sub_resource type="Animation" id="Animation_5r1b0"]
 length = 0.001
@@ -386,6 +389,36 @@ theme_override_fonts/font = ExtResource("3_vl710")
 theme_override_font_sizes/font_size = 8
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Upvote" type="TextureRect" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+offset_left = 11.0
+offset_top = -76.0
+offset_right = 25.0
+offset_bottom = -60.0
+texture = ExtResource("4_qgd3l")
+stretch_mode = 2
+
+[node name="Downvote" type="TextureRect" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+offset_left = 11.0
+offset_top = -76.0
+offset_right = 25.0
+offset_bottom = -60.0
+texture = ExtResource("5_she5e")
+stretch_mode = 2
+
+[node name="x2" type="TextureRect" parent="Sprite"]
+unique_name_in_owner = true
+visible = false
+offset_left = 33.0
+offset_top = -92.0
+offset_right = 59.0
+offset_bottom = -68.0
+texture = ExtResource("6_udfun")
+stretch_mode = 2
 
 [node name="Button" type="Button" parent="."]
 visible = false

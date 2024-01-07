@@ -12,3 +12,5 @@ func _on_button_up():
 
 func _on_mouse_entered():
 	$ButtonAnimator.play("hover")
+	$HoverSound.pitch_scale = randf_range(0.95, 1.05)
+	$HoverSound.play()
