@@ -3,6 +3,7 @@ extends TextureButton
 
 func _on_button_down():
 	$ButtonAnimator.play("pressed")
+	$ClickSound.play()
 
 
 func _on_button_up():

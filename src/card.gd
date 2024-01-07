@@ -58,3 +58,9 @@ func _on_button_mouse_entered():
 
 func _on_button_mouse_exited():
 	$AnimationPlayer.play("go_down")
+
+
+func play_flip_sound():
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.9, 1.06)
+	$AudioStreamPlayer2D.stream = load("res://assets/Audio/Card/card flip.ogg")
+	$AudioStreamPlayer2D.play()

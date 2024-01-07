@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=50 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -15,11 +15,18 @@
 [ext_resource type="Texture2D" uid="uid://j1otl2rmxfkm" path="res://assets/Buttons/AttackButton.png" id="11_lb1ol"]
 [ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
 [ext_resource type="Texture2D" uid="uid://bhpg2l3wkl76v" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
+[ext_resource type="AudioStream" uid="uid://8hwlfkhuse6d" path="res://assets/Audio/UI/click.ogg" id="13_xggmj"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="15_txdsi"]
 [ext_resource type="Texture2D" uid="uid://b3fo3dyd12l0h" path="res://assets/CardCoverUpPanelThing.png" id="15_yrpcy"]
 [ext_resource type="Texture2D" uid="uid://btucyxtjf46ef" path="res://assets/SpeechBubblePlayer.png" id="18_cvlnb"]
 [ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="19_wst15"]
 [ext_resource type="Texture2D" uid="uid://dv62487g3e5lm" path="res://assets/SpeechBubbleOpponent.png" id="20_xn8jx"]
+[ext_resource type="AudioStream" uid="uid://02cfvhv4l8cp" path="res://assets/Audio/Attack/punch fx.ogg" id="22_71yvh"]
+[ext_resource type="AudioStream" uid="uid://bdrk7gen4rw6a" path="res://assets/Audio/Attack/kick fx.ogg" id="23_41aky"]
+[ext_resource type="AudioStream" uid="uid://de5ut0l2qs0sk" path="res://assets/Audio/Attack/grapple fx.ogg" id="24_oc5h0"]
+[ext_resource type="AudioStream" uid="uid://bjr4ls4uuywp5" path="res://assets/Audio/Attack/finisher fx.ogg" id="25_6s8lw"]
+[ext_resource type="AudioStream" uid="uid://chnlk7oyll46o" path="res://assets/Audio/Attack/take damage.ogg" id="26_xf3q4"]
+[ext_resource type="AudioStream" uid="uid://do30ac0qq3o4l" path="res://assets/Audio/Attack/debuff.ogg" id="27_yer7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
 atlas = ExtResource("2_8571m")
@@ -336,7 +343,7 @@ script = ExtResource("1_gyohi")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_17pj6")
 autoplay = "default"
-frame_progress = 0.14767
+frame_progress = 0.543874
 
 [node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
@@ -524,6 +531,10 @@ libraries = {
 "": SubResource("AnimationLibrary_sl8h3")
 }
 
+[node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
+stream = ExtResource("13_xggmj")
+volume_db = 10.0
+
 [node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
@@ -539,6 +550,10 @@ hframes = 8
 libraries = {
 "": SubResource("AnimationLibrary_6ynfc")
 }
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction"]
+stream = ExtResource("13_xggmj")
+volume_db = 10.0
 
 [node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons"]
 custom_minimum_size = Vector2(160, 28)
@@ -556,6 +571,10 @@ hframes = 8
 libraries = {
 "": SubResource("AnimationLibrary_fksr3")
 }
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter"]
+stream = ExtResource("13_xggmj")
+volume_db = 10.0
 
 [node name="CardContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
@@ -779,6 +798,24 @@ text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd a
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="PunchSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_71yvh")
+
+[node name="KickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_41aky")
+
+[node name="GrappleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_oc5h0")
+
+[node name="FinisherSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_6s8lw")
+
+[node name="DamageSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_xf3q4")
+
+[node name="DebuffSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_yer7f")
 
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
 [connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]

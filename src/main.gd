@@ -79,6 +79,16 @@ func play_card(card_data: CardData, card: Card = null):
 		if card:
 			card.queue_free()
 	
+	match card_data.type:
+		CardData.CARDTYPE.PUNCH:
+			$PunchSound.play()
+		CardData.CARDTYPE.KICK:
+			$KickSound.play()
+		CardData.CARDTYPE.GRAPPLE:
+			$GrappleSound.play()
+		CardData.CARDTYPE.FINISHER:
+			$FinisherSound.play()
+	
 	%AnnouncerDialogue.text = "Announcer: " + active_wrestler.display_name + " uses " + card_data.display_name + "!"
 	await display_announcer_dialog(true, 1)
 	
@@ -117,6 +127,10 @@ func play_card(card_data: CardData, card: Card = null):
 		active_wrestler.oversold = false
 	
 	update_bars()
+	
+	if damage > 0:
+		$DamageSound.play()
+		await $DamageSound.finished
 	
 	# Additional effects for cards that can't be generalized to data
 	await check_special_effects(card_data)
@@ -226,14 +240,17 @@ func check_debuff_rolls(card_data: CardData):
 	if randi_range(0, 99) < card_data.stamina_debuff_chance:
 		active_wrestler.opponent.next_turn_stamina = false
 		active_wrestler.opponent.stamina = max(0, active_wrestler.opponent.stamina - 2)
+		$DebuffSound.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Stamina Debuff")
 	
 	if randi_range(0, 99) < card_data.stunned_chance:
 		active_wrestler.opponent.stunned = true
+		$DebuffSound.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Stunned")
 	
 	if randi_range(0, 99) < card_data.unpopular_chance:
 		active_wrestler.opponent.unpopular = true
+		$DebuffSound.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 
 
