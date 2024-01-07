@@ -135,22 +135,9 @@ func play_card(card_data: CardData, card: Card = null):
 	active_wrestler.stamina -= card_data.stamina_cost
 	active_wrestler.sp -= card_data.sp_cost
 	
-	if !active_wrestler.unpopular:
-		# Grapples give 10% SP
-		if card_data.type == CardData.CARDTYPE.GRAPPLE:
-			active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
-		elif card_data.type == CardData.CARDTYPE.PUNCH:
-			if active_wrestler.punshisher:
-				active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 5)
-			elif active_wrestler.kickicher:
-				active_wrestler.sp = max(0, active_wrestler.sp - 5)
-		elif card_data.type == CardData.CARDTYPE.KICK && active_wrestler.kickicher:
-			if active_wrestler.kickicher:
-				active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 5)
-			elif active_wrestler.punshisher:
-				active_wrestler.sp = max(0, active_wrestler.sp - 5)
-		elif card_data.type == CardData.CARDTYPE.FINISHER && active_wrestler.finisherer:
-			active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 20)
+	# Grapples give 10% SP
+	if !active_wrestler.unpopular && card_data.type == CardData.CARDTYPE.GRAPPLE:
+		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
 	
 	var damage = calculate_damage(card_data)
 	
@@ -243,15 +230,11 @@ func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler)
 	if card_data.type == CardData.CARDTYPE.PUNCH:
 		damage *= (1 - wrestler.opponent.punch_damage_reduction)
 		if wrestler.punshisher:
-			damage *= 1.25
-		elif wrestler.kickicher:
-			damage *= 0.75
+			damage *= 1.5
 	elif card_data.type == CardData.CARDTYPE.KICK:
 		damage *= (1 - wrestler.opponent.kick_damage_reduction)
 		if wrestler.kickicher:
-			damage *= 1.25
-		elif wrestler.punshisher:
-			damage *= 0.75
+			damage *= 1.5
 	elif card_data.type == CardData.CARDTYPE.FINISHER:
 		damage *= (1 - wrestler.opponent.finisher_damage_reduction)
 	

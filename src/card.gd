@@ -11,6 +11,8 @@ var been_flipped = false
 func populate_from_data(data: CardData):
 	card_data = data
 	
+	$Tooltip.hide()
+	
 	name = card_data.name
 	%Name.text = data.display_name.to_lower()
 	
@@ -18,6 +20,8 @@ func populate_from_data(data: CardData):
 	
 	effective_damage = data.damage
 	%Damage.text = "%02d" % effective_damage
+	
+	%TooltipText.text = data.description
 	
 	if data.type == CardData.CARDTYPE.DIRECTION:
 		%Damage.text = str(data.sp_cost) + "% sp"
@@ -64,10 +68,12 @@ func _on_button_mouse_entered():
 	$AudioStreamPlayer2D.pitch_scale = randf_range(0.9, 1.06)
 	$AudioStreamPlayer2D.stream = load("res://assets/Audio/Card/card hover.ogg")
 	$AudioStreamPlayer2D.play()
+	$Tooltip.show()
 
 
 func _on_button_mouse_exited():
 	$AnimationPlayer.play("go_down")
+	$Tooltip.hide()
 
 
 func play_flip_sound():

@@ -7,6 +7,9 @@ func _ready():
 	var card_data =  CardDatabase.get_card_by_name(name)
 	$Sprite.texture = card_data.texture
 	%Name.text = card_data.display_name.to_lower()
+	
+	$Tooltip.hide()
+	%TooltipText.text = card_data.description
 
 
 func _on_button_pressed():
@@ -27,7 +30,9 @@ func _on_button_mouse_entered():
 	$AudioStreamPlayer2D.pitch_scale = randf_range(0.9, 1.06)
 	$AudioStreamPlayer2D.stream = load("res://assets/Audio/Card/card hover.ogg")
 	$AudioStreamPlayer2D.play()
+	$Tooltip.show()
 
 
 func _on_button_mouse_exited():
 	$AnimationPlayer.play("go_down")
+	$Tooltip.hide()

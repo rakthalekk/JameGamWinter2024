@@ -5,7 +5,7 @@ enum CARDTYPE { PUNCH, KICK, GRAPPLE, FINISHER, DIRECTION, UTILITY }
 
 @export var display_name : String
 @export var type : CARDTYPE
-@export var description : String
+@export_multiline var description : String
 @export var damage : int
 @export var health_cost : int
 @export var stamina_cost : int

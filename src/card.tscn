@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cakiyl5x8uhki"]
+[gd_scene load_steps=17 format=3 uid="uid://cakiyl5x8uhki"]
 
 [ext_resource type="Script" path="res://src/card.gd" id="1_rr0rl"]
 [ext_resource type="Texture2D" uid="uid://bwc6a0nltsok6" path="res://assets/Cards/ArmBarCardSprite.png" id="2_5cqmn"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cscs0o51niqw3" path="res://assets/Upvotelike-from-reddit.png" id="4_qgd3l"]
 [ext_resource type="Texture2D" uid="uid://bcl5grdqunrii" path="res://assets/Downvotelike-from-reddit.png" id="5_she5e"]
 [ext_resource type="Texture2D" uid="uid://cinnamvtdeugp" path="res://assets/x2Icon.png" id="6_udfun"]
+[ext_resource type="Texture2D" uid="uid://c8lrcvvww6kcg" path="res://assets/Tooltip.png" id="7_18te4"]
+[ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="8_8bmw5"]
 
 [sub_resource type="Animation" id="Animation_5r1b0"]
 length = 0.001
@@ -439,6 +441,41 @@ libraries = {
 autoplay = "face_down"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Tooltip" type="NinePatchRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.0
+offset_top = -171.0
+offset_right = 136.0
+offset_bottom = -31.0
+grow_horizontal = 2
+texture = ExtResource("7_18te4")
+
+[node name="MarginContainer" type="MarginContainer" parent="Tooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TooltipText" type="Label" parent="Tooltip/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/line_spacing = -8
+theme_override_fonts/font = ExtResource("8_8bmw5")
+text = "Deals 5 damage
+66% chance to inflict Stamina Loss"
+autowrap_mode = 2
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
