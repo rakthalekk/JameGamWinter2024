@@ -1,15 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3km0g1aie4hy"]
+[gd_scene load_steps=26 format=3 uid="uid://b3km0g1aie4hy"]
 
 [ext_resource type="Script" path="res://src/card_database.gd" id="1_acd6c"]
-[ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="2_spled"]
+[ext_resource type="Texture2D" uid="uid://b3pp05epn2xd0" path="res://assets/Cards/JabCard.png" id="2_uupta"]
 [ext_resource type="Script" path="res://src/card_data.gd" id="3_42tp3"]
+[ext_resource type="Texture2D" uid="uid://blk7b85pgp6py" path="res://assets/Cards/CrossCard.png" id="4_o6dgh"]
+[ext_resource type="Texture2D" uid="uid://dwr4py8uewqli" path="res://assets/Cards/HookCard.png" id="5_ud72k"]
+[ext_resource type="Texture2D" uid="uid://bmd8jf0cm86ng" path="res://assets/Cards/GutPunchCard.png" id="6_5r7rw"]
+[ext_resource type="Texture2D" uid="uid://clhbgpbj5ar3e" path="res://assets/Cards/UpperCutCard.png" id="7_c7nur"]
+[ext_resource type="Texture2D" uid="uid://djssitx8t0c50" path="res://assets/Cards/LowBlowCard.png" id="8_es4wj"]
+[ext_resource type="Texture2D" uid="uid://78u26hrctx3o" path="res://assets/Cards/FlurryOfBlowsCard.png" id="9_tewx4"]
+[ext_resource type="Texture2D" uid="uid://bjcsa5dw515bb" path="res://assets/Cards/SideKickCard.png" id="10_2bp8r"]
+[ext_resource type="Texture2D" uid="uid://bspo8yxslj1bq" path="res://assets/Cards/LegSweepCard.png" id="11_0xsyn"]
+[ext_resource type="Texture2D" uid="uid://tu5y0x7hjkia" path="res://assets/Cards/RoundhouseCard.png" id="12_tfdo7"]
+[ext_resource type="Texture2D" uid="uid://c84ujutky6khp" path="res://assets/Cards/FlyingKickCard.png" id="13_ydbva"]
+[ext_resource type="Texture2D" uid="uid://cchggyj2dge55" path="res://assets/Cards/CraneKickCard.png" id="14_dh22g"]
+[ext_resource type="Texture2D" uid="uid://bwc6a0nltsok6" path="res://assets/Cards/ArmBarCardSprite.png" id="15_gqdq6"]
+[ext_resource type="Texture2D" uid="uid://c2lbv8w4jbxiq" path="res://assets/Cards/LegLockCard.png" id="16_gqf3i"]
+[ext_resource type="Texture2D" uid="uid://bu6k50gmu0peb" path="res://assets/Cards/ChokeholdCard.png" id="17_p7dn6"]
+[ext_resource type="Texture2D" uid="uid://dwqbr1uwm2frj" path="res://assets/Cards/FullNelsonCard.png" id="18_yxpwp"]
+[ext_resource type="Texture2D" uid="uid://dca58filfnxap" path="res://assets/Cards/SuplexCard.png" id="19_21xwu"]
+[ext_resource type="Texture2D" uid="uid://3ow1k2enbooq" path="res://assets/Cards/BackBreakCard.png" id="20_3tc6l"]
+[ext_resource type="Texture2D" uid="uid://cva2fwix480vt" path="res://assets/Cards/BodySlamCard.png" id="21_v1sq6"]
+[ext_resource type="Texture2D" uid="uid://c4fts83c7h84g" path="res://assets/Cards/Piledriver.png" id="22_3bwwm"]
+[ext_resource type="Texture2D" uid="uid://bnu2404il1pi8" path="res://assets/Cards/OversellCard.png" id="23_logq7"]
+[ext_resource type="Texture2D" uid="uid://jgndplfk8d62" path="res://assets/Cards/SecondWindCard.png" id="24_jnpvt"]
+[ext_resource type="Texture2D" uid="uid://bbunwu0tyrrou" path="res://assets/Cards/ThrowTheMatchCard.png" id="25_fpig1"]
 
 [node name="CardDatabase" type="Node2D"]
 script = ExtResource("1_acd6c")
 
 [node name="Jab" type="Sprite2D" parent="."]
 position = Vector2(75, 54)
-texture = ExtResource("2_spled")
+texture = ExtResource("2_uupta")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Jab"
 description = "Low damage punch"
@@ -18,7 +41,8 @@ stamina_cost = 1
 
 [node name="Cross" type="Sprite2D" parent="."]
 position = Vector2(249, 58)
-texture = ExtResource("2_spled")
+texture = ExtResource("4_o6dgh")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Cross"
 description = "Low damage punch, extra damage after another punch"
@@ -27,7 +51,8 @@ stamina_cost = 1
 
 [node name="Hook" type="Sprite2D" parent="."]
 position = Vector2(415, 58)
-texture = ExtResource("2_spled")
+texture = ExtResource("5_ud72k")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Hook"
 description = "High damage punch"
@@ -36,7 +61,8 @@ stamina_cost = 3
 
 [node name="Gut Punch" type="Sprite2D" parent="."]
 position = Vector2(585, 57)
-texture = ExtResource("2_spled")
+texture = ExtResource("6_5r7rw")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Gut Punch"
 description = "Chance to cause stamina debuff"
@@ -45,8 +71,9 @@ stamina_cost = 2
 stamina_debuff_chance = 66
 
 [node name="Uppercut" type="Sprite2D" parent="."]
-position = Vector2(756, 53)
-texture = ExtResource("2_spled")
+position = Vector2(730, 53)
+texture = ExtResource("7_c7nur")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Uppercut"
 description = "Low chance to cause stun"
@@ -56,7 +83,8 @@ stunned_chance = 33
 
 [node name="Low Blow" type="Sprite2D" parent="."]
 position = Vector2(911, 56)
-texture = ExtResource("2_spled")
+texture = ExtResource("8_es4wj")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Low Blow"
 description = "50% chance to deal double damage and inflict Unpopular"
@@ -65,14 +93,16 @@ stamina_cost = 2
 
 [node name="Flurry of Blows" type="Sprite2D" parent="."]
 position = Vector2(1057, 58)
-texture = ExtResource("2_spled")
+texture = ExtResource("9_tewx4")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Flurry of Blows"
 description = "Deals damage based on how many punches have been used"
 
 [node name="Side Kick" type="Sprite2D" parent="."]
 position = Vector2(81, 216)
-texture = ExtResource("2_spled")
+texture = ExtResource("10_2bp8r")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Side Kick"
 type = 1
@@ -82,7 +112,8 @@ stamina_cost = 2
 
 [node name="Leg Sweep" type="Sprite2D" parent="."]
 position = Vector2(252, 215)
-texture = ExtResource("2_spled")
+texture = ExtResource("11_0xsyn")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Leg Sweep"
 type = 1
@@ -93,7 +124,8 @@ stunned_chance = 66
 
 [node name="Roundhouse Kick" type="Sprite2D" parent="."]
 position = Vector2(417, 218)
-texture = ExtResource("2_spled")
+texture = ExtResource("12_tfdo7")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Roundhouse Kick"
 type = 1
@@ -104,7 +136,8 @@ stamina_debuff_chance = 33
 
 [node name="Flying Kick" type="Sprite2D" parent="."]
 position = Vector2(582, 222)
-texture = ExtResource("2_spled")
+texture = ExtResource("13_ydbva")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Flying Kick"
 type = 1
@@ -114,7 +147,8 @@ stamina_cost = 5
 
 [node name="Crane Kick" type="Sprite2D" parent="."]
 position = Vector2(731, 222)
-texture = ExtResource("2_spled")
+texture = ExtResource("14_dh22g")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Crane Kick"
 type = 1
@@ -125,8 +159,9 @@ stamina_debuff_chance = 33
 stunned_chance = 33
 
 [node name="Arm Bar" type="Sprite2D" parent="."]
-position = Vector2(88, 368)
-texture = ExtResource("2_spled")
+position = Vector2(84, 378)
+texture = ExtResource("15_gqdq6")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Arm Bar"
 type = 2
@@ -135,8 +170,9 @@ damage = 3
 stamina_cost = 2
 
 [node name="Leg Lock" type="Sprite2D" parent="."]
-position = Vector2(256, 370)
-texture = ExtResource("2_spled")
+position = Vector2(257, 387)
+texture = ExtResource("16_gqf3i")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Leg Lock"
 type = 2
@@ -145,8 +181,9 @@ damage = 5
 stamina_cost = 3
 
 [node name="Chokehold" type="Sprite2D" parent="."]
-position = Vector2(415, 371)
-texture = ExtResource("2_spled")
+position = Vector2(423, 380)
+texture = ExtResource("17_p7dn6")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Chokehold"
 type = 2
@@ -155,8 +192,9 @@ damage = 10
 stamina_cost = 5
 
 [node name="Full Nelson" type="Sprite2D" parent="."]
-position = Vector2(582, 368)
-texture = ExtResource("2_spled")
+position = Vector2(589, 379)
+texture = ExtResource("18_yxpwp")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Full Nelson"
 type = 2
@@ -166,8 +204,9 @@ stamina_cost = 3
 stamina_debuff_chance = 100
 
 [node name="Suplex" type="Sprite2D" parent="."]
-position = Vector2(93, 518)
-texture = ExtResource("2_spled")
+position = Vector2(84, 538)
+texture = ExtResource("19_21xwu")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Suplex"
 type = 3
@@ -177,11 +216,12 @@ health_cost = 7
 stamina_cost = 5
 low_health_damage_multiplier = 2
 
-[node name="Gutbuster" type="Sprite2D" parent="."]
-position = Vector2(256, 518)
-texture = ExtResource("2_spled")
+[node name="Back Breaker" type="Sprite2D" parent="."]
+position = Vector2(254, 556)
+texture = ExtResource("20_3tc6l")
+hframes = 8
 script = ExtResource("3_42tp3")
-display_name = "Gutbuster"
+display_name = "Back Breaker"
 type = 3
 description = "Double damage and stamina debuff inflicted below 50% HP"
 damage = 10
@@ -190,8 +230,9 @@ stamina_cost = 5
 low_health_damage_multiplier = 2
 
 [node name="Body Slam" type="Sprite2D" parent="."]
-position = Vector2(415, 517)
-texture = ExtResource("2_spled")
+position = Vector2(423, 541)
+texture = ExtResource("21_v1sq6")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Body Slam"
 type = 3
@@ -202,8 +243,9 @@ stamina_cost = 3
 low_health_damage_multiplier = 4
 
 [node name="Piledriver" type="Sprite2D" parent="."]
-position = Vector2(586, 519)
-texture = ExtResource("2_spled")
+position = Vector2(585, 546)
+texture = ExtResource("22_3bwwm")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Piledriver"
 type = 3
@@ -214,8 +256,9 @@ stamina_cost = 4
 low_health_damage_multiplier = 2
 
 [node name="Oversell" type="Sprite2D" parent="."]
-position = Vector2(93, 663)
-texture = ExtResource("2_spled")
+position = Vector2(91, 703)
+texture = ExtResource("23_logq7")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Oversell"
 type = 4
@@ -223,8 +266,9 @@ description = "Your next turn attack deals double damage"
 sp_cost = 100
 
 [node name="Second Wind" type="Sprite2D" parent="."]
-position = Vector2(253, 664)
-texture = ExtResource("2_spled")
+position = Vector2(255, 703)
+texture = ExtResource("24_jnpvt")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Second Wind"
 type = 4
@@ -232,8 +276,9 @@ description = "Recover 25% health"
 sp_cost = 70
 
 [node name="Throw the Match" type="Sprite2D" parent="."]
-position = Vector2(417, 663)
-texture = ExtResource("2_spled")
+position = Vector2(427, 704)
+texture = ExtResource("25_fpig1")
+hframes = 8
 script = ExtResource("3_42tp3")
 display_name = "Throw the Match"
 type = 4

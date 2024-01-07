@@ -11,23 +11,14 @@ func populate_from_data(data: CardData):
 	
 	name = card_data.name
 	%Name.text = data.display_name
-	%Type.text = CardData.CARDTYPE.keys()[data.type]
-	%Description.text = data.description
+	
+	$Sprite.texture = data.texture
 	
 	effective_damage = data.damage
 	%Damage.text = str(effective_damage) + " DMG"
-	%HealthCost.text = str(data.health_cost) + " HP"
-	%StaminaCost.text = str(data.stamina_cost) + " ST"
-	%SPCost.text = str(data.sp_cost) + "% SP"
 	
 	if data.type == CardData.CARDTYPE.DIRECTION:
 		%Damage.hide()
-	if data.health_cost == 0:
-		%HealthCost.hide()
-	if data.stamina_cost == 0:
-		%StaminaCost.hide()
-	if data.sp_cost == 0:
-		%SPCost.hide()
 
 
 func update_damage(new_damage: int):

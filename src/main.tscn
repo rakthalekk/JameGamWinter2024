@@ -1,14 +1,41 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=22 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
+[ext_resource type="Texture2D" uid="uid://jymq6k7wt3p7" path="res://assets/Audience.png" id="2_8571m"]
 [ext_resource type="Texture2D" uid="uid://ddhrceerolgmc" path="res://assets/Card Panel.png" id="2_tcr12"]
+[ext_resource type="Texture2D" uid="uid://bhu7updgei6vj" path="res://assets/Arena.png" id="3_by2lh"]
 [ext_resource type="Texture2D" uid="uid://ci6x1t3ibc653" path="res://assets/ResourceBarsUI.png" id="3_gif07"]
 [ext_resource type="Script" path="res://src/wrestler.gd" id="3_mefpn"]
 [ext_resource type="Script" path="res://src/opponent.gd" id="3_qpg5n"]
 [ext_resource type="Texture2D" uid="uid://wuqcr2vt3rcr" path="res://assets/Health-Meter.png" id="6_fcntt"]
 [ext_resource type="Texture2D" uid="uid://csjmmrwlb3gex" path="res://assets/StagePresence-Meter.png" id="7_v26it"]
 [ext_resource type="Texture2D" uid="uid://dgjm6q1mj37gd" path="res://assets/Stamina-Meter.png" id="8_0fhrg"]
+[ext_resource type="Texture2D" uid="uid://j1otl2rmxfkm" path="res://assets/Buttons/AttackButton.png" id="11_lb1ol"]
+[ext_resource type="Texture2D" uid="uid://dqtevl8lxlpwg" path="res://assets/Buttons/DirectButton.png" id="12_4sc38"]
+[ext_resource type="Texture2D" uid="uid://bhpg2l3wkl76v" path="res://assets/Buttons/BanterButton.png" id="13_vbbqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35hr"]
+atlas = ExtResource("2_8571m")
+region = Rect2(0, 0, 960, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j73l2"]
+atlas = ExtResource("2_8571m")
+region = Rect2(960, 0, 960, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17pj6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c35hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j73l2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [sub_resource type="Animation" id="Animation_rmxbe"]
 length = 0.001
@@ -75,11 +102,17 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_gyohi")
 
-[node name="Darkness" type="TextureRect" parent="."]
+[node name="Audience" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 270)
+sprite_frames = SubResource("SpriteFrames_17pj6")
+autoplay = "default"
+frame_progress = 0.287899
+
+[node name="Arena" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 960.0
 offset_bottom = 540.0
-texture = ExtResource("2_tcr12")
+texture = ExtResource("3_by2lh")
 
 [node name="CardPanel" type="TextureRect" parent="."]
 layout_mode = 0
@@ -232,28 +265,48 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="ActionButtons" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 20
 
-[node name="Attack" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="ActionButtons" type="VBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Attack"
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
 
-[node name="Direction" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Attack" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Direction"
+size_flags_horizontal = 4
 
-[node name="Banter" type="Button" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons"]
-custom_minimum_size = Vector2(200, 0)
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Attack"]
+position = Vector2(80, 14)
+texture = ExtResource("11_lb1ol")
+hframes = 8
+
+[node name="Direction" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+custom_minimum_size = Vector2(160, 28)
 layout_mode = 2
-size_flags_horizontal = 8
-text = "Banter"
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Direction"]
+position = Vector2(80, 14)
+texture = ExtResource("12_4sc38")
+hframes = 8
+
+[node name="Banter" type="TextureButton" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons"]
+custom_minimum_size = Vector2(160, 28)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Banter"]
+position = Vector2(80, 14)
+texture = ExtResource("13_vbbqh")
+hframes = 8
 
 [node name="Cards" type="HBoxContainer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu"]
 unique_name_in_owner = true
@@ -334,8 +387,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 178.0
-offset_right = 17280.0
-offset_bottom = 3348.0
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.443137, 0.443137, 0.443137, 1)
@@ -351,9 +403,9 @@ libraries = {
 "": SubResource("AnimationLibrary_ft1eb")
 }
 
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Direction" to="." method="_on_direction_pressed"]
-[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionButtons/Banter" to="." method="_on_banter_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
+[connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/MarginContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/BanterButton" to="." method="_on_banter_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/BanterButton2" to="." method="_on_banter_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/SmackTalk/HBoxContainer/VBoxContainer/StanceUp" to="." method="_on_stance_up_pressed"]
