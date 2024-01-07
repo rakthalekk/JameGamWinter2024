@@ -80,9 +80,10 @@ func play_card(card_data: CardData, card: Card = null):
 		return
 	
 	var is_direction = card_data.type == CardData.CARDTYPE.DIRECTION
+	var is_utility = card_data.type == CardData.CARDTYPE.UTILITY
 	
 	# Cannot perform direction if unpopular, cannot perform attack if stunned
-	if is_direction && active_wrestler.unpopular || !is_direction && active_wrestler.stunned:
+	if is_direction && active_wrestler.unpopular || !is_direction && !is_utility && active_wrestler.stunned:
 		return
 	
 	var flurry_punch = CardDatabase.get_card_by_name("Flurry of Blows")
@@ -112,6 +113,9 @@ func play_card(card_data: CardData, card: Card = null):
 		elif card_data.name == "The Kickisher":
 			await the_kickisher(true)
 		
+		recalculate_card_damage()
+		clear_flurry_punch()
+		update_bars()
 		return
 	
 	match card_data.type:
@@ -457,7 +461,7 @@ func crowd_pleaser(disable_blocker: bool = false):
 		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 30)
 	else:
 		%AnnouncerDialogue.text = "But the crowd did not respond..."
-		await display_announcer_dialog(false)
+		await display_announcer_dialog(disable_blocker)
 	
 	update_bars()
 
