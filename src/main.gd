@@ -43,10 +43,10 @@ func _ready():
 			$TysonShadow.show()
 			%OpponentName.texture = load("res://assets/SwanDivinTysonTitleCard.png")
 		"Terry Thunder Thighs":
-			%TerryShadow.show()
+			$TerryShadow.show()
 			%OpponentName.texture = load("res://assets/TTT-Nameplate.png")
 		"Lunar Luchador":
-			%LuchadorShadow.show()
+			$LuchadorShadow.show();
 			%OpponentName.texture = load("res://assets/LunarLuchadorTitleCard.png")
 	
 	%PlayerHealthBar.max_value = player.max_hp

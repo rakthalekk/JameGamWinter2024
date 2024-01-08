@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/wrestler_database.gd" id="1_yg7rt"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="2_i7lpa"]
 [ext_resource type="AudioStream" uid="uid://bvpmf08n8dksr" path="res://assets/Audio/I_Am_The_Champion.ogg" id="4_rk0ml"]
-[ext_resource type="Texture2D" uid="uid://b1uwjdo141ve0" path="res://assets/Wrestlers/DocChopDSuplexSurgeon.png" id="4_yewfa"]
+[ext_resource type="Texture2D" uid="uid://decbl3ovhdbi8" path="res://assets/Wrestlers/DocChop.png" id="4_tsgis"]
 [ext_resource type="Texture2D" uid="uid://bv7q76rebr704" path="res://assets/Wrestlers/TheBigCheese.png" id="5_v1lnk"]
 [ext_resource type="Texture2D" uid="uid://b16fx6hkajxcu" path="res://assets/Wrestlers/SwanDivinTyson.png" id="6_fljmc"]
 [ext_resource type="Texture2D" uid="uid://bfg5x8ydqom8b" path="res://assets/Wrestlers/TerryThunderThighs.png" id="7_a5rnq"]
@@ -42,7 +42,7 @@ direction_list = Array[String](["Oversell", "Second Wind", "Throw the Match", "R
 
 [node name="Doc Chop" type="Sprite2D" parent="."]
 position = Vector2(105, 268)
-texture = ExtResource("4_yewfa")
+texture = ExtResource("4_tsgis")
 script = ExtResource("1_5xqm4")
 display_name = "Doc Chop"
 max_hp = 100
