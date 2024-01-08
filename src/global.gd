@@ -10,7 +10,7 @@ var fame: int = 0
 var total_fame: int = 0
 var battles_won: int = 0
 
-var current_opponent = "Terry Thunder Thighs"
+var current_opponent = "Swan Divin Tyson"
 var health_multiplier = 1
 var damage_multiplier = 1
 
