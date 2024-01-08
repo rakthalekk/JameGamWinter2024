@@ -609,6 +609,7 @@ texture = ExtResource("4_u1wlv")
 stretch_mode = 2
 
 [node name="TerryShadow" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 354.0
 offset_top = 325.0
@@ -618,6 +619,7 @@ texture = ExtResource("5_hqe4t")
 stretch_mode = 2
 
 [node name="LuchadorShadow" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 354.0
 offset_top = 325.0
