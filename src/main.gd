@@ -35,6 +35,7 @@ func _ready():
 	match opponent.name:
 		"Doc Chop":
 			$DocShadow.show()
+			%OpponentName.texture = load("res://assets/DC_Nameplatel.png")
 		"The Big Cheese":
 			$CheeseShadow.show()
 			%OpponentName.texture = load("res://assets/TBG-Nameplate.png")
@@ -42,9 +43,10 @@ func _ready():
 			$TysonShadow.show()
 			%OpponentName.texture = load("res://assets/SwanDivinTysonTitleCard.png")
 		"Terry Thunder Thighs":
-			%TerryName.show()
+			%TerryShadow.show()
 			%OpponentName.texture = load("res://assets/TTT-Nameplate.png")
 		"Lunar Luchador":
+			%LuchadorShadow.show()
 			%OpponentName.texture = load("res://assets/LunarLuchadorTitleCard.png")
 	
 	%PlayerHealthBar.max_value = player.max_hp
