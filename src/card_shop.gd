@@ -37,11 +37,9 @@ func _on_buy_pressed():
 		show_card_info()
 
 
-func _on_leave_pressed():
-	get_tree().change_scene_to_file("res://src/main.tscn")
-
-
 func _on_finish_pressed():
+	$ColorRect/AnimationPlayer.play("fade_out")
+	await $ColorRect/AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file("res://src/card_selection.tscn")
 
 

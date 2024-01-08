@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://mlv585n4vvlj"]
+[gd_scene load_steps=32 format=3 uid="uid://mlv585n4vvlj"]
 
 [ext_resource type="Script" path="res://src/card_selection.gd" id="1_sd2vt"]
 [ext_resource type="Texture2D" uid="uid://cpowkc1qf6bj8" path="res://assets/Cards/CardSlot.png" id="2_g7c4c"]
@@ -149,6 +149,33 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Animation" id="Animation_66abx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_kjjit"]
 resource_name = "fade_out"
 length = 0.5
@@ -177,8 +204,9 @@ tracks/1/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_66abx"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_tm4yf"]
+resource_name = "fade_in"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -186,10 +214,10 @@ tracks/0/path = NodePath("ColorRect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -198,15 +226,16 @@ tracks/1/path = NodePath("ColorRect:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tg8e4"]
 _data = {
 "RESET": SubResource("Animation_66abx"),
+"fade_in": SubResource("Animation_tm4yf"),
 "fade_out": SubResource("Animation_kjjit")
 }
 
@@ -223,7 +252,7 @@ script = ExtResource("1_sd2vt")
 position = Vector2(480, 270)
 sprite_frames = SubResource("SpriteFrames_4gmjj")
 autoplay = "default"
-frame_progress = 0.539204
+frame_progress = 0.15042
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -459,5 +488,6 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_tg8e4")
 }
+autoplay = "fade_in"
 
 [connection signal="pressed" from="Finish" to="." method="_on_finish_pressed"]

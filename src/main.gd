@@ -56,11 +56,11 @@ func _ready():
 	
 	await $AnimationPlayer.animation_finished
 	
-	%AnnouncerDialogue.text = "Announcer: Today's challenger against the champion is...!"
+	%AnnouncerDialogue.text = "Announcer: Today's challenger against [color=orange]The Champion[/color] is...!"
 	await display_announcer_dialog(true, 2)
 	
-	%AnnouncerDialogue.text = "Announcer: " + opponent.display_name + "!"
-	await display_announcer_dialog(true, 1)
+	%AnnouncerDialogue.text = "Announcer: [color=orange]" + opponent.display_name + "[/color]!"
+	await display_announcer_dialog(true, 1.5)
 	
 	$AnimationPlayer.play("intro")
 	
@@ -163,8 +163,8 @@ func play_card(card_data: CardData, card: Card = null):
 		CardData.CARDTYPE.FINISHER:
 			$FinisherSound.play()
 	
-	%AnnouncerDialogue.text = "Announcer: " + active_wrestler.display_name + " uses " + card_data.display_name + "!"
-	await display_announcer_dialog(true, 1)
+	%AnnouncerDialogue.text = "Announcer: [color=orange]" + active_wrestler.display_name + "[/color] uses [color=blue]" + card_data.display_name + "[/color]!"
+	await display_announcer_dialog(true, 1.5)
 	
 	active_wrestler.hp -= card_data.health_cost
 	active_wrestler.stamina -= card_data.stamina_cost
@@ -412,6 +412,7 @@ func check_damage_reduction(card_data: CardData):
 
 
 func display_player_dialog(disable_blocker: bool = false):
+	%PlayerDialogue.text = "[center]" + %PlayerDialogue.text
 	$PlayerSpeechBubble.show()
 	%TheBlocker.show()
 	
@@ -422,6 +423,7 @@ func display_player_dialog(disable_blocker: bool = false):
 
 
 func display_opponent_dialog():
+	%OpponentDialogue.text = "[center]" + %OpponentDialogue.text
 	$OpponentSpeechBubble.show()
 	%TheBlocker.show()
 	
@@ -429,7 +431,8 @@ func display_opponent_dialog():
 	$OpponentSpeechBubble.hide()
 
 
-func display_announcer_dialog(disable_blocker: bool = true, time: int = 1):
+func display_announcer_dialog(disable_blocker: bool = true, time: float = 2):
+	%AnnouncerDialogue.text = "[center]" + %AnnouncerDialogue.text
 	$AnnouncerSpeechBubble.show()
 	%TheBlocker.show()
 	
@@ -440,13 +443,13 @@ func display_announcer_dialog(disable_blocker: bool = true, time: int = 1):
 
 
 func debuff_text(wrestler: String, debuff: String):
-	%AnnouncerDialogue.text = "Announcer: " + wrestler + " is inflicted with " + debuff + "!"
+	%AnnouncerDialogue.text = "Announcer: [color=orange]" + wrestler + "[/color] is inflicted with [color=red]" + debuff + "[/color]!"
 	$DebuffSound.play()
 	await display_announcer_dialog()
 
 
 func damage_reduction_text(wrestler: String, type: String):
-	%AnnouncerDialogue.text = "Announcer: " + wrestler + " is protected against " + type + "!"
+	%AnnouncerDialogue.text = "Announcer: [color=orange]" + wrestler + "[/color] is protected against " + type + "!"
 	await display_announcer_dialog()
 
 
@@ -516,9 +519,8 @@ func change_turn():
 	active_wrestler.reset_defense_buffs()
 	
 	draw_new_hand()
-	recalculate_card_damage()
 	
-	%AnnouncerDialogue.text = "Announcer: " + active_wrestler.display_name + " is ready to wrestle!"
+	%AnnouncerDialogue.text = "Announcer: [color=orange]" + active_wrestler.display_name + "[/color] is ready to wrestle!"
 	await display_announcer_dialog(false, 2)
 	
 	# Wrestler gains 1 stamina upon starting their turn
@@ -530,6 +532,8 @@ func change_turn():
 		active_wrestler.sp = min(MAX_SP, active_wrestler.sp + 10)
 	
 	update_bars()
+	
+	recalculate_card_damage()
 	
 	if active_wrestler == opponent:
 		opponent_turn()
@@ -555,10 +559,10 @@ func draw_new_hand():
 
 func stance_up(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": I'm regaining my stance!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm regaining my stance!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": I'm regaining my stance!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm regaining my stance!"
 		await display_opponent_dialog()
 	
 	active_wrestler.stamina = min(MAX_STAMINA, active_wrestler.stamina + 2)
@@ -567,10 +571,10 @@ func stance_up(disable_blocker: bool = false):
 
 func crowd_pleaser(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: im a crowd pleaser!!!!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": im a crowd pleaser!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: im a crowd pleaser!!!!"
 		await display_opponent_dialog()
 	
 	if !active_wrestler.unpopular:
@@ -584,10 +588,10 @@ func crowd_pleaser(disable_blocker: bool = false):
 
 func crowd_loser(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: your a crowd loser!!!!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": your a crowd loser!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: your a crowd loser!!!!"
 		await display_opponent_dialog()
 	
 	active_wrestler.opponent.unpopular = true
@@ -603,10 +607,10 @@ func crowd_loser(disable_blocker: bool = false):
 
 func the_punshisher(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its punshishering time!!!!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": its punshishering time!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its punshishering time!!!!"
 		await display_opponent_dialog()
 	
 	active_wrestler.punshisher = true
@@ -616,10 +620,10 @@ func the_punshisher(disable_blocker: bool = false):
 
 func the_kickisher(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its kickishering time!!!!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = active_wrestler.display_name + ": its kickishering time!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its kickishering time!!!!"
 		await display_opponent_dialog()
 	
 	active_wrestler.kickicher = true

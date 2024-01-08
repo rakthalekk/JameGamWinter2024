@@ -374,120 +374,6 @@ tracks/7/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_trhs0"]
-resource_name = "obscure"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 178), Vector2(0, -12)]
-}
-
-[sub_resource type="Animation" id="Animation_jgf2t"]
-resource_name = "unobscure"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 178)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"flip_over_cards"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_1rdkq"]
-resource_name = "results"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ResultsScreen:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 500), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_61nxr"]
-resource_name = "intro"
-length = 3.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("VSBanner:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 4, 3, 2, 1, 0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("VSBanner:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 3.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VSBanner/ChampName:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VSBanner/OpponentName:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 3.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-
 [sub_resource type="Animation" id="Animation_rgo4f"]
 resource_name = "fade_in"
 length = 0.5
@@ -542,6 +428,120 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_61nxr"]
+resource_name = "intro"
+length = 3.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VSBanner:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 6, 7, 8, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VSBanner:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VSBanner/ChampName:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VSBanner/OpponentName:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 3.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_trhs0"]
+resource_name = "obscure"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 178), Vector2(0, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_1rdkq"]
+resource_name = "results"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ResultsScreen:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 500), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jgf2t"]
+resource_name = "unobscure"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Deck/TheObscurer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 178)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"flip_over_cards"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ft1eb"]
@@ -1025,25 +1025,29 @@ offset_bottom = 353.0
 texture = ExtResource("18_cvlnb")
 stretch_mode = 2
 
-[node name="PlayerDialogue" type="Label" parent="PlayerSpeechBubble"]
-unique_name_in_owner = true
+[node name="Container" type="VBoxContainer" parent="PlayerSpeechBubble"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 14.0
-offset_right = -27.0
-offset_bottom = -52.0
+offset_left = 25.0
+offset_top = 10.0
+offset_right = -26.0
+offset_bottom = -59.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -12
-theme_override_fonts/font = ExtResource("19_wst15")
-theme_override_font_sizes/font_size = 16
-text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="PlayerDialogue" type="RichTextLabel" parent="PlayerSpeechBubble/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -12
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+bbcode_enabled = true
+text = "[center]hi[/center]"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
 
 [node name="OpponentSpeechBubble" type="TextureRect" parent="."]
@@ -1056,25 +1060,29 @@ offset_bottom = 275.0
 texture = ExtResource("20_xn8jx")
 stretch_mode = 2
 
-[node name="OpponentDialogue" type="Label" parent="OpponentSpeechBubble"]
-unique_name_in_owner = true
+[node name="Container" type="VBoxContainer" parent="OpponentSpeechBubble"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 107.0
-offset_top = 4.0
-offset_right = -23.0
-offset_bottom = -8.0
+offset_left = 108.0
+offset_top = 18.0
+offset_right = -26.0
+offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -12
-theme_override_fonts/font = ExtResource("19_wst15")
-theme_override_font_sizes/font_size = 16
-text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="OpponentDialogue" type="RichTextLabel" parent="OpponentSpeechBubble/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -12
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+bbcode_enabled = true
+text = "[center]my name is the challenger [color=green]and[/color] i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as[/center]"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
 
 [node name="AnnouncerSpeechBubble" type="TextureRect" parent="."]
@@ -1088,25 +1096,29 @@ texture = ExtResource("20_xn8jx")
 stretch_mode = 2
 flip_h = true
 
-[node name="AnnouncerDialogue" type="Label" parent="AnnouncerSpeechBubble"]
-unique_name_in_owner = true
+[node name="Container" type="VBoxContainer" parent="AnnouncerSpeechBubble"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = 4.0
-offset_right = -107.0
-offset_bottom = -8.0
+offset_left = 25.0
+offset_top = 14.0
+offset_right = -112.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -12
-theme_override_fonts/font = ExtResource("19_wst15")
-theme_override_font_sizes/font_size = 16
-text = "my name is the challenger and i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as"
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="AnnouncerDialogue" type="RichTextLabel" parent="AnnouncerSpeechBubble/Container"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -12
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+bbcode_enabled = true
+text = "[center]my name is the challenger [color=green]and[/color] i'm gonna challenge youdasdasdasd as asd asd asd asd asda asd asd asda asd as[/center]"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
 
 [node name="PunchSound" type="AudioStreamPlayer" parent="."]
