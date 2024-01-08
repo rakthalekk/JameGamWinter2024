@@ -397,7 +397,6 @@ func check_debuff_rolls(card_data: CardData):
 		$CrowdBoo.play()
 		await debuff_text(active_wrestler.opponent.display_name, "Unpopular")
 
-
 func check_damage_reduction(card_data: CardData):
 	match card_data.name:
 		"Arm Bar":
@@ -445,7 +444,19 @@ func display_announcer_dialog(disable_blocker: bool = true, time: float = 2):
 func debuff_text(wrestler: String, debuff: String):
 	%AnnouncerDialogue.text = "Announcer: [color=orange]" + wrestler + "[/color] is inflicted with [color=red]" + debuff + "[/color]!"
 	$DebuffSound.play()
+	match debuff:
+		"Unpopular": 
+				flicker_debuff_tooltip(%PlayerUPTooltip)
+		"Stunned":
+				flicker_debuff_tooltip(%PlayerSTNTooltip)
+		"Stamina Debuff":	
+				flicker_debuff_tooltip(%PlayerSDBTooltip)
 	await display_announcer_dialog()
+
+func flicker_debuff_tooltip(debuffTip):
+	debuffTip.show()
+	await get_tree().create_timer(2).timeout
+	debuffTip.hide()
 
 
 func damage_reduction_text(wrestler: String, type: String):

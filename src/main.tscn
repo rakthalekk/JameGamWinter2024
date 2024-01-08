@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://d2ui2fbv6uxmd"]
+[gd_scene load_steps=70 format=3 uid="uid://d2ui2fbv6uxmd"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_gyohi"]
 [ext_resource type="Texture2D" uid="uid://dx3jmql2bnagj" path="res://icon.svg" id="1_q2t73"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://h0u3r2875g8i" path="res://assets/UnpopularIcon.png" id="7_vchbu"]
 [ext_resource type="Texture2D" uid="uid://dgjm6q1mj37gd" path="res://assets/Stamina-Meter.png" id="8_0fhrg"]
 [ext_resource type="Texture2D" uid="uid://bifi3ysilx8gm" path="res://assets/StunnedIcon.png" id="8_qjxln"]
+[ext_resource type="Texture2D" uid="uid://c8lrcvvww6kcg" path="res://assets/Tooltip.png" id="9_6eyhf"]
 [ext_resource type="Script" path="res://src/action_button.gd" id="11_272a8"]
 [ext_resource type="Texture2D" uid="uid://bfg5x8ydqom8b" path="res://assets/Wrestlers/TerryThunderThighs.png" id="11_e8wj6"]
 [ext_resource type="Texture2D" uid="uid://j1otl2rmxfkm" path="res://assets/Buttons/AttackButton.png" id="11_lb1ol"]
@@ -675,6 +676,43 @@ grow_horizontal = 2
 texture = ExtResource("6_2m35g")
 stretch_mode = 2
 
+[node name="PlayerSDBTooltip" type="NinePatchRect" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStaminaDebuff"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -114.5
+offset_top = 78.0
+offset_right = 86.5
+offset_bottom = 255.0
+grow_horizontal = 2
+texture = ExtResource("9_6eyhf")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStaminaDebuff/PlayerSDBTooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TooltipText" type="RichTextLabel" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStaminaDebuff/PlayerSDBTooltip/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=red]Stamina Debuff![/color] Lose all stamina and do not gain any at start of next turn "
+fit_content = true
+
 [node name="PlayerUnpopularDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
 unique_name_in_owner = true
 visible = false
@@ -687,6 +725,41 @@ offset_right = 28.0
 grow_vertical = 0
 texture = ExtResource("7_vchbu")
 stretch_mode = 2
+
+[node name="PlayerUPTooltip" type="NinePatchRect" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerUnpopularDebuff"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 67.0
+offset_right = 107.0
+offset_bottom = 244.0
+grow_horizontal = 2
+texture = ExtResource("9_6eyhf")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerUnpopularDebuff/PlayerUPTooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TooltipText" type="RichTextLabel" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerUnpopularDebuff/PlayerUPTooltip/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=red]Unpopular![/color] Can't preform directions or gain SP for one turn"
+fit_content = true
 
 [node name="PlayerStunnedDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
 unique_name_in_owner = true
@@ -703,6 +776,41 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("8_qjxln")
 stretch_mode = 2
+
+[node name="PlayerSTNTooltip" type="NinePatchRect" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStunnedDebuff"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -94.0
+offset_top = 67.0
+offset_right = 107.0
+offset_bottom = 244.0
+grow_horizontal = 2
+texture = ExtResource("9_6eyhf")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStunnedDebuff/PlayerSTNTooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TooltipText" type="RichTextLabel" parent="VBoxContainer/Ring/PlayerDebuffIcons/PlayerStunnedDebuff/PlayerSTNTooltip/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("19_wst15")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[color=red]Stunned![/color] Can't perform actions for one turn"
+fit_content = true
 
 [node name="OpponentDebuffIcons" type="Control" parent="VBoxContainer/Ring"]
 unique_name_in_owner = true
