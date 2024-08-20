@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmxhw42pq6dp6"]
+[gd_scene load_steps=16 format=3 uid="uid://bmxhw42pq6dp6"]
 
 [ext_resource type="Script" path="res://src/title_screen.gd" id="1_h87cv"]
 [ext_resource type="Texture2D" uid="uid://b1qusgeh4v5ah" path="res://assets/ScrollingBG.png" id="1_ls0le"]
 [ext_resource type="Texture2D" uid="uid://dq03l741silyt" path="res://assets/TitleLogo.png" id="2_60koj"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="3_peulb"]
+[ext_resource type="FontFile" uid="uid://bhl8yycwq0fvo" path="res://assets/Minecraftia-Regular.ttf" id="5_tdi75"]
 
 [sub_resource type="Animation" id="Animation_yxtna"]
 length = 0.001
@@ -209,15 +210,49 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -107.5
-offset_top = 122.0
-offset_right = 65.5
-offset_bottom = 166.0
+offset_left = -182.5
+offset_top = 100.0
+offset_right = 140.5
+offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_peulb")
 theme_override_font_sizes/font_size = 24
 text = "fight"
+
+[node name="HowToPlay" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = 156.0
+offset_right = 65.5
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_peulb")
+theme_override_font_sizes/font_size = 24
+text = "how to play"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = 211.0
+offset_right = 140.5
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_peulb")
+theme_override_font_sizes/font_size = 24
+text = "quit"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -234,4 +269,67 @@ libraries = {
 "": SubResource("AnimationLibrary_rdkij")
 }
 
+[node name="Instructions" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect2" type="ColorRect" parent="Instructions"]
+layout_mode = 2
+color = Color(0.133333, 0.133333, 0.133333, 0.67451)
+
+[node name="MarginContainer" type="MarginContainer" parent="Instructions/ColorRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="InstructionText" type="RichTextLabel" parent="Instructions/ColorRect2/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_tdi75")
+bbcode_enabled = true
+scroll_active = false
+
+[node name="NextText" type="Button" parent="Instructions/ColorRect2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_peulb")
+text = "next"
+
+[node name="Close" type="Button" parent="Instructions/ColorRect2/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_peulb")
+text = "close"
+
+[node name="PreviousText" type="Button" parent="Instructions/ColorRect2/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_peulb")
+text = "previous"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Instructions/ColorRect2/MarginContainer/NextText" to="." method="_on_next_text_pressed"]
+[connection signal="pressed" from="Instructions/ColorRect2/MarginContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Instructions/ColorRect2/MarginContainer/PreviousText" to="." method="_on_previous_text_pressed"]
