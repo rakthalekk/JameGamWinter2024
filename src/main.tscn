@@ -991,6 +991,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_sl8h3")
 }
+autoplay = "pressed"
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack"]
 stream = ExtResource("13_xggmj")

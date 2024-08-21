@@ -306,7 +306,7 @@ func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler)
 	var damage = card_data.damage
 	
 	# Special conditions for punch moves
-	if card_data.name == "Cross" && consecutive_punches > 1:
+	if card_data.name == "Cross" && consecutive_punches > 0:
 		damage += 2
 	elif card_data.name == "Flurry of Blows":
 		damage = 3 * (consecutive_punches - 1)
@@ -522,8 +522,12 @@ func check_game_end():
 		text = opponent.display_name + " has been defeated!"
 	
 	if text != "":
-		grab_focus()
-		release_focus()
+		%Continue.grab_focus()
+		%Continue.release_focus()
+		
+		$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack.focus_mode = FocusMode.FOCUS_NONE
+		$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction.focus_mode = FocusMode.FOCUS_NONE
+		$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter.focus_mode = FocusMode.FOCUS_NONE
 		
 		game_over = true
 		%TheBlocker.show()
@@ -558,7 +562,7 @@ func check_game_end():
 			%Multiplicative.text = "Matches Won: %d" % Global.battles_won
 			%TotalFame.text = "Total Fame Gained: %d" % Global.total_fame
 			%Continue2.show()
-			%Continue.grab_focus()
+			%Continue2.grab_focus()
 
 
 func change_turn():
@@ -590,6 +594,9 @@ func change_turn():
 	
 	%AnnouncerDialogue.text = "Announcer: [color=orange]" + active_wrestler.display_name + "[/color] is ready to wrestle!"
 	await display_announcer_dialog(false, 2)
+	
+	$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack/ButtonAnimator.play("pressed")
+	$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter/ButtonAnimator.play("idle")
 	
 	# Wrestler gains 1 stamina upon starting their turn
 	if active_wrestler.next_turn_stamina:
@@ -729,6 +736,8 @@ func _on_direction_pressed():
 	%CardContainer.hide()
 	%DirectionContainer.show()
 	%BanterContainer.hide()
+	
+	$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction.grab_focus()
 	
 	if Global.non_mouse && %Directions.get_child_count() > 0:
 		%Directions.get_children()[0].button.grab_focus()
