@@ -16,6 +16,8 @@ var damage_multiplier = 1
 
 var game_opened = false
 
+var non_mouse = true
+
 
 func get_next_opponent():
 	if current_opponent == "Swan Divin Tyson":

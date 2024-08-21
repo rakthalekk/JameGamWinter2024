@@ -29,6 +29,9 @@ func _ready():
 
 
 func _on_button_pressed():
+	if $AnimationPlayer.is_playing():
+		return
+	
 	$AnimationPlayer.play("fade")
 	await $AnimationPlayer.animation_finished
 	get_tree().change_scene_to_file("res://src/main.tscn")

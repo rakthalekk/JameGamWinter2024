@@ -710,7 +710,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("19_wst15")
 theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
-text = "[color=red]Stamina Debuff![/color] Lose all stamina and do not gain any at start of next turn "
+text = "[color=red]Stamina Debuff![/color] Lose two stamina and do not gain any at start of next turn "
 fit_content = true
 
 [node name="PlayerUnpopularDebuff" type="TextureRect" parent="VBoxContainer/Ring/PlayerDebuffIcons"]
@@ -1407,15 +1407,18 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_button_up"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack" to="." method="_on_play_card_pressed"]
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_button_up"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction" to="." method="_on_direction_pressed"]
 [connection signal="button_down" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_button_up"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_focus_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" method="_on_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter" to="." method="_on_banter_pressed"]
 [connection signal="pressed" from="ResultsScreen/Continue" to="." method="_on_continue_pressed"]

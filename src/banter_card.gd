@@ -1,7 +1,9 @@
+class_name BanterCard
 extends Control
 
 var root
 
+@onready var button = $Button as Button
 
 func _ready():
 	var card_data =  CardDatabase.get_card_by_name(name)
@@ -13,6 +15,8 @@ func _ready():
 
 
 func _on_button_pressed():
+	$Button.release_focus()
+	
 	if name == "Stance Up":
 		root._on_stance_up_pressed()
 	elif name == "Crowd Pleaser":

@@ -7,6 +7,8 @@ var in_deck = false
 
 var card_data: CardData
 
+@onready var button = $Button as Button
+
 func populate_from_data(data: CardData):
 	card_data = data
 	
@@ -32,3 +34,12 @@ func _on_button_pressed():
 
 func _on_button_mouse_entered():
 	root.update_tooltip(self)
+
+
+func _on_button_focus_entered() -> void:
+	$Highlight.show()
+	root.update_tooltip(self)
+
+
+func _on_button_focus_exited() -> void:
+	$Highlight.hide()

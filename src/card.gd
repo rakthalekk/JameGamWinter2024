@@ -8,6 +8,8 @@ var effective_damage: int
 
 var been_flipped = false
 
+@onready var button = $Button as Button
+
 func populate_from_data(data: CardData):
 	card_data = data
 	
@@ -62,7 +64,7 @@ func check_usability():
 	
 	if card_data.type == CardData.CARDTYPE.DIRECTION && root.player.unpopular:
 		%Banned.show()
-	elif card_data.type != CardData.CARDTYPE.UTILITY && root.player.stunned:
+	elif ![CardData.CARDTYPE.UTILITY, CardData.CARDTYPE.DIRECTION].has(card_data.type) && root.player.stunned:
 		%Banned.show()
 
 

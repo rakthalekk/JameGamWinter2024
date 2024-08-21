@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c88ygrf2jotfm"]
+[gd_scene load_steps=10 format=3 uid="uid://c88ygrf2jotfm"]
 
 [ext_resource type="Script" path="res://src/banter_card.gd" id="1_ngxp0"]
 [ext_resource type="Texture2D" uid="uid://bbunwu0tyrrou" path="res://assets/Cards/ThrowTheMatchCard.png" id="1_yrr2g"]
@@ -141,6 +141,8 @@ text = "Deals 5 damage
 66% chance to inflict Stamina Loss"
 autowrap_mode = 2
 
+[connection signal="focus_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="focus_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

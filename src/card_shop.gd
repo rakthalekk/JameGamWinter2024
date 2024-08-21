@@ -7,6 +7,9 @@ func _ready():
 	show_card_info()
 	
 	%MyFame.text = str(Global.fame)
+	
+	if Global.non_mouse:
+		$Buy.grab_focus()
 
 
 func show_card_info():

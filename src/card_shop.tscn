@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c0e06a6t5vpb2"]
+[gd_scene load_steps=43 format=3 uid="uid://c0e06a6t5vpb2"]
 
 [ext_resource type="Script" path="res://src/card_shop.gd" id="1_gu8pu"]
 [ext_resource type="Texture2D" uid="uid://b1qusgeh4v5ah" path="res://assets/ScrollingBG.png" id="2_uqli2"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://wlyx633s6gyr" path="res://assets/Buttons/BuyButtonUnpressed.png" id="7_ticrc"]
 [ext_resource type="Texture2D" uid="uid://co13m1dbixvpb" path="res://assets/Buttons/BuyButton.png" id="8_otdtm"]
 [ext_resource type="Texture2D" uid="uid://bwc6a0nltsok6" path="res://assets/Cards/ArmBarCardSprite.png" id="9_akgo0"]
+[ext_resource type="Texture2D" uid="uid://coipkbimpe24v" path="res://assets/Buttons/ArrowHover.png" id="9_ppoka"]
+[ext_resource type="Texture2D" uid="uid://dpelc0yhf512y" path="res://assets/Buttons/BuyButtonHover.png" id="12_7jler"]
 [ext_resource type="FontFile" uid="uid://c5hgn1rhtkqud" path="res://assets/Small_Pixel_Font.ttf" id="12_57dna"]
 [ext_resource type="Texture2D" uid="uid://c8lrcvvww6kcg" path="res://assets/Tooltip.png" id="12_vdn4c"]
 
@@ -439,8 +441,12 @@ offset_left = 274.0
 offset_top = 374.0
 offset_right = 320.0
 offset_bottom = 414.0
+focus_neighbor_right = NodePath("../Right")
+focus_neighbor_bottom = NodePath("../Buy")
 texture_normal = ExtResource("5_1xjev")
 texture_pressed = ExtResource("6_q278w")
+texture_hover = ExtResource("9_ppoka")
+texture_focused = ExtResource("9_ppoka")
 
 [node name="Right" type="TextureButton" parent="."]
 layout_mode = 0
@@ -448,8 +454,12 @@ offset_left = 640.0
 offset_top = 374.0
 offset_right = 686.0
 offset_bottom = 414.0
+focus_neighbor_left = NodePath("../Left")
+focus_neighbor_bottom = NodePath("../Buy")
 texture_normal = ExtResource("5_1xjev")
 texture_pressed = ExtResource("6_q278w")
+texture_hover = ExtResource("9_ppoka")
+texture_focused = ExtResource("9_ppoka")
 flip_h = true
 
 [node name="Buy" type="TextureButton" parent="."]
@@ -465,8 +475,13 @@ offset_right = 98.0
 offset_bottom = 263.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("../Left")
+focus_neighbor_top = NodePath("../Left")
+focus_neighbor_right = NodePath("../Finish")
 texture_normal = ExtResource("7_ticrc")
 texture_pressed = ExtResource("8_otdtm")
+texture_hover = ExtResource("12_7jler")
+texture_focused = ExtResource("12_7jler")
 
 [node name="CardSprite" type="Sprite2D" parent="."]
 position = Vector2(112, 104)
@@ -578,6 +593,7 @@ offset_right = -8.0
 offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
+focus_neighbor_left = NodePath("../Buy")
 theme_override_fonts/font = ExtResource("12_57dna")
 theme_override_font_sizes/font_size = 24
 text = "finish"

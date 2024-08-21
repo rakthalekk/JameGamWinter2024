@@ -79,8 +79,29 @@ func _ready():
 		%Directions.add_child(card)
 		card.flip_over()
 	
-	for card in %SmackTalk.get_children():
+	## Add direction focus neightbors
+	for i in range(5):
+		var card = %Directions.get_child(i) as Card
+		
+		card.button.focus_neighbor_top = card.button.get_path_to($VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack)
+		card.button.focus_neighbor_bottom = card.button.get_path_to($VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Banter)
+		
+		if i > 0:
+			card.button.focus_neighbor_left = card.button.get_path_to(%Directions.get_child(i - 1).button)
+		if i < 4:
+			card.button.focus_neighbor_right = card.button.get_path_to(%Directions.get_child(i + 1).button)
+	
+	## Add banter focus neightbors
+	for i in range(5):
+		var card = %SmackTalk.get_child(i) as BanterCard
 		card.root = self
+		
+		card.button.focus_neighbor_top = card.button.get_path_to($VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction)
+		
+		if i > 0:
+			card.button.focus_neighbor_left = card.button.get_path_to(%SmackTalk.get_child(i - 1).button)
+		if i < 4:
+			card.button.focus_neighbor_right = card.button.get_path_to(%SmackTalk.get_child(i + 1).button)
 	
 	active_wrestler = opponent
 	change_turn()
@@ -134,6 +155,9 @@ func play_card(card_data: CardData, card: Card = null):
 		# If a player plays an action card, destroy the card
 		if card:
 			card.queue_free()
+	else:
+		if card:
+			card.button.release_focus()
 	
 	# Utility cards are considered first, rest of function is ignored
 	if card_data.type == CardData.CARDTYPE.UTILITY:
@@ -147,6 +171,14 @@ func play_card(card_data: CardData, card: Card = null):
 			await the_punshisher(true)
 		elif card_data.name == "The Kickisher":
 			await the_kickisher(true)
+		
+		update_card_focus_neighbors()
+		
+		if active_wrestler == player:
+			if Global.non_mouse && %Cards.get_child_count() > 0:
+				%Cards.get_children()[0].button.grab_focus()
+			else:
+				_on_direction_pressed()
 		
 		recalculate_card_damage()
 		clear_flurry_punch()
@@ -218,8 +250,8 @@ func play_card(card_data: CardData, card: Card = null):
 	if card_data.type == CardData.CARDTYPE.PUNCH && card_data != flurry_punch:
 		consecutive_punches += 1
 		
-		# Adds flurry punch to the wrestler's deck after using a punch
-		if !active_wrestler.hand.has(flurry_punch):
+		# Adds flurry punch to the wrestler's deck after using two punches, if they have at least one other card
+		if consecutive_punches > 1 && !active_wrestler.hand.has(flurry_punch) && active_wrestler.hand.size() > 0:
 			active_wrestler.hand.append(flurry_punch)
 			if active_wrestler == player:
 				var flurry_card = CARD.instantiate() as Card
@@ -229,6 +261,18 @@ func play_card(card_data: CardData, card: Card = null):
 				flurry_card.flip_over()
 	else:
 		clear_flurry_punch()
+	
+	update_card_focus_neighbors()
+	
+	if !is_direction:
+		if active_wrestler == player:
+			if Global.non_mouse && %Cards.get_child_count() > 0:
+				%Cards.get_children()[0].button.grab_focus()
+			else:
+				_on_direction_pressed()
+	else:
+		if Global.non_mouse && active_wrestler == player && %Directions.get_child_count() > 0:
+			%Directions.get_children()[0].button.grab_focus()
 	
 	recalculate_card_damage()
 	check_game_end()
@@ -242,6 +286,10 @@ func clear_flurry_punch():
 		
 		for card in %Cards.get_children():
 			if card.card_data == flurry_punch:
+				# If the last unused card is frenzy, open direction menu
+				if card.button.has_focus():
+					_on_direction_pressed()
+				
 				card.queue_free()
 				return
 
@@ -258,7 +306,7 @@ func calculate_damage(card_data: CardData, wrestler: Wrestler = active_wrestler)
 	var damage = card_data.damage
 	
 	# Special conditions for punch moves
-	if card_data.name == "Cross" && consecutive_punches > 0:
+	if card_data.name == "Cross" && consecutive_punches > 1:
 		damage += 2
 	elif card_data.name == "Flurry of Blows":
 		damage = 3 * (consecutive_punches - 1)
@@ -298,15 +346,17 @@ func check_special_effects(card_data: CardData):
 			active_wrestler.stamina = 5
 		"Game Plan":
 			for card in active_wrestler.hand:
-				active_wrestler.deck.append(card)
+				if card.display_name != "Frenzy":
+					active_wrestler.deck.append(card)
+			
 			active_wrestler.hand.clear()
 			if active_wrestler == player:
 				for card in %Cards.get_children():
 					%Cards.remove_child(card)
 					card.queue_free()
-			draw_new_hand()
+			await draw_new_hand()
 			if active_wrestler == player:
-				flip_over_cards()
+				await flip_over_cards()
 		"Back Breaker":
 			if active_wrestler.opponent.hp <= 50:
 				active_wrestler.opponent.next_turn_stamina = false
@@ -472,6 +522,9 @@ func check_game_end():
 		text = opponent.display_name + " has been defeated!"
 	
 	if text != "":
+		grab_focus()
+		release_focus()
+		
 		game_over = true
 		%TheBlocker.show()
 		%AnnouncerDialogue.text = text
@@ -499,11 +552,13 @@ func check_game_end():
 			%Multiplicative.text = "%d * %.2f %s = %d" % [fame1, factor, term, fame]
 			%TotalFame.text = "Total Fame Gained: %d" % fame
 			%Continue.show()
+			%Continue.grab_focus()
 		else:
 			%Additive.text = "You Lose!"
 			%Multiplicative.text = "Matches Won: %d" % Global.battles_won
 			%TotalFame.text = "Total Fame Gained: %d" % Global.total_fame
 			%Continue2.show()
+			%Continue.grab_focus()
 
 
 func change_turn():
@@ -524,7 +579,9 @@ func change_turn():
 	else:
 		active_wrestler = player
 		turns += 1
-		_on_play_card_pressed()
+		%CardContainer.show()
+		%DirectionContainer.hide()
+		%BanterContainer.hide()
 		$AnimationPlayer.play("unobscure")
 	
 	active_wrestler.reset_defense_buffs()
@@ -550,6 +607,7 @@ func change_turn():
 		opponent_turn()
 	else:
 		%TheBlocker.hide()
+		$VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Attack.grab_focus()
 
 
 func opponent_turn():
@@ -566,6 +624,22 @@ func draw_new_hand():
 			card.populate_from_data(card_data)
 			card.root = self
 			%Cards.add_child(card)
+		
+		update_card_focus_neighbors()
+
+
+func update_card_focus_neighbors():
+	for i in range(%Cards.get_child_count()):
+		var card = %Cards.get_child(i) as Card
+		
+		card.button.focus_neighbor_bottom = card.button.get_path_to($VBoxContainer/Deck/MarginContainer/BottomMenu/ActionContainer/ActionButtons/Direction)
+		card.button.focus_neighbor_left = NodePath("")
+		card.button.focus_neighbor_right = NodePath("")
+		
+		if i > 0:
+			card.button.focus_neighbor_left = card.button.get_path_to(%Cards.get_child(i - 1).button)
+		if i < %Cards.get_child_count() - 1:
+			card.button.focus_neighbor_right = card.button.get_path_to(%Cards.get_child(i + 1).button)
 
 
 func stance_up(disable_blocker: bool = false):
@@ -582,10 +656,10 @@ func stance_up(disable_blocker: bool = false):
 
 func crowd_pleaser(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: im a crowd pleaser!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm gonna take you down!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: im a crowd pleaser!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm gonna take you down!"
 		await display_opponent_dialog()
 	
 	if !active_wrestler.unpopular:
@@ -599,10 +673,10 @@ func crowd_pleaser(disable_blocker: bool = false):
 
 func crowd_loser(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: your a crowd loser!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: You're nothing to me!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: your a crowd loser!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: You're nothing to me!"
 		await display_opponent_dialog()
 	
 	active_wrestler.opponent.unpopular = true
@@ -618,10 +692,10 @@ func crowd_loser(disable_blocker: bool = false):
 
 func the_punshisher(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its punshishering time!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm powering up my punches!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its punshishering time!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm powering up my punches!"
 		await display_opponent_dialog()
 	
 	active_wrestler.punshisher = true
@@ -631,10 +705,10 @@ func the_punshisher(disable_blocker: bool = false):
 
 func the_kickisher(disable_blocker: bool = false):
 	if active_wrestler == player:
-		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its kickishering time!!!!"
+		%PlayerDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm powering up my kicks!"
 		await display_player_dialog(disable_blocker)
 	else:
-		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: its kickishering time!!!!"
+		%OpponentDialogue.text = "[color=orange]" + active_wrestler.display_name + "[/color]: I'm powering up my kicks!"
 		await display_opponent_dialog()
 	
 	active_wrestler.kickicher = true
@@ -646,12 +720,18 @@ func _on_play_card_pressed():
 	%CardContainer.show()
 	%DirectionContainer.hide()
 	%BanterContainer.hide()
+	
+	if Global.non_mouse && %Cards.get_child_count() > 0:
+		%Cards.get_children()[0].button.grab_focus()
 
 
 func _on_direction_pressed():
 	%CardContainer.hide()
 	%DirectionContainer.show()
 	%BanterContainer.hide()
+	
+	if Global.non_mouse && %Directions.get_child_count() > 0:
+		%Directions.get_children()[0].button.grab_focus()
 
 
 func play_opponent_banter_sound():
@@ -714,6 +794,9 @@ func _on_banter_pressed():
 	%CardContainer.hide()
 	%DirectionContainer.hide()
 	%BanterContainer.show()
+	
+	if Global.non_mouse && %SmackTalk.get_child_count() > 0:
+		%SmackTalk.get_children()[0].button.grab_focus()
 
 
 func flip_over_cards():

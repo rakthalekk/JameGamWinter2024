@@ -12,6 +12,15 @@ offset_right = 110.0
 offset_bottom = 166.0
 script = ExtResource("1_34s8k")
 
+[node name="Highlight" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = 112.0
+offset_bottom = 167.0
+color = Color(1, 1, 0, 1)
+
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(55, 83)
 texture = ExtResource("1_la3s1")
@@ -62,5 +71,7 @@ grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 1
 
+[connection signal="focus_entered" from="Button" to="." method="_on_button_focus_entered"]
+[connection signal="focus_exited" from="Button" to="." method="_on_button_focus_exited"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

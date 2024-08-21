@@ -270,126 +270,149 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+[node name="DeckScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Deck" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="Deck" type="HBoxContainer" parent="MarginContainer/VBoxContainer/DeckScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 10
 
-[node name="CardSlot1" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot1" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot2" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot2" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot3" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot3" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot4" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot4" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot5" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot5" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot6" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot6" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot7" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot7" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot8" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot8" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot9" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot9" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot10" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot10" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot11" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot11" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot12" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot12" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot13" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot13" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot14" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot14" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot15" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot15" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot16" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot16" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot17" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot17" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot18" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot18" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot19" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot19" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="CardSlot20" type="TextureButton" parent="MarginContainer/VBoxContainer/ScrollContainer/Deck"]
+[node name="CardSlot20" type="TextureButton" parent="MarginContainer/VBoxContainer/DeckScroll/Deck"]
 custom_minimum_size = Vector2(110, 166)
 layout_mode = 2
+focus_mode = 0
 texture_normal = ExtResource("2_g7c4c")
 
-[node name="ScrollContainer3" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+[node name="CardScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 180)
 layout_mode = 2
 
-[node name="Cards" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer3"]
+[node name="Cards" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CardScroll"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_constants/separation = 10
 
-[node name="CardSelectionButton" parent="MarginContainer/VBoxContainer/ScrollContainer3/Cards" instance=ExtResource("3_fjr24")]
+[node name="CardSelectionButton" parent="MarginContainer/VBoxContainer/CardScroll/Cards" instance=ExtResource("3_fjr24")]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="."]
@@ -490,4 +513,5 @@ libraries = {
 }
 autoplay = "fade_in"
 
+[connection signal="focus_exited" from="Finish" to="." method="_on_finish_focus_exited"]
 [connection signal="pressed" from="Finish" to="." method="_on_finish_pressed"]
