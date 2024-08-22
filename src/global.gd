@@ -19,6 +19,11 @@ var game_opened = false
 var non_mouse = true
 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("quit"):
+		get_tree().quit()
+
+
 func get_next_opponent():
 	if current_opponent == "Swan Divin Tyson":
 		current_opponent = "The Big Cheese"
